@@ -7,30 +7,28 @@ import mas from '../../utils/Mas.js'
 
 const ingredients = mas.filter(el => el.type === 'sauce' || el.type === 'main')
 
-class BurgerConstructor extends Component {
-    render() {
-        return (
-            <section className={`${Style.burgerContainer}`}>
-              <ElementBurger>
-                <div className={`${Style.ingredientsBar}`}>
-                  {ingredients.map(el =>{
-                    return <Stuffing el={el}  key={el._id}/>
-                  })}
-                </div>
-              </ElementBurger>
-              <div className={`${Style.counter}`}>
-                <div className={`${Style.counterContainer}`}>
-                  <h2 className={`text text_type_main-large`}>610</h2>
-                  <CurrencyIcon type="primary" />
-                </div>
-              <Button type="primary" size="medium">
-              Оформить заказ
-              </Button>
-              </div>
+function BurgerConstructor() {
+  return (
+    <section className={`${Style.burgerContainer}`}>
+      <ElementBurger>
+      <div className={`${Style.ingredientsBar}`}>
+        {ingredients.map(el =>{
+          return <Stuffing el={el}  key={el._id}/>
+        })}
+      </div>
+      </ElementBurger>
+      <div className={`${Style.counter}`}>
+        <div className={`${Style.counterContainer}`}>
+          <h2 className={`text text_type_main-large`}>610</h2>
+          <CurrencyIcon type="primary" />
+        </div>
+        <Button type="primary" size="medium">
+        Оформить заказ
+        </Button>
+      </div>
             </section>
           
-        );
-    }
+  );  
 }
 
 

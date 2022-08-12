@@ -4,21 +4,16 @@ import Style from '../Stuffing/Stuffing.module.css';
 
 
 
-class Stuffing extends Component {
-    constructor(props) {
-    super(props);
-    }
-    render() {
-        return (
-            <div className={`${Style.stuffingBar}`}>
-                <DragIcon type="primary" />
-                 <ConstructorElement
-                  text={this.props.el.name}
-                  price={this.props.el.price}
-                  thumbnail={this.props.el.image_mobile} />
-            </div>
+function Stuffing(props) {
+  return (
+    <div className={`${Style.stuffingBar}`}>
+      <DragIcon type="primary" />
+      <ConstructorElement
+      text={props.el.name}
+      price={props.el.price}
+      thumbnail={props.el.image_mobile} />
+    </div>
         );
-    }
 }
 
 export default Stuffing;
