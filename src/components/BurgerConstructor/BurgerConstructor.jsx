@@ -26,8 +26,7 @@ function BurgerConstructor() {
         Оформить заказ
         </Button>
       </div>
-            </section>
-          
+    </section>       
   );  
 }
 

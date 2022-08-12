@@ -13,7 +13,7 @@ function Stuffing(props) {
       price={props.el.price}
       thumbnail={props.el.image_mobile} />
     </div>
-        );
+  );
 }
 
 export default Stuffing;

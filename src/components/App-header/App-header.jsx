@@ -19,8 +19,7 @@ function AppHeader() {
         <p className={`${Style.constructorTitle} text_type_main-default text_color_inactive`}>Личный кабинет</p>
       </a>
     </div>
-        );
-    
+  ); 
 }
 
 export default AppHeader;
