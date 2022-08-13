@@ -1,0 +1,13 @@
+.classContainer {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+}
+
+
+.ingredientContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}

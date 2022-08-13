@@ -1,0 +1,38 @@
+.burgerContainer {
+  margin-top: 100px;
+}
+
+.ingredientsBar {
+  overflow: auto;
+  display: flex;
+  height: 340px;
+  margin-top: 8px;
+  flex-direction: column;
+  overflow-y: scroll;
+  gap: 16px;
+  }
+  .ingredientsBar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .ingredientsBar::-webkit-scrollbar-track {
+    background: #2f2f37;
+  }
+  
+  .ingredientsBar::-webkit-scrollbar-thumb {
+    background: #8585ad;
+  }
+
+
+.counter {
+  display: flex;
+  margin-left: 210px;
+  margin-top: 40px;
+}
+
+.counterContainer {
+  display: flex;
+  align-items: center;
+  gap: 9.5px;
+  margin-right: 40px;
+}
