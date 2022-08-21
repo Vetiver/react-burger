@@ -1,10 +1,12 @@
 import React, { Component, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ReactDOM } from 'react';
-import Modal from '../Modal/Modal.jsx';
 import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from '../Ingredient/Ingredient.module.css';
+
+
 
 function Ingredient(props) {
   const [visible, setTheme] = React.useState(false)
@@ -12,15 +14,14 @@ function Ingredient(props) {
     setTheme(true);
     }
 
-  function handleCloseModal() {
+  function handleCloseModal(e) {
     setTheme(false);
+    e.stopPropagation();
   }
   const modal = (
-     <ModalOverlay>
-        <Modal onClose={handleCloseModal}>
-          <IngredientDetails arr={props.arr} />
-        </Modal>
-      </ModalOverlay>
+    <ModalOverlay id="modalOverlay" onClose={handleCloseModal}>  
+      <IngredientDetails arr={props.arr} />
+    </ModalOverlay>
   )  
   return (
     <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`}>
@@ -34,5 +35,9 @@ function Ingredient(props) {
     </div>
   );
 }
+
+Ingredient.propTypes = {
+  arr: PropTypes.object.isRequired,
+}; 
 
 export default Ingredient;

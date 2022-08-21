@@ -1,16 +1,16 @@
 import React, { Component, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import ElementBurger from '../ElementsBurger/ElementsBurger.jsx';
 import Stuffing from '../Stuffing/Stuffing.jsx';
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import Style from '../BurgerConstructor/BurgerConstructor.module.css';
-import Modal from '../Modal/Modal.jsx';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
-import mas from '../../utils/Mas.js'
 
-const ingredients = mas.filter(el => el.type === 'sauce' || el.type === 'main')
 
-function BurgerConstructor() {
+
+function BurgerConstructor(props) {
+  const ingredients = props.arr.filter(el => el.type === 'sauce' || el.type === 'main')
   const [visible, setTheme] = React.useState(false)
   function handleOpenModal() {
     setTheme(true);
@@ -20,11 +20,9 @@ function BurgerConstructor() {
     setTheme(false);
   }
   const modal = (
-     <ModalOverlay>
-        <Modal onClose={handleCloseModal}>
-          <OrderDetails />
-        </Modal>
-      </ModalOverlay>
+    <ModalOverlay onClose={handleCloseModal}>
+      <OrderDetails />
+    </ModalOverlay>
   )  
   return (
     <section className={`${Style.burgerContainer}`}>
@@ -49,6 +47,10 @@ function BurgerConstructor() {
     </section>       
   );  
 }
+
+BurgerConstructor.propTypes = {
+  arr:  PropTypes.arrayOf(PropTypes.object).isRequired,
+}; 
 
 
 export default BurgerConstructor;

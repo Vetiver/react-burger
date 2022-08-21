@@ -1,20 +1,17 @@
 import React, { Component, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { ReactDOM } from 'react';
 import Style from '../BurgerIngredients/BurgerIngredients.module.css';
 import '../Tab/Tab.jsx';
 import Ingredient from '../Ingredient/Ingredient.jsx';
-import Modal from '../Modal/Modal.jsx';
-import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
-import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx';
-import mas from "../../utils/Mas.js";
 import Tabs from '../Tab/Tab.jsx';
 
-const bun = mas.filter(el => el.type === 'bun');
-const main = mas.filter(el => el.type === 'main');
-const sauce = mas.filter(el => el.type === 'sauce');
+
 
 function BurgerIngredients(props) {
-
+  const bun = props.arr.filter(el => el.type === 'bun');
+  const main = props.arr.filter(el => el.type === 'main');
+  const sauce = props.arr.filter(el => el.type === 'sauce');
   return (
     <section className={`${Style.burgerCatalog}`}>
       <h2 className={`${Style.title} text text_type_main-large`}>Соберите бургер</h2>
@@ -42,5 +39,9 @@ function BurgerIngredients(props) {
     </section>
   );   
 }
+
+BurgerIngredients.propTypes = {
+  arr:  PropTypes.arrayOf(PropTypes.object).isRequired,
+}; 
 
 export default BurgerIngredients;

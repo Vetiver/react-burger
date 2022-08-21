@@ -3,38 +3,40 @@ import AppHeader from '../App-header/App-header';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import Style from "../App/App.module.css";
-import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
-import Modal from '../Modal/Modal';
-import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx';
+
 
 
 
 function App() {
-  const [state, setState] = React.useState({
+  const [api, setState] = React.useState({
     isLoading: false,
     hasError: false,
     data: [],
   })
-  React.useEffect(() => {
+  useEffect(() => {
     const getData = async () => {
-      setState({...state, isLoading: true});
-      const res = await fetch('https://norma.nomoreparties.space/api/ingredients');
-      const data = await res.json();
-      setState({...state, data: data.data, isLoading: false });
+      setState({...api, isLoading: true});
+      try {
+        const res = await fetch('https://norma.nomoreparties.space/api/ingredients');
+        const data = await res.json();
+        setState({...api, data: data.data, isLoading: false });
+      } catch (error) {
+        console.error(error)
+      } 
     }
     getData();
   }, [])
 
   
 
-  const {data} = state;
+  const {data} = api;
 
   return (
     <div className={Style.App}>
       <AppHeader />
       <main className={Style.container}>
         <BurgerIngredients arr={data}/>
-        <BurgerConstructor />
+        <BurgerConstructor arr={data}/>
       </main>
     </div>
   );
