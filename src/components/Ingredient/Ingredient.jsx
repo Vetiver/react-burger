@@ -12,6 +12,7 @@ function Ingredient(props) {
   const [visible, setTheme] = React.useState(false)
   function handleOpenModal() {
     setTheme(true);
+    
     }
 
   function handleCloseModal(e) {
