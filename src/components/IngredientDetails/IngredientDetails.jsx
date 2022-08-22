@@ -34,7 +34,7 @@ function IngredientDetails({ arr }) {
 }
 
 IngredientDetails.propTypes = {
-	arr: PropTypes.shape(burgerProps).isRequired,
+	arr: burgerProps.isRequired,
   }; 
 
 export default IngredientDetails;

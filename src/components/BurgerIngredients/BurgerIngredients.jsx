@@ -8,6 +8,7 @@ import Tabs from '../Tab/Tab.jsx';
 
 
 
+
 function BurgerIngredients({ arr }) {
   const bun = arr.filter(el => el.type === 'bun');
   const main = arr.filter(el => el.type === 'main');

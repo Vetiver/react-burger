@@ -6,9 +6,8 @@ import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-comp
 import Style from '../BurgerConstructor/BurgerConstructor.module.css';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import Modal from '../Modal/Modal.jsx';
-
-
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
+import {burgerProps} from "../../utils/BurgerPropTypes.jsx";
 
 
 function BurgerConstructor({ arr }) {
@@ -53,7 +52,7 @@ function BurgerConstructor({ arr }) {
 }
 
 BurgerConstructor.propTypes = {
-  arr: PropTypes.arrayOf(PropTypes.object).isRequired,
+  arr: PropTypes.arrayOf(burgerProps).isRequired,
 }; 
 
 

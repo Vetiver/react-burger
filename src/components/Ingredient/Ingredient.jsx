@@ -41,7 +41,7 @@ function Ingredient({ arr }) {
 }
 
 Ingredient.propTypes = {
-  arr: PropTypes.shape(burgerProps).isRequired,
+  arr: burgerProps.isRequired,
 }; 
 
 export default Ingredient;

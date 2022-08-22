@@ -19,7 +19,7 @@ function Stuffing({ el }) {
 }
 
 Stuffing.propTypes = {
-  el: PropTypes.shape(burgerProps).isRequired,
+  el: burgerProps.isRequired,
 }; 
 
 export default Stuffing;
