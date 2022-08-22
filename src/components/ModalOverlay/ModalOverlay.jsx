@@ -17,9 +17,6 @@ function ModalOverlay(props) {
     <>
   	<div onClick={modalOverlay} className={`${Style.container}`}
     id = "ModalOverlay">
-      <Modal onClose={props.onClose}>
-        {props.children}
-      </Modal>
     </div>
     </>
   ), modalRoot);

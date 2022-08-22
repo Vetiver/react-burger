@@ -8,18 +8,21 @@ import Style from "../App/App.module.css";
 
 
 function App() {
-  const [api, setState] = React.useState({
+  const [api, apiState] = React.useState({
     isLoading: false,
     hasError: false,
     data: [],
   })
   useEffect(() => {
     const getData = async () => {
-      setState({...api, isLoading: true});
+      apiState({...api, isLoading: true});
       try {
         const res = await fetch('https://norma.nomoreparties.space/api/ingredients');
+        if (!res.ok) {
+          throw new Error('Ответ сети был не ok :)');
+        }
         const data = await res.json();
-        setState({...api, data: data.data, isLoading: false });
+        apiState({...api, data: data.data, isLoading: false });
       } catch (error) {
         console.error(error)
       } 

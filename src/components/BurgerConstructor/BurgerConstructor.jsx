@@ -5,6 +5,9 @@ import Stuffing from '../Stuffing/Stuffing.jsx';
 import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import Style from '../BurgerConstructor/BurgerConstructor.module.css';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
+import Modal from '../Modal/Modal.jsx';
+import {burgerProps} from "../../utils/BurgerPropTypes.jsx";
+
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
 
 
@@ -20,9 +23,12 @@ function BurgerConstructor(props) {
     setTheme(false);
   }
   const modal = (
-    <ModalOverlay id="ModalOverlay" onClose={handleCloseModal}>
-      <OrderDetails />
-    </ModalOverlay>
+    <>
+    <Modal onClose={handleCloseModal}>
+    <OrderDetails />
+    </Modal>
+    <ModalOverlay id="ModalOverlay" onClose={handleCloseModal} />
+    </>
   )  
   return (
     <section className={`${Style.burgerContainer}`}>
@@ -43,13 +49,13 @@ function BurgerConstructor(props) {
         </Button>
         {visible && modal}
       </div>
-
     </section>       
   );  
 }
 
 BurgerConstructor.propTypes = {
-  arr:  PropTypes.arrayOf(PropTypes.object).isRequired,
+  props: burgerProps
+  
 }; 
 
 
