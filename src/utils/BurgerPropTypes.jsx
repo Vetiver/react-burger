@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
-const	burgerProps = PropTypes.shape({
+const	burgerProps = {
 			_id: PropTypes.string.isRequired,
 			name: PropTypes.string.isRequired,
 			type: PropTypes.string.isRequired,
@@ -15,7 +15,7 @@ const	burgerProps = PropTypes.shape({
 			image_mobile: PropTypes.string.isRequired,
 			image_large: PropTypes.string.isRequired,
 			__v: PropTypes.number.isRequired,	
-	});
+};
 	
       
 export {burgerProps}

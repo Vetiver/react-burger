@@ -8,10 +8,10 @@ import Tabs from '../Tab/Tab.jsx';
 
 
 
-function BurgerIngredients(props) {
-  const bun = props.arr.filter(el => el.type === 'bun');
-  const main = props.arr.filter(el => el.type === 'main');
-  const sauce = props.arr.filter(el => el.type === 'sauce');
+function BurgerIngredients({ arr }) {
+  const bun = arr.filter(el => el.type === 'bun');
+  const main = arr.filter(el => el.type === 'main');
+  const sauce = arr.filter(el => el.type === 'sauce');
   return (
     <section className={`${Style.burgerCatalog}`}>
       <h2 className={`${Style.title} text text_type_main-large`}>Соберите бургер</h2>

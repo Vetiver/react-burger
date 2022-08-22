@@ -6,14 +6,13 @@ import {Button, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-comp
 import Style from '../BurgerConstructor/BurgerConstructor.module.css';
 import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
 import Modal from '../Modal/Modal.jsx';
-import {burgerProps} from "../../utils/BurgerPropTypes.jsx";
+
 
 import OrderDetails from '../OrderDetails/OrderDetails.jsx';
 
 
-
-function BurgerConstructor(props) {
-  const ingredients = props.arr.filter(el => el.type === 'sauce' || el.type === 'main')
+function BurgerConstructor({ arr }) {
+  const ingredients = arr.filter(el => el.type === 'sauce' || el.type === 'main')
   const [visible, setTheme] = React.useState(false)
   function handleOpenModal() {
     setTheme(true);
@@ -54,8 +53,7 @@ function BurgerConstructor(props) {
 }
 
 BurgerConstructor.propTypes = {
-  props: burgerProps
-  
+  arr: PropTypes.arrayOf(PropTypes.object).isRequired,
 }; 
 
 
