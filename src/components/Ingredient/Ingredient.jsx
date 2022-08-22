@@ -17,10 +17,9 @@ function Ingredient(props) {
 
   function handleCloseModal(e) {
     setTheme(false);
-    e.stopPropagation();
   }
   const modal = (
-    <ModalOverlay id="modalOverlay" onClose={handleCloseModal}>  
+    <ModalOverlay id="ModalOverlay" onClose={handleCloseModal}>  
       <IngredientDetails arr={props.arr} />
     </ModalOverlay>
   )  

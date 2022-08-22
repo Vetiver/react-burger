@@ -16,11 +16,11 @@ function BurgerConstructor(props) {
     setTheme(true);
     }
 
-  function handleCloseModal() {
+  function handleCloseModal(e) {
     setTheme(false);
   }
   const modal = (
-    <ModalOverlay onClose={handleCloseModal}>
+    <ModalOverlay id="ModalOverlay" onClose={handleCloseModal}>
       <OrderDetails />
     </ModalOverlay>
   )  

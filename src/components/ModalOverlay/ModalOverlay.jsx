@@ -7,9 +7,10 @@ const modalRoot = document.getElementById("modal-root");
 
 function ModalOverlay(props) {
   const modalOverlay = (evt) => {
-    if (evt.target.id === "ModalOverlay") {
+    if (evt.target.id == "ModalOverlay") {
       props.onClose();
     }
+    evt.stopPropagation();
   }
 
   return ReactDOM.createPortal ((
