@@ -5,11 +5,12 @@ import Style from '../BurgerIngredients/BurgerIngredients.module.css';
 import '../Tab/Tab.jsx';
 import Ingredient from '../Ingredient/Ingredient.jsx';
 import Tabs from '../Tab/Tab.jsx';
+import { userContext } from '../../utils/userContext.jsx';
 
 
 
-
-function BurgerIngredients({ arr }) {
+function BurgerIngredients() {
+  const arr = React.useContext(userContext)
   const bun = arr.filter(el => el.type === 'bun');
   const main = arr.filter(el => el.type === 'main');
   const sauce = arr.filter(el => el.type === 'sauce');
@@ -41,8 +42,9 @@ function BurgerIngredients({ arr }) {
   );   
 }
 
-BurgerIngredients.propTypes = {
+
+/*BurgerIngredients.propTypes = {
   arr:  PropTypes.arrayOf(PropTypes.object).isRequired,
-}; 
+}; */
 
 export default BurgerIngredients;

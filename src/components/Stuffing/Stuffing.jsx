@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useContext } from 'react';
 import {DragIcon, ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import {burgerProps} from "../../utils/BurgerPropTypes.jsx";
 import Style from '../Stuffing/Stuffing.module.css';
-
+import {orderContext} from "../../utils/orderContext.jsx";
 
 
 function Stuffing({ el }) {
+  const {dispatch} = React.useContext(orderContext)
+  React.useEffect(() =>{
+    dispatch({type: 'push', payload: el.price })
+  }, [])
   return (
     <div className={`${Style.stuffingBar}`}>
       <DragIcon type="primary" />

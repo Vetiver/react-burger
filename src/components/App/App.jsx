@@ -3,6 +3,7 @@ import AppHeader from '../App-header/App-header';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import Style from "../App/App.module.css";
+import { userContext } from '../../utils/userContext.jsx';
 
 
 
@@ -30,19 +31,23 @@ function App() {
     getData();
   }, [])
 
-  
+ 
 
   const {data} = api;
+    return (
+      <div className={Style.App}>
+        <AppHeader />
+        <main className={Style.container}>
+          <userContext.Provider value={data}>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </userContext.Provider>
+        </main>
+      </div>
+    );
+  }
 
-  return (
-    <div className={Style.App}>
-      <AppHeader />
-      <main className={Style.container}>
-        <BurgerIngredients arr={data}/>
-        <BurgerConstructor arr={data}/>
-      </main>
-    </div>
-  );
-}
+
+
 
 export default App;

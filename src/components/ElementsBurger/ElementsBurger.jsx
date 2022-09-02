@@ -1,4 +1,4 @@
-import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components'
+import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 export default function ElementBurger(props)  {
   
     return (
