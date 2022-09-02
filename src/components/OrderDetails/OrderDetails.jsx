@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Style from "../OrderDetails/OrderDetails.module.css";
 import {CloseIcon, CheckMarkIcon} from "@ya.praktikum/react-developer-burger-ui-components"
 
-function OrderDetails({data}) {
+function OrderDetails({ data }) {
     return (
-    	<>
+    	<> 
 				<p className={`${Style.mainCounter} text text_type_digits-large`}>{data.order.number}</p>
 				<p className={`${Style.firstMargin} text text_type_main-medium`}>идентификатор заказа</p>
 				<CheckMarkIcon type="secondary" />
