@@ -1,47 +1,44 @@
-import React, { Component, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { ReactDOM } from 'react';
-import IngredientDetails from '../IngredientDetails/IngredientDetails.jsx';
-import ModalOverlay from '../ModalOverlay/ModalOverlay.jsx';
-import Modal from '../Modal/Modal.jsx';
-import {burgerProps} from "../../utils/BurgerPropTypes.jsx";
-import {CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
-import Style from '../Ingredient/Ingredient.module.css';
+import React, { Component, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { ReactDOM } from "react";
+import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
+import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
+import Modal from "../Modal/Modal.jsx";
+import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import Style from "../Ingredient/Ingredient.module.css";
 
-
-
-function Ingredient({ arr }) {
-  const [visible, setTheme] = React.useState(false)
+function Ingredient({ ingredient }) {
+  const [visible, setTheme] = React.useState(false);
   function handleOpenModal(e) {
     setTheme(true);
-    }
+  }
 
   function handleCloseModal(e) {
     setTheme(false);
   }
   const modal = (
     <>
-    <Modal onClose={handleCloseModal}>
-    <IngredientDetails arr={arr} />
-    </Modal>
-    <ModalOverlay id="ModalOverlay" onClose={handleCloseModal} />  
+      <Modal onClose={handleCloseModal}>
+        <IngredientDetails ingredient={ingredient} />
+      </Modal>
     </>
-  )  
+  );
   return (
     <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`}>
       {visible && modal}
-      <img src={arr.image} alt={arr.name} />
+      <img src={ingredient.image} alt={ingredient.name} />
       <div className={`${Style.classContainer}`}>
-        <p className='text text_type_main-medium'>{arr.price}</p>
+        <p className="text text_type_main-medium">{ingredient.price}</p>
         <CurrencyIcon type="primary" />
-      </div>  
-      <p className='text text_type_main-small'>{arr.name}</p>
+      </div>
+      <p className="text text_type_main-small">{ingredient.name}</p>
     </div>
   );
 }
 
 Ingredient.propTypes = {
-  arr: burgerProps.isRequired,
-}; 
+  ingredient: burgerProps.isRequired,
+};
 
 export default Ingredient;

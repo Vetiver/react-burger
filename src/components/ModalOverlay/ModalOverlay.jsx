@@ -1,9 +1,8 @@
-import React, { Component, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
+import React, { Component, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import ReactDOM from "react-dom";
 import Style from "../ModalOverlay/ModalOverlay.module.css";
-import Modal from '../Modal/Modal.jsx';
-const modalRoot = document.getElementById("modal-root");
+import Modal from "../Modal/Modal.jsx";
 
 function ModalOverlay(props) {
   const modalOverlay = (evt) => {
@@ -11,19 +10,19 @@ function ModalOverlay(props) {
       props.onClose();
     }
     evt.stopPropagation();
-  }
+  };
 
-  return ReactDOM.createPortal ((
-    <>
-  	<div onClick={modalOverlay} className={`${Style.container}`}
-    id = "ModalOverlay">
-    </div>
-    </>
-  ), modalRoot);
+  return (
+    <div
+      onClick={modalOverlay}
+      className={`${Style.container}`}
+      id="ModalOverlay"
+    ></div>
+  );
 }
 
 ModalOverlay.propTypes = {
-  onClose: PropTypes.func
-}
+  onClose: PropTypes.func,
+};
 
 export default ModalOverlay;
