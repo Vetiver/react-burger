@@ -1,17 +1,22 @@
 import React, { Component, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ReactDOM } from "react";
+import { getItems } from "../../services/actions/order";
+import {useDispatch, useSelector} from 'react-redux';
 import Style from "../BurgerIngredients/BurgerIngredients.module.css";
 import "../Tab/Tab.jsx";
 import Ingredient from "../Ingredient/Ingredient.jsx";
 import Tabs from "../Tab/Tab.jsx";
-import { BurgerContext } from "../../contexts/BurgerContext.jsx";
 
 function BurgerIngredients() {
-  const arr = React.useContext(BurgerContext);
-  const bun = arr.filter((el) => el.type === "bun");
-  const main = arr.filter((el) => el.type === "main");
-  const sauce = arr.filter((el) => el.type === "sauce");
+  const ingredients = useSelector(state => state.allIngredients);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getItems())
+  },[])
+  const bun = ingredients.filter((el) => el.type === "bun");
+  const main = ingredients.filter((el) => el.type === "main");
+  const sauce = ingredients.filter((el) => el.type === "sauce");
   return (
     <section className={`${Style.burgerCatalog}`}>
       <h2 className={`${Style.title} text text_type_main-large`}>

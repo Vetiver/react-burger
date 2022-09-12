@@ -2,22 +2,28 @@ import React, { Component, useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import ElementBurger from "../ElementsBurger/ElementsBurger.jsx";
 import Stuffing from "../Stuffing/Stuffing.jsx";
+import {useDispatch, useSelector} from 'react-redux';
+import { getItems } from "../../services/actions/order";
 import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../BurgerConstructor/BurgerConstructor.module.css";
-import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import Modal from "../Modal/Modal.jsx";
 import { BurgerContext } from "../../contexts/BurgerContext.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import { orderContext } from "../../contexts/orderContext.jsx";
 import checkResponse from "../../utils/checkResponse.jsx";
 
+
 function BurgerConstructor() {
+  const ingredient = useSelector(state => state.allIngredients);
+  const dispatcher = useDispatch();
+  useEffect(() => {
+    dispatcher(getItems())
+  },[])
   const arr = React.useContext(BurgerContext);
-  const ingredients = arr.filter(
+  const ingredients = ingredient.filter(
     (el) => el.type === "sauce" || el.type === "main"
   );
   const [visible, setTheme] = React.useState(false);
