@@ -6,7 +6,6 @@ import Style from "../App/App.module.css";
 import { BurgerContext } from "../../contexts/BurgerContext.jsx";
 import checkResponse from "../../utils/checkResponse.jsx";
 import {useDispatch, useSelector} from 'react-redux';
-import Modal from "../Modal/Modal";
 
 function App() {
   return (

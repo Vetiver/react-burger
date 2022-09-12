@@ -13,7 +13,7 @@ export const fetchIngredients = () => {
     body: JSON.stringify(),
   };
 
-  return fetch(`${baseUrl}/api/ingredients`, requestOptions).then(checkResponce);;
+  return fetch(`${baseUrl}/api/ingredients`, requestOptions).then(checkResponce);
 }
 
 
@@ -24,7 +24,6 @@ export function getItems() {
     });
     fetchIngredients()
     .then((res) => {
-      console.log(res.data);
       if (res && res.success) {
         dispatch({
           type: GET_INGREDIENTS_SUCCESS,

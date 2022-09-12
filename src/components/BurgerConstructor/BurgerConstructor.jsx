@@ -22,7 +22,6 @@ function BurgerConstructor() {
   useEffect(() => {
     dispatcher(getItems())
   },[])
-  const arr = React.useContext(BurgerContext);
   const ingredients = ingredient.filter(
     (el) => el.type === "sauce" || el.type === "main"
   );
