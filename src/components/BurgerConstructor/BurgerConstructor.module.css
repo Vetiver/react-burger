@@ -10,6 +10,8 @@
   flex-direction: column;
   overflow-y: scroll;
   gap: 16px;
+  width: 570px;
+  
   }
   .ingredientsBar::-webkit-scrollbar {
     width: 8px;

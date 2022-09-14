@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { ReactDOM } from "react";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
+import { useDrag } from "react-dnd";
 import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import Modal from "../Modal/Modal.jsx";
 import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
@@ -9,6 +10,15 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import Style from "../Ingredient/Ingredient.module.css";
 
 function Ingredient({ ingredient }) {
+
+  const [{ isDrag }, dragRef] = useDrag({
+    type: "ingredient",
+    item: ingredient,
+    collect: (monitor) => ({
+      isDrag: monitor.isDragging(),
+    }),
+  });
+
   const [visible, setTheme] = React.useState(false);
   function handleOpenModal(e) {
     setTheme(true);
@@ -25,7 +35,8 @@ function Ingredient({ ingredient }) {
     </>
   );
   return (
-    <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`}>
+    !isDrag && 
+    <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`} ref={dragRef}>
       {visible && modal}
       <img src={ingredient.image} alt={ingredient.name} />
       <div className={`${Style.classContainer}`}>

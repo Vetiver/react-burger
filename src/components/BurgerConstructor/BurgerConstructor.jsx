@@ -14,22 +14,33 @@ import { BurgerContext } from "../../contexts/BurgerContext.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 import { orderContext } from "../../contexts/orderContext.jsx";
 import checkResponse from "../../utils/checkResponse.jsx";
-
+import { useDrop, useD } from "react-dnd";
+import {
+  ADD_CONSTRUCTOR_ELEMENT, REMOVE_CONSTRUCTOR_ELEMENT, } from "../../services/actions/order.jsx";
 
 function BurgerConstructor() {
-  const ingredient = useSelector(state => state.allIngredients);
+  const ingredient = useSelector(state => state.constructorIngredients);
   const dispatcher = useDispatch();
-  useEffect(() => {
-    dispatcher(getItems())
-  },[])
-  const ingredients = ingredient.filter(
-    (el) => el.type === "sauce" || el.type === "main"
-  );
   const [visible, setTheme] = React.useState(false);
   const baseUrl = "https://norma.nomoreparties.space";
   let start = {
     price: 0,
   };
+
+  const [, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(item) {
+      test(item);
+    },
+    
+  });
+ const constructorElements = useSelector(
+   (state) => state.constructorIngredients
+ );
+  const test = (item) => {
+dispatcher({ type: ADD_CONSTRUCTOR_ELEMENT, payload: item });
+console.log(constructorElements);
+  }
 
   function reducer(state, action) {
     switch (action.type) {
@@ -41,7 +52,7 @@ function BurgerConstructor() {
     }
   }
   const [state, dispatch] = React.useReducer(reducer, start);
-
+  
   const [api, apiState] = React.useState({
     isLoading: false,
     hasError: false,
@@ -88,8 +99,8 @@ function BurgerConstructor() {
     <section className={`${Style.burgerContainer}`}>
       <orderContext.Provider value={{ dispatch }}>
         <ElementBurger>
-          <div className={`${Style.ingredientsBar}`}>
-            {ingredients.map((el) => {
+          <div className={`${Style.ingredientsBar}`} ref={dropTarget} >
+            {ingredient.map((el) => {
               return <Stuffing el={el} key={el._id} />;
             })}
           </div>

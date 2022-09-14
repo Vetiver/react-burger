@@ -2,14 +2,19 @@ import thunk from 'redux';
 import checkResponse from "../../utils/checkResponse.jsx";
 const baseUrl = "https://norma.nomoreparties.space";
 
- const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
- const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
- const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
+export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
+export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
+export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
+ 
+export const ADD_CONSTRUCTOR_ELEMENT = 'ADD_CONSTRUCTOR_ELEMENT';
+export const REMOVE_CONSTRUCTOR_ELEMENT = "REMOVE_CONSTRUCTOR_ELEMENT";
 
  const initialState = {
   allIngredients: [],
   IngredientsRequest: false,
   IngredientsFailed: false,
+
+  constructorIngredients: []
 };
 
 export const reducer = (state = initialState, action) => {
@@ -25,6 +30,25 @@ export const reducer = (state = initialState, action) => {
       };
     case GET_INGREDIENTS_FAILED:
       return { ...state, IngredientsFailed: true };
+
+    case ADD_CONSTRUCTOR_ELEMENT: {
+      return {
+        ...state,
+        constructorIngredients: [
+          ...state.constructorIngredients,
+          action.payload
+        ],
+      };
+    }
+    case REMOVE_CONSTRUCTOR_ELEMENT: {
+      return {
+        ...state,
+        constructorIngredients: [
+          ...state.constructorIngredients,
+          action.payload,
+        ],
+      };
+    }
     default:
       return state;
   }

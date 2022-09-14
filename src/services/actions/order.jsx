@@ -2,9 +2,12 @@ import thunk from "redux";
 import checkResponce from '../../utils/checkResponse.jsx'
 const baseUrl = "https://norma.nomoreparties.space";
 
- const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
- const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
- const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
+export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
+export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
+export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
+ 
+export const ADD_CONSTRUCTOR_ELEMENT = 'ADD_CONSTRUCTOR_ELEMENT';
+export const REMOVE_CONSTRUCTOR_ELEMENT = "REMOVE_CONSTRUCTOR_ELEMENT";
 
 export const fetchIngredients = () => {
   const requestOptions = {
