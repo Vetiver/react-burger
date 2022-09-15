@@ -2,15 +2,8 @@ import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-comp
 import { useDrop } from "react-dnd";
 export default function ElementBurger(props) {
 
-  const [, dropTarget] = useDrop({
-    accept: "ingredient",
-    drop(itemId) {
-        
-    },
-});
-
   return (
-    <div ref={dropTarget}
+    <div 
       style={{
         display: "flex",
         flexDirection: "column",

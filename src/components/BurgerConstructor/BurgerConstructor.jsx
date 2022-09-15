@@ -1,25 +1,23 @@
-import React, { Component, useState, useEffect, useRef } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import ElementBurger from "../ElementsBurger/ElementsBurger.jsx";
 import Stuffing from "../Stuffing/Stuffing.jsx";
 import {useDispatch, useSelector} from 'react-redux';
-import { getItems } from "../../services/actions/order";
 import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../BurgerConstructor/BurgerConstructor.module.css";
 import Modal from "../Modal/Modal.jsx";
-import { BurgerContext } from "../../contexts/BurgerContext.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 import { orderContext } from "../../contexts/orderContext.jsx";
 import checkResponse from "../../utils/checkResponse.jsx";
 import { useDrop, useD } from "react-dnd";
-import {
-  ADD_CONSTRUCTOR_ELEMENT, REMOVE_CONSTRUCTOR_ELEMENT, } from "../../services/actions/order.jsx";
+import {ADD_CONSTRUCTOR_ELEMENT} from "../../services/actions/order.jsx";
 
-function BurgerConstructor() {
+function BurgerConstructor(props) {
   const ingredient = useSelector(state => state.constructorIngredients);
+  const mainBun = ingredient.filter(el => el.name === 'Краторная булка N-200i (верх)')
   const dispatcher = useDispatch();
   const [visible, setTheme] = React.useState(false);
   const baseUrl = "https://norma.nomoreparties.space";
@@ -29,23 +27,25 @@ function BurgerConstructor() {
 
   const [, dropTarget] = useDrop({
     accept: "ingredient",
+    
     drop(item) {
-      test(item);
+      if(item.type !== 'bun'){
+        dispatcher({ type: ADD_CONSTRUCTOR_ELEMENT, payload: item });
+      }
     },
     
   });
  const constructorElements = useSelector(
    (state) => state.constructorIngredients
  );
-  const test = (item) => {
-dispatcher({ type: ADD_CONSTRUCTOR_ELEMENT, payload: item });
-console.log(constructorElements);
-  }
 
   function reducer(state, action) {
     switch (action.type) {
       case "push": {
         return { ...state, price: state.price + action.payload };
+      }
+      case 'remove': {
+        return {...state, price: state.price - action.payload}
       }
       default:
         return state;

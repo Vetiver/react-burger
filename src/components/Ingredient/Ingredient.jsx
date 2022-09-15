@@ -1,9 +1,7 @@
-import React, { Component, useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { ReactDOM } from "react";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import { useDrag } from "react-dnd";
-import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import Modal from "../Modal/Modal.jsx";
 import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";

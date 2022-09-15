@@ -1,7 +1,3 @@
-import thunk from 'redux';
-import checkResponse from "../../utils/checkResponse.jsx";
-const baseUrl = "https://norma.nomoreparties.space";
-
 export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
@@ -40,15 +36,11 @@ export const reducer = (state = initialState, action) => {
         ],
       };
     }
-    case REMOVE_CONSTRUCTOR_ELEMENT: {
-      return {
-        ...state,
-        constructorIngredients: [
-          ...state.constructorIngredients,
-          action.payload,
-        ],
+    case REMOVE_CONSTRUCTOR_ELEMENT: 
+    const  commentId = action.payload;
+      return {...state, constructorIngredients: state.constructorIngredients.filter(comment => comment._id !== commentId)
       };
-    }
+    
     default:
       return state;
   }

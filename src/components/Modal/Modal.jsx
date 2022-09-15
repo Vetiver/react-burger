@@ -5,7 +5,6 @@ import Style from "../Modal/Modal.module.css";
 import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import {
   CloseIcon,
-  CheckMarkIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 const modalRoot = document.getElementById("modal-root");
@@ -13,7 +12,7 @@ const modalRoot = document.getElementById("modal-root");
 function Modal(props) {
   useEffect(() => {
     const close = (e) => {
-      if (e.keyCode === 27) {
+      if (e.key === 'Escape') {
         props.onClose();
       }
     };

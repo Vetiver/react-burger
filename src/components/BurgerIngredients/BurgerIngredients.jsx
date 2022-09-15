@@ -1,5 +1,4 @@
 import React, { Component, useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import { ReactDOM } from "react";
 import { getItems } from "../../services/actions/order";
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,6 +13,8 @@ function BurgerIngredients() {
   useEffect(() => {
     dispatch(getItems())
   },[])
+ 
+
   const bun = ingredients.filter((el) => el.type === "bun");
   const main = ingredients.filter((el) => el.type === "main");
   const sauce = ingredients.filter((el) => el.type === "sauce");
@@ -24,20 +25,20 @@ function BurgerIngredients() {
       </h2>
       <Tabs />
       <div className={`${Style.chapter}`}>
-        <h3 className={`${Style.title} text text_type_main-medium`}>Булки</h3>
-        <div className={`${Style.burgerGrid}`}>
+        <h3  className={`${Style.title} text text_type_main-medium`}>Булки</h3>
+        <div id='bun' className={`${Style.burgerGrid}`}>
           {bun.map(function (el) {
             return <Ingredient ingredient={el} key={el._id} />;
           })}
         </div>
         <h3 className={`${Style.title} text text_type_main-medium`}>Соусы</h3>
-        <div className={`${Style.burgerGrid}`}>
+        <div id='sauses' className={`${Style.burgerGrid}`}>
           {sauce.map(function (el) {
             return <Ingredient ingredient={el} key={el._id} />;
           })}
         </div>
-        <h3 className={`${Style.title} text text_type_main-medium`}>Начинки</h3>
-        <div className={`${Style.burgerGrid}`}>
+        <h3 id='main' className={`${Style.title} text text_type_main-medium`}>Начинки</h3>
+        <div  className={`${Style.burgerGrid}`}>
           {main.map(function (el) {
             return <Ingredient ingredient={el} key={el._id} />;
           })}
