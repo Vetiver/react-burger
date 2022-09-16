@@ -7,8 +7,11 @@ import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import {useDispatch} from 'react-redux'
 import Style from "../Stuffing/Stuffing.module.css";
 import { orderContext } from "../../contexts/orderContext.jsx";
+import { useMotionValue, Reorder } from "framer-motion";
+
 
 function Stuffing({ el }) {
+  const y = useMotionValue(0);
   const { dispatch } = React.useContext(orderContext);
   React.useEffect(() => {
     dispatch({ type: "push", payload: el.price });
@@ -19,8 +22,8 @@ function Stuffing({ el }) {
   dispatch({type: 'remove', payload: el.price});
  }
 
-
   return (
+    <Reorder.Item style={{ y }} key={el} value={el}>
     <div className={`${Style.stuffingBar}`}>
       <DragIcon type="primary" />
       <ConstructorElement
@@ -30,6 +33,7 @@ function Stuffing({ el }) {
         handleClose={handleClose}
       />
     </div>
+    </Reorder.Item>
   );
 }
 

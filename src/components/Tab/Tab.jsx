@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
 export default function Tabs() {

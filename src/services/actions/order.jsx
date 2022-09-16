@@ -1,7 +1,7 @@
 import thunk from "redux";
 import checkResponce from '../../utils/checkResponse.jsx'
 const baseUrl = "https://norma.nomoreparties.space";
-
+export const ADD_BUN_ELEMENT = 'ADD_BUN_ELEMENT';
 export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";

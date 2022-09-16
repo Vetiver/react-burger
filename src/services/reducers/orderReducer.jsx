@@ -1,7 +1,7 @@
 export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
- 
+export const ADD_BUN_ELEMENT = 'ADD_BUN_ELEMENT';
 export const ADD_CONSTRUCTOR_ELEMENT = 'ADD_CONSTRUCTOR_ELEMENT';
 export const REMOVE_CONSTRUCTOR_ELEMENT = "REMOVE_CONSTRUCTOR_ELEMENT";
 
@@ -9,7 +9,7 @@ export const REMOVE_CONSTRUCTOR_ELEMENT = "REMOVE_CONSTRUCTOR_ELEMENT";
   allIngredients: [],
   IngredientsRequest: false,
   IngredientsFailed: false,
-
+  buns: [],
   constructorIngredients: []
 };
 
@@ -35,7 +35,13 @@ export const reducer = (state = initialState, action) => {
           action.payload
         ],
       };
-    }
+    };
+    case ADD_BUN_ELEMENT: {
+      return {
+        ...state,
+        buns: [action.payload],
+      };
+    };
     case REMOVE_CONSTRUCTOR_ELEMENT: 
     const  commentId = action.payload;
       return {...state, constructorIngredients: state.constructorIngredients.filter(comment => comment._id !== commentId)
