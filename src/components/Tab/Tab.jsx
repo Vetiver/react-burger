@@ -33,7 +33,7 @@ export default function Tabs() {
       // если элемент является наблюдаемым
       if (entry.isIntersecting) {
         setCurrent('bun')
-      }})
+      }}) 
   }, {threshold: 0.5})
   setTimeout(() => {  observer.observe(bunCont) }, 1000);
   const observer2 = new IntersectionObserver((entries, observer) => {
