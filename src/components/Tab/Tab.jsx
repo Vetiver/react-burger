@@ -8,7 +8,7 @@ export default function Tabs() {
 
   const bunCont = document.getElementById('bun');
   const sauseCont = document.getElementById('sauses');
-  const mainCont = document.getElementById('main')
+  const mainCont = document.getElementById('main');
   function target() {
     bunCont.scrollIntoView({block: "center", behavior: "smooth"});
     setCurrent('bun')
@@ -22,14 +22,14 @@ export default function Tabs() {
     setCurrent('main')
   }
   
-  const observer1 = new IntersectionObserver((entries, observer) => {
+  const observer1 = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // если элемент является наблюдаемым
       if (entry.isIntersecting) {
         setCurrent('sause')
       }})
   }, {threshold: 1})
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // если элемент является наблюдаемым
       if (entry.isIntersecting) {
@@ -37,7 +37,7 @@ export default function Tabs() {
       }}) 
   }, {threshold: 1})
   
-  const observer2 = new IntersectionObserver((entries, observer) => {
+  const observer2 = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // если элемент является наблюдаемым
       if (entry.isIntersecting) {
@@ -50,7 +50,6 @@ export default function Tabs() {
 
   
   const [current, setCurrent] = useState("bun");
-
     return (
       <div className={`${Style.mainContainer}`}>
 
