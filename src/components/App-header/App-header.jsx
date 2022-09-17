@@ -12,7 +12,7 @@ function AppHeader() {
     <header className={Style.appHeader}>
       <a
         href="#"
-        className={`${Style.constructorContainer} ${Style.firstMargin}`}
+        className={`${Style.constructorContainer}`}
       >
         <BurgerIcon type="primary" />
         <p className={`text_type_main-default ${Style.constructorTitle}`}>

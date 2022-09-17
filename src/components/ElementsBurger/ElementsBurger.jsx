@@ -1,25 +1,18 @@
 import React from "react";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { orderContext } from "../../contexts/orderContext.jsx";
+import { OrderContext } from "../../contexts/orderContext.jsx";
 import { useDrop } from "react-dnd";
+import  Style  from '../ElementsBurger/ElementBurger.module.css';
 export default function ElementBurger( {bun, children, bunTarget} ) {
-  const { dispatch } = React.useContext(orderContext);
-  React.useEffect(() => {
-    dispatch({ type: "push", payload: bun[0].price });
-  }, []);
+  
   return (
     <div ref={bunTarget}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-        alignItems: "flex-end",
-      }}
+    className={`${Style.element}`}
     >
       <ConstructorElement
         type="top"
         isLocked={true}
-        text={bun[0].name}
+        text={`${bun[0].name} (верх)`}
         price={bun[0].price}
         thumbnail={bun[0].image_mobile}
       />
@@ -27,7 +20,7 @@ export default function ElementBurger( {bun, children, bunTarget} ) {
       <ConstructorElement
         type="bottom"
         isLocked={true}
-        text={bun[0].name}
+        text={`${bun[0].name} (низ)`}
         price={bun[0].price}
         thumbnail={bun[0].image_mobile}
       />

@@ -1,13 +1,9 @@
+import  Style  from '../ElementBurgerDefault/ElementBurgerDefault.module.css';
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 export default function ElementBurger( {bun, children, bunTarget} ) {
   return (
     <div ref={bunTarget}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-        alignItems: "flex-end",
-      }}
+    className={`${Style.element}`}
     >
       <ConstructorElement
         type="top"

@@ -1,10 +1,11 @@
-import React from "react";
+import React  from "react";
 import { ReactDOM } from "react";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
+import {useDispatch, useSelector} from 'react-redux';
 import { useDrag } from "react-dnd";
 import Modal from "../Modal/Modal.jsx";
 import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { CurrencyIcon,  Counter} from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Ingredient/Ingredient.module.css";
 
 function Ingredient({ ingredient }) {
@@ -16,6 +17,10 @@ function Ingredient({ ingredient }) {
       isDrag: monitor.isDragging(),
     }),
   });
+
+  const number = useSelector((state) => state.constructorIngredients.filter(
+        (item) => item._id === ingredient._id).length
+  );
 
   const [visible, setTheme] = React.useState(false);
   function handleOpenModal(e) {
@@ -36,12 +41,19 @@ function Ingredient({ ingredient }) {
     !isDrag && 
     <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`} ref={dragRef}>
       {visible && modal}
-      <img src={ingredient.image} alt={ingredient.name} />
+      <img className={`${Style.image}`} src={ingredient.image} alt={ingredient.name} />
       <div className={`${Style.classContainer}`}>
         <p className="text text_type_main-medium">{ingredient.price}</p>
         <CurrencyIcon type="primary" />
       </div>
       <p className="text text_type_main-small">{ingredient.name}</p>
+      {number ? (
+        <Counter
+          className={Style.counter}
+          count={number}
+          size="default"
+        />
+      ) : null}
     </div>
   );
 }

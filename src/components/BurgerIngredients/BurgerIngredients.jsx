@@ -1,6 +1,6 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useRef } from "react";
 import { ReactDOM } from "react";
-import { getItems } from "../../services/actions/order";
+import { getItems } from "../../services/actions/ingredients";
 import {useDispatch, useSelector} from 'react-redux';
 import Style from "../BurgerIngredients/BurgerIngredients.module.css";
 import "../Tab/Tab.jsx";
@@ -13,7 +13,12 @@ function BurgerIngredients() {
   useEffect(() => {
     dispatch(getItems())
   },[])
- 
+
+
+  
+
+
+
 
   const bun = ingredients.filter((el) => el.type === "bun");
   const main = ingredients.filter((el) => el.type === "main");
@@ -24,7 +29,7 @@ function BurgerIngredients() {
         Соберите бургер
       </h2>
       <Tabs />
-      <div className={`${Style.chapter}`}>
+      <div id='scrollBar' className={`${Style.chapter}`}>
         <h3  className={`${Style.title} text text_type_main-medium`}>Булки</h3>
         <div id='bun' className={`${Style.burgerGrid}`}>
           {bun.map(function (el) {

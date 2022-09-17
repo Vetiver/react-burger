@@ -4,12 +4,22 @@ export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
 export const ADD_BUN_ELEMENT = 'ADD_BUN_ELEMENT';
 export const ADD_CONSTRUCTOR_ELEMENT = 'ADD_CONSTRUCTOR_ELEMENT';
 export const REMOVE_CONSTRUCTOR_ELEMENT = "REMOVE_CONSTRUCTOR_ELEMENT";
+export const ADD_PRICE = "ADD_PRICE";
+export const REMOVE_PRICE = "REMOVE_PRICE";
+export const GET_ORDER_REQUEST = "GET_ORDER_REQUEST";
+export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
+export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
+
 
  const initialState = {
   allIngredients: [],
   IngredientsRequest: false,
   IngredientsFailed: false,
+  orderNumber: null,
+  orderRequest: false,
+  orderFailed: false,
   buns: [],
+  mainPrice: 0,
   constructorIngredients: []
 };
 
@@ -46,6 +56,24 @@ export const reducer = (state = initialState, action) => {
     const  commentId = action.payload;
       return {...state, constructorIngredients: state.constructorIngredients.filter(comment => comment._id !== commentId)
       };
+      case ADD_PRICE: {
+        return { ...state, mainPrice: state.mainPrice + action.payload };
+      };
+      case REMOVE_PRICE: {
+        return { ...state, mainPrice: state.mainPrice - action.payload };
+      }
+      case GET_ORDER_REQUEST:
+      return { ...state, orderRequest: true };
+    case GET_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderNumber: action.payload,
+        orderRequest: false,
+        orderFailed: false,
+      };
+    case GET_ORDER_FAILED:
+      return { ...state, orderFailed: true };
+
     
     default:
       return state;

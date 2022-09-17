@@ -11,4 +11,15 @@
   justify-content: center;
   text-align: center;
   cursor: pointer;
+  position: relative;
+}
+
+.image {
+  position: relative;
+}
+
+.counter {
+  position: absolute;
+  top: 50px;
+  left:100px;
 }
