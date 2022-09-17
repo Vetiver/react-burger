@@ -13,13 +13,6 @@ function BurgerIngredients() {
   useEffect(() => {
     dispatch(getItems())
   },[])
-
-
-  
-
-
-
-
   const bun = ingredients.filter((el) => el.type === "bun");
   const main = ingredients.filter((el) => el.type === "main");
   const sauce = ingredients.filter((el) => el.type === "sauce");

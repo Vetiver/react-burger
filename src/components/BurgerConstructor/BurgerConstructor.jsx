@@ -45,9 +45,7 @@ function BurgerConstructor(props) {
     drop(item) {
       if(item.type === 'bun') {
         dispatcher({ type: ADD_BUN_ELEMENT, payload: item });
-      } else {
-        dispatcher({ type: ADD_PRICE, payload: item.price});
-      }
+      } 
     },
   });
 
@@ -57,6 +55,9 @@ function BurgerConstructor(props) {
     drop(item) {
       if(item.type !== 'bun'){
         dispatcher({ type: ADD_CONSTRUCTOR_ELEMENT, payload: item });
+        dispatcher({ type: ADD_PRICE, payload: item.price});
+        item.uuid = uuidv4();
+        console.log(item);
       }
     },
     
@@ -112,7 +113,7 @@ function BurgerConstructor(props) {
           <div className={`${Style.ingredientsBar}`} ref={dropTarget} >
             {items.map((el) => {
               return (
-              <Stuffing el={el} key={el._id} />
+              <Stuffing el={el} key={el.uuid} />
               )
             })}
           </div>
