@@ -44,7 +44,7 @@ function Modal(props) {
   );
 }
 Modal.propTypes = {
-  onClose: PropTypes.func,
+  onClose: PropTypes.func.isRequired
 };
 
 export default Modal;

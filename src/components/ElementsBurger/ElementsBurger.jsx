@@ -5,6 +5,7 @@ import { useDrop } from "react-dnd";
 import PropTypes from 'prop-types';
 import  Style  from '../ElementsBurger/ElementBurger.module.css';
 export default function ElementBurger( {bun, children, bunTarget} ) {
+  console.log(bun[0])
   return (
     <div ref={bunTarget}
     className={`${Style.element}`}
@@ -29,5 +30,19 @@ export default function ElementBurger( {bun, children, bunTarget} ) {
 }
 
 ElementBurger.propTypes = {
-  bun: PropTypes.element.isRequired,
+  bun: PropTypes.array.isRequired,
+  bun: PropTypes.shape({
+    calories: PropTypes.number.isRequired,
+    carbohydrates: PropTypes.number.isRequired,
+    fat: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    image_large: PropTypes.string.isRequired,
+    image_mobile: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    proteins: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    __v: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
+  })
 };
