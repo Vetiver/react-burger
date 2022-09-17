@@ -3,6 +3,7 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Tab/Tab.module.css";
 
 export default function Tabs() {
+  const scrollBar = document.getElementById('scrollBar');
 
   const bunCont = document.getElementById('bun');
   const sauseCont = document.getElementById('sauses');
@@ -19,11 +20,37 @@ export default function Tabs() {
     mainCont.scrollIntoView({block: "center", behavior: "smooth"});
     setCurrent('main')
   }
+  const observer1 = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      // если элемент является наблюдаемым
+      if (entry.isIntersecting) {
+        setCurrent('sause')
+      }})
+  }, {threshold: 0.5})
+  setTimeout(() => {  observer1.observe(sauseCont) }, 1000);
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      // если элемент является наблюдаемым
+      if (entry.isIntersecting) {
+        setCurrent('bun')
+      }})
+  }, {threshold: 0.5})
+  setTimeout(() => {  observer.observe(bunCont) }, 1000);
+  const observer2 = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      // если элемент является наблюдаемым
+      if (entry.isIntersecting) {
+        setCurrent('main')
+      }})
+  }, {threshold: 0.5})
+  setTimeout(() => {  observer2.observe(mainCont) }, 1000);
+
   
   const [current, setCurrent] = useState("bun");
     return (
       <div className={`${Style.mainContainer}`}>
-        <Tab  value="bun" active={current === "bun"} onClick={target}>
+
+        <Tab   value="bun" active={current === "bun"} onClick={target}>
           Булки
         </Tab>
         <Tab  value="sause" active={current === "sause"} onClick={target2}>

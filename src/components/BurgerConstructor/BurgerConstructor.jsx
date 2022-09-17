@@ -112,7 +112,7 @@ function BurgerConstructor(props) {
           <div className={`${Style.ingredientsBar}`} ref={dropTarget} >
             {items.map((el) => {
               return (
-              <Stuffing el={el} key={el.uuid} />
+              <Stuffing el={el} key={el._id} />
               )
             })}
           </div>

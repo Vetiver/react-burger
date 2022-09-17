@@ -30,8 +30,8 @@ function BurgerIngredients() {
       </h2>
       <Tabs />
       <div id='scrollBar' className={`${Style.chapter}`}>
-        <h3  className={`${Style.title} text text_type_main-medium`}>Булки</h3>
-        <div id='bun' className={`${Style.burgerGrid}`}>
+        <h3 id='bun' className={`${Style.title} text text_type_main-medium`}>Булки</h3>
+        <div className={`${Style.burgerGrid}`}>
           {bun.map(function (el) {
             return <Ingredient ingredient={el} key={el._id} />;
           })}
