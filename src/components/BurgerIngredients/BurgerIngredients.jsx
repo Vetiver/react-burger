@@ -46,8 +46,6 @@ function BurgerIngredients() {
   );
 }
 
-/*BurgerIngredients.propTypes = {
-  arr:  PropTypes.arrayOf(PropTypes.object).isRequired,
-}; */
+
 
 export default BurgerIngredients;

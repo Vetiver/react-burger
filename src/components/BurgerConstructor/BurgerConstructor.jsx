@@ -20,7 +20,7 @@ import { getOrderNumber } from "../../services/actions/ingredients";
 import { v4 as uuidv4 } from 'uuid';
 
 
-function BurgerConstructor(props) {
+function BurgerConstructor() {
   const ingredient = useSelector(state => state.constructorIngredients);
   const main = useSelector(state => state.mainPrice);
   const [items, sets] = useState(ingredient)
@@ -48,16 +48,16 @@ function BurgerConstructor(props) {
       } 
     },
   });
-
+  
   const [, dropTarget] = useDrop({
     accept: "ingredient",
     
     drop(item) {
+      
       if(item.type !== 'bun'){
-        dispatcher({ type: ADD_CONSTRUCTOR_ELEMENT, payload: item });
-        dispatcher({ type: ADD_PRICE, payload: item.price});
-        item.uuid = uuidv4();
         console.log(item);
+        dispatcher({ type: ADD_CONSTRUCTOR_ELEMENT, payload:{...item, uuid: uuidv4()} });
+        dispatcher({ type: ADD_PRICE, payload: item.price});
       }
     },
     
@@ -133,8 +133,6 @@ function BurgerConstructor(props) {
   );
 }
 
-/*BurgerConstructor.propTypes = {
-  arr: PropTypes.arrayOf(burgerProps).isRequired,
-}; */
+
 
 export default BurgerConstructor;

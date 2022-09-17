@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Tab/Tab.module.css";
+import $ from "jquery";
 
 export default function Tabs() {
   const scrollBar = document.getElementById('scrollBar');
@@ -20,6 +21,7 @@ export default function Tabs() {
     mainCont.scrollIntoView({block: "center", behavior: "smooth"});
     setCurrent('main')
   }
+  
   const observer1 = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       // если элемент является наблюдаемым
@@ -27,7 +29,6 @@ export default function Tabs() {
         setCurrent('sause')
       }})
   }, {threshold: 1})
-  setTimeout(() => {  observer1.observe(sauseCont) }, 1000);
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       // если элемент является наблюдаемым
@@ -35,7 +36,7 @@ export default function Tabs() {
         setCurrent('bun')
       }}) 
   }, {threshold: 1})
-  setTimeout(() => {  observer.observe(bunCont) }, 1000);
+  
   const observer2 = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       // если элемент является наблюдаемым
@@ -43,10 +44,13 @@ export default function Tabs() {
         setCurrent('main')
       }})
   }, {threshold: 1})
+  setTimeout(() => {  observer1.observe(sauseCont) }, 1000);
+  setTimeout(() => {  observer.observe(bunCont) }, 1000);
   setTimeout(() => {  observer2.observe(mainCont) }, 1000);
 
   
   const [current, setCurrent] = useState("bun");
+
     return (
       <div className={`${Style.mainContainer}`}>
 
@@ -60,5 +64,5 @@ export default function Tabs() {
           Начинки
         </Tab>
       </div>
-    );
+    )
   }

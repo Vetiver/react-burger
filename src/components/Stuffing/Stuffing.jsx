@@ -14,7 +14,7 @@ function Stuffing({ el }) {
   const y = useMotionValue(0);
   const dispatching = useDispatch();
  function handleClose() {
-  dispatching({type: 'REMOVE_CONSTRUCTOR_ELEMENT', payload: el._id });
+  dispatching({type: 'REMOVE_CONSTRUCTOR_ELEMENT', payload: el.uuid });
   dispatching({type: 'REMOVE_PRICE', payload: el.price});
  }
 

@@ -54,7 +54,7 @@ export const reducer = (state = initialState, action) => {
     };
     case REMOVE_CONSTRUCTOR_ELEMENT: 
     const  commentId = action.payload;
-      return {...state, constructorIngredients: state.constructorIngredients.filter(comment => comment._id !== commentId)
+      return {...state, constructorIngredients: state.constructorIngredients.filter(comment => comment.uuid !== commentId)
       };
       case ADD_PRICE: {
         return { ...state, mainPrice: state.mainPrice + action.payload };
