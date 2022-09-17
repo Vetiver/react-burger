@@ -26,7 +26,7 @@ export default function Tabs() {
       if (entry.isIntersecting) {
         setCurrent('sause')
       }})
-  }, {threshold: 0.6})
+  }, {threshold: 1})
   setTimeout(() => {  observer1.observe(sauseCont) }, 1000);
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -34,7 +34,7 @@ export default function Tabs() {
       if (entry.isIntersecting) {
         setCurrent('bun')
       }}) 
-  }, {threshold: 0.8})
+  }, {threshold: 1})
   setTimeout(() => {  observer.observe(bunCont) }, 1000);
   const observer2 = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
