@@ -5,7 +5,6 @@ import { useDrop } from "react-dnd";
 import PropTypes from 'prop-types';
 import  Style  from '../ElementsBurger/ElementBurger.module.css';
 export default function ElementBurger( {bun, children, bunTarget} ) {
-  console.log(bun[0])
   return (
     <div ref={bunTarget}
     className={`${Style.element}`}
