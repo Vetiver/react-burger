@@ -2,51 +2,52 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Tab/Tab.module.css";
 
-export default function Tabs() {
-  const scrollBar = document.getElementById('scrollBar');
-
-  const bunCont = document.getElementById('bun');
-  const sauseCont = document.getElementById('sauses');
-  const mainCont = document.getElementById('main');
+export default function Tabs({bunRef, sauseRef, mainRef}) {
   function target() {
-    bunCont.scrollIntoView({block: "center", behavior: "smooth"});
+    bunRef.current.scrollIntoView({block: "center", behavior: "smooth"});
     setCurrent('bun')
   }
   function target2() {
-    sauseCont.scrollIntoView({block: "center", behavior: "smooth"});
+    sauseRef.current.scrollIntoView({block: "center", behavior: "smooth"});
     setCurrent('sause')
   }
   function target3() {
-    mainCont.scrollIntoView({block: "center", behavior: "smooth"});
+    mainRef.current.scrollIntoView({block: "center", behavior: "smooth"});
     setCurrent('main')
   }
   
-  const observer1 = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // если элемент является наблюдаемым
-      if (entry.isIntersecting) {
-        setCurrent('sause')
-      }})
-  }, {threshold: 1})
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // если элемент является наблюдаемым
-      if (entry.isIntersecting) {
-        setCurrent('bun')
-      }}) 
-  }, {threshold: 1})
-  
-  const observer2 = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // если элемент является наблюдаемым
-      if (entry.isIntersecting) {
-        setCurrent('main')
-      }})
-  }, {threshold: 1})
-  setTimeout(() => {  observer1.observe(sauseCont) }, 1000);
-  setTimeout(() => {  observer.observe(bunCont) }, 1000);
-  setTimeout(() => {  observer2.observe(mainCont) }, 1000);
+  useEffect(() => {
+    const observer1 = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // если элемент является наблюдаемым
+        if (entry.isIntersecting) {
+          setCurrent('sause')
+        }})
+    }, {threshold: 1})
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // если элемент является наблюдаемым
+        if (entry.isIntersecting) {
+          setCurrent('bun')
+        }}) 
+    }, {threshold: 1})
+    
+    const observer2 = new IntersectionObserver((entries) => {
+   
+      entries.forEach(entry => {
+        // если элемент является наблюдаемым
+        if (entry.isIntersecting) {
+          setCurrent('main')
+        }})
 
+    }, {threshold: 1})
+
+      setTimeout(() => {  observer1.observe(sauseRef.current) }, 1000);
+      setTimeout(() => {  observer.observe(bunRef.current) }, 1000);
+      setTimeout(() => {  observer2.observe(mainRef.current) }, 1000);
+
+  }, [])
+ 
   
   const [current, setCurrent] = useState("bun");
     return (

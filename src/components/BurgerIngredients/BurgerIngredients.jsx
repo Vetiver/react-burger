@@ -8,6 +8,9 @@ import Ingredient from "../Ingredient/Ingredient.jsx";
 import Tabs from "../Tab/Tab.jsx";
 
 function BurgerIngredients() {
+  const bunRef = useRef()
+  const sauseRef = useRef()
+  const mainRef = useRef()
   const ingredients = useSelector(state => state.allIngredients);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,21 +24,21 @@ function BurgerIngredients() {
       <h2 className={`${Style.title} text text_type_main-large`}>
         Соберите бургер
       </h2>
-      <Tabs />
+      <Tabs bunRef= {bunRef} sauseRef={sauseRef} mainRef = {mainRef}/>
       <div id='scrollBar' className={`${Style.chapter}`}>
-        <h3 id='bun' className={`${Style.title} text text_type_main-medium`}>Булки</h3>
+        <h3 ref={bunRef} className={`${Style.title} text text_type_main-medium`}>Булки</h3>
         <div className={`${Style.burgerGrid}`}>
           {bun.map(function (el) {
             return <Ingredient ingredient={el} key={el._id} />;
           })}
         </div>
         <h3 className={`${Style.title} text text_type_main-medium`}>Соусы</h3>
-        <div id='sauses' className={`${Style.burgerGrid}`}>
+        <div ref={sauseRef} className={`${Style.burgerGrid}`}>
           {sauce.map(function (el) {
             return <Ingredient ingredient={el} key={el._id} />;
           })}
         </div>
-        <h3 id='main' className={`${Style.title} text text_type_main-medium`}>Начинки</h3>
+        <h3 ref={mainRef} className={`${Style.title} text text_type_main-medium`}>Начинки</h3>
         <div  className={`${Style.burgerGrid}`}>
           {main.map(function (el) {
             return <Ingredient ingredient={el} key={el._id} />;

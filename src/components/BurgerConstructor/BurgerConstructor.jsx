@@ -55,7 +55,7 @@ function BurgerConstructor() {
     drop(item) {
       
       if(item.type !== 'bun'){
-        console.log(item);
+    
         dispatcher({ type: ADD_CONSTRUCTOR_ELEMENT, payload:{...item, uuid: uuidv4()} });
         dispatcher({ type: ADD_PRICE, payload: item.price});
       }

@@ -17,7 +17,8 @@ function Ingredient({ ingredient }) {
       isDrag: monitor.isDragging(),
     }),
   });
-
+  const bunsNumber = useSelector((state) => state.buns.filter(
+    (item) => item._id === ingredient._id).length)
   const number = useSelector((state) => state.constructorIngredients.filter(
         (item) => item._id === ingredient._id).length
   );
@@ -47,6 +48,13 @@ function Ingredient({ ingredient }) {
         <CurrencyIcon type="primary" />
       </div>
       <p className="text text_type_main-small">{ingredient.name}</p>
+      {bunsNumber ? (
+        <Counter
+          className={Style.counter}
+          count={bunsNumber}
+          size="default"
+        />
+      ) : null}
       {number ? (
         <Counter
           className={Style.counter}

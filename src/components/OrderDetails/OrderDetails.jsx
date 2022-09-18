@@ -26,7 +26,7 @@ function OrderDetails({ data }) {
 }
 
 OrderDetails.propTypes = {
-  order: PropTypes.node,
+  order: PropTypes.number,
 };
 
 export default OrderDetails;
