@@ -32,11 +32,9 @@ function Ingredient({ ingredient }) {
     setTheme(false);
   }
   const modal = (
-    <>
       <Modal onClose={handleCloseModal}>
         <IngredientDetails ingredient={ingredient} />
       </Modal>
-    </>
   );
   return (
     !isDrag && 
