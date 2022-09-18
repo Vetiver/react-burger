@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Tab/Tab.module.css";
-import $ from "jquery";
 
 export default function Tabs() {
   const scrollBar = document.getElementById('scrollBar');
