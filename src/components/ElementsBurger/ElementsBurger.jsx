@@ -29,7 +29,7 @@ export default function ElementBurger( {bun, children, bunTarget} ) {
   );
 }
 
-ElementBurger.propTypes = {
+ElementBurger.propTypes = { 
   bun: PropTypes.arrayOf( PropTypes.shape({
     calories: PropTypes.number.isRequired,
     carbohydrates: PropTypes.number.isRequired,
