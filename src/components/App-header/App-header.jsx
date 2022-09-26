@@ -12,7 +12,7 @@ function AppHeader() {
   return (
     <header className={Style.appHeader}>
       <Link
-        href="#"
+        to='/'
         className={`${Style.constructorContainer}`}
       >
         <BurgerIcon type="primary" />
@@ -21,7 +21,7 @@ function AppHeader() {
         </p>
       </Link>
       <Link
-        href="#"
+        to='/'
         className={`${Style.constructorContainer} ${Style.secondMargin}`}
       >
         <ListIcon type="secondary" />
@@ -33,7 +33,7 @@ function AppHeader() {
       </Link>
       <Logo />
       <Link
-        href="#"
+        to='/login'
         className={`${Style.constructorContainer} ${Style.lastMargin}`}
       >
         <ProfileIcon type="secondary" />

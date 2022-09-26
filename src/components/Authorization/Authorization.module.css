@@ -1,0 +1,8 @@
+.authorizationForm {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  border: 1px solid red;
+}
