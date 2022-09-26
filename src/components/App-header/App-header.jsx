@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import Style from "../App-header/App-header.module.css";
 import {
   BurgerIcon,
@@ -10,7 +11,7 @@ import {
 function AppHeader() {
   return (
     <header className={Style.appHeader}>
-      <a
+      <Link
         href="#"
         className={`${Style.constructorContainer}`}
       >
@@ -18,8 +19,8 @@ function AppHeader() {
         <p className={`text_type_main-default ${Style.constructorTitle}`}>
           Конструктор
         </p>
-      </a>
-      <a
+      </Link>
+      <Link
         href="#"
         className={`${Style.constructorContainer} ${Style.secondMargin}`}
       >
@@ -29,9 +30,9 @@ function AppHeader() {
         >
           Лента заказов
         </p>
-      </a>
+      </Link>
       <Logo />
-      <a
+      <Link
         href="#"
         className={`${Style.constructorContainer} ${Style.lastMargin}`}
       >
@@ -41,7 +42,7 @@ function AppHeader() {
         >
           Личный кабинет
         </p>
-      </a>
+      </Link>
     </header>
   );
 }
