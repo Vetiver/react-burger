@@ -9,18 +9,27 @@ export const REMOVE_PRICE = "REMOVE_PRICE";
 export const GET_ORDER_REQUEST = "GET_ORDER_REQUEST";
 export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
 export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
-
+export const SET_USER_INFO = 'SET_USER_INFO';
+export const SET_USER_SUCCESS = 'SET_USER_SUCCESS';
+export const SET_USER_FAILED = 'SET_USER_FAILED';
+export const CLEAN_USER_INFO = 'CLEAN_USER_INFO';
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
  const initialState = {
   allIngredients: [],
   IngredientsRequest: false,
+  userInfoRequest: false,
+  userInfoFaile: false,
   IngredientsFailed: false,
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,
   buns: [],
   mainPrice: 0,
-  constructorIngredients: []
+  constructorIngredients: [],
+  userInfo: [],
+  isLogin: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -73,7 +82,30 @@ export const reducer = (state = initialState, action) => {
       };
     case GET_ORDER_FAILED:
       return { ...state, orderFailed: true };
-
+    case SET_USER_INFO :
+      return {
+        ...state, userInfoRequest: true,
+      }
+    case SET_USER_SUCCESS :
+      return {
+        ...state, userInfo: action.payload,
+      }
+    case SET_USER_FAILED :
+      return {
+        ...state, userInfoFaile: true,
+      }
+    case CLEAN_USER_INFO :
+      return {
+        ...state, userInfo: null,
+      }
+    case USER_LOGIN :
+      return {
+        ...state, isLogin: true,
+      }  
+    case USER_LOGOUT :
+      return {
+        ...state, isLogin: false,
+      }  
     
     default:
       return state;

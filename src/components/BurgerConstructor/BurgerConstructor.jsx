@@ -11,8 +11,6 @@ import {
 import Style from "../BurgerConstructor/BurgerConstructor.module.css";
 import Modal from "../Modal/Modal.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { OrderContext } from "../../contexts/orderContext.jsx";
-import checkResponse from "../../utils/checkResponse.jsx";
 import { useDrop } from "react-dnd";
 import {ADD_CONSTRUCTOR_ELEMENT, ADD_BUN_ELEMENT, baseUrl, ADD_PRICE} from "../../services/actions/ingredients.jsx";
 import ElementBurgerDefault from '../ElementBurgerDefault/ElementBurgerDefault.jsx';
@@ -29,7 +27,7 @@ function BurgerConstructor() {
   }, [ingredient]);
   const bun = useSelector(state => state.buns)
   const dispatcher = useDispatch();
-  const [visible, setTheme] = React.useState(false);;
+  const [visible, setTheme] = React.useState(false);
 
   const orderNumber = useSelector(state => state.orderNumber);
   
