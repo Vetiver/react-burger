@@ -171,6 +171,7 @@ export const resetPassword = form => {
             type: SET_USER_SUCCESS,
             payload: res,
           });
+          dispatch({type: USER_LOGIN})
           console.log(res)
         } else {
           dispatch({

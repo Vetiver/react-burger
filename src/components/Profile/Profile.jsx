@@ -4,7 +4,7 @@ import {
 	Input, Button, ShowIcon, EmailInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from 'react-redux';
-import {logout} from '../../services/actions/profile.jsx';
+import {logout, userLogout} from '../../services/actions/profile.jsx';
 import {setUserData, clearUserInfo} from '../../services/actions/profile.jsx';
 import {deleteCookie} from "../../utils/cookie.jsx";
 import { Redirect, useHistory } from 'react-router-dom'
@@ -13,6 +13,7 @@ function Profile(props) {
 	const [success, setSuccess] = useState(false);
 	let dispatch = useDispatch();
 	const userInfo = useSelector(state => state.userInfo);
+	const isLogin = useSelector(state => state.isLogin);
 	console.log(userInfo)
 	const data = async userInf => {
 		const res = await logout(userInf)
@@ -20,6 +21,7 @@ function Profile(props) {
 		console.log(res)
 		if(res.success == true) {
 		  dispatch(clearUserInfo())
+		  dispatch(userLogout())
 		  setSuccess(true)
 		}
 	  
@@ -34,10 +36,10 @@ function Profile(props) {
 		[]
 	  );
 
-	  if (success) {
+	  if (isLogin == false) {
 		return (
 		  <Redirect
-			to='/'
+			to='/login'
 		  />
 		);
 	  }

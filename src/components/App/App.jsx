@@ -12,28 +12,30 @@ import Style from "../App/App.module.css";
 import FogotPassword from "../ForgotPassword/FogotPassword";
 import { ProvideAuth } from '../../services/auth.jsx';
 import Profile from "../Profile/Profile.jsx";
-
+import {ProtectedRoute} from "../ProtectedRoute/ProtectedRoute.jsx";
+import {useDispatch, useSelector} from 'react-redux';
 
 function App() {
+  const isLogin = useSelector(state => state.isLogin);
   return (
     <ProvideAuth>
     <Router>
       <div className={Style.App}>
         <AppHeader />
         <Switch>
-          <Route path="/" exact={true}>
+          <ProtectedRoute path="/" isAuth={isLogin} exact={true}>
             <main className={Style.container}>
             <DndProvider backend = {HTML5Backend}>
             <BurgerIngredients />
             <BurgerConstructor />
             </ DndProvider>
             </main>
-          </Route>
-          <Route path="/login" exact={true}>
+          </ProtectedRoute>
+          <ProtectedRoute path="/login" anonymous={true} isAuth={isLogin} exact={true}>
           <main className={Style.container}>
             <Authorization />
           </main>
-          </Route>
+          </ProtectedRoute>
           <Route path="/register" exact={true}>
           <main className={Style.container}>
             <Register/>
@@ -49,11 +51,11 @@ function App() {
             <ResetPassword />
           </main>
           </Route>
-          <Route path="/profile" exact={true}>
+          <ProtectedRoute path="/profile" isAuth={isLogin} exact={true}>
           
             <Profile />
         
-          </Route>
+          </ProtectedRoute>
         </Switch>
       </div>
     </Router>

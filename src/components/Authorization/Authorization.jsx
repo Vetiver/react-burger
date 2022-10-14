@@ -6,12 +6,13 @@ import {
     Input, Button, ShowIcon, EmailInput
   } from "@ya.praktikum/react-developer-burger-ui-components";
   import {useDispatch, useSelector} from 'react-redux';
-  import {loginUserInfo} from '../../services/actions/profile.jsx';
+  import {loginUserInfo, userLogin} from '../../services/actions/profile.jsx';
 
 function Authorization(props) {
  let dispatch = useDispatch();
   const userInfo = useSelector(state => state.userInfo);
   const [form, setValue] = useState({ email: '', password: '',});
+  const isLogin = useSelector(state => state.isLogin);
   const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
@@ -19,10 +20,11 @@ function Authorization(props) {
     e => {
       e.preventDefault();
       dispatch(loginUserInfo(form))
+      
     },
     [loginUserInfo, form]
   );
-  if (userInfo) {
+  if (isLogin == true) {
     return (
       <Redirect
         to='/profile'
