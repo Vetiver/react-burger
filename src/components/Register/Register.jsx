@@ -28,13 +28,7 @@ function Register(props) {
     [setUserInfo, form]
   );
 
-if (userInfo.user) {
-    return (
-      <Redirect
-        to='/login'
-      />
-    );
-  }
+
 
 
     return (
