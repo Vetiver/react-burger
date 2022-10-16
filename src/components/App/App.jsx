@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -16,6 +16,7 @@ import {ProtectedRoute} from "../ProtectedRoute/ProtectedRoute.jsx";
 import {useDispatch, useSelector} from 'react-redux';
 
 function App() {
+  const location = useLocation();
   const isLogin = useSelector(state => state.isLogin);
   return (
     <ProvideAuth>

@@ -68,13 +68,13 @@ function Profile(props) {
 		<Input type={'text'}
 		placeholder={'Имя'}
 		name={'name'}
-		//value={userInfo.user.name}
+		value={userInfo.user.name}
 		error={false}
 		errorText={'Ошибка'}
 		size={'default'}/>
 		<EmailInput type={'email'} 
 		placeholder={'E-mail'} 
-		//value={userInfo.user.email}
+		value={userInfo.user.email}
 		error={false}/>
 		<Input type={'password'} 
 		placeholder={'Пароль'} 

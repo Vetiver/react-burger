@@ -6,8 +6,10 @@ import Style from "../BurgerIngredients/BurgerIngredients.module.css";
 import "../Tab/Tab.jsx";
 import Ingredient from "../Ingredient/Ingredient.jsx";
 import Tabs from "../Tab/Tab.jsx";
+import { Link, useLocation  } from 'react-router-dom';
 
 function BurgerIngredients() {
+  const location = useLocation();
   const bunRef = useRef()
   const sauseRef = useRef()
   const mainRef = useRef()
@@ -29,19 +31,28 @@ function BurgerIngredients() {
         <h3 ref={bunRef} className={`${Style.title} text text_type_main-medium`}>Булки</h3>
         <div className={`${Style.burgerGrid}`}>
           {bun.map(function (el) {
-            return <Ingredient ingredient={el} key={el._id} />;
+            return  <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
+              background: location,
+            },
+          }}><Ingredient ingredient={el} key={el._id} /></Link>
           })}
         </div>
         <h3 className={`${Style.title} text text_type_main-medium`}>Соусы</h3>
         <div ref={sauseRef} className={`${Style.burgerGrid}`}>
           {sauce.map(function (el) {
-            return <Ingredient ingredient={el} key={el._id} />;
+            return <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
+              background: location,
+            },
+          }}><Ingredient ingredient={el} key={el._id} /></Link>;
           })}
         </div>
         <h3 ref={mainRef} className={`${Style.title} text text_type_main-medium`}>Начинки</h3>
         <div  className={`${Style.burgerGrid}`}>
           {main.map(function (el) {
-            return <Ingredient ingredient={el} key={el._id} />;
+            return <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
+              background: location,
+            },
+          }}><Ingredient ingredient={el} key={el._id} /></Link>;
           })}
         </div>
       </div>
