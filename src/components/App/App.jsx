@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, useLocation, useHistory, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation} from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -19,6 +19,7 @@ import {DROP_ID_MODAL} from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
+import { useHistory, useParams } from "react-router";
 
 function App() {
   const ingredients = useSelector(state => state.allIngredients);
@@ -29,7 +30,6 @@ function App() {
   const isLogin = useSelector(state => state.isLogin);
   const history = useHistory();
   const background = location.state && location.state.background;
-
   function handleCloseModal(e) {
     dispatch({ type: DROP_ID_MODAL })
     dispatch({ type: IS_CLOSE })
@@ -75,7 +75,7 @@ function App() {
             <Profile />
         
           </ProtectedRoute>
-          <Route path="/ingredients/:id" exact={true}>
+          <Route path="/ingredients/:id">
             <IngredientDetails ingredient={id} />
           </Route>
         </Switch>
