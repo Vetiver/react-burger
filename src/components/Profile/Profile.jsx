@@ -1,40 +1,69 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import Style from '../Profile/Profile.module.css';
 import {
 	Input, Button, ShowIcon, EmailInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import {useDispatch, useSelector} from 'react-redux';
-import {logout, userLogout} from '../../services/actions/profile.jsx';
-import {setUserData, clearUserInfo} from '../../services/actions/profile.jsx';
+import {logout, refreshToken,  userLogout} from '../../services/actions/profile.jsx';
+import {setUserData, infoUserData,  clearUserInfo} from '../../services/actions/profile.jsx';
 import {deleteCookie} from "../../utils/cookie.jsx";
 import { Redirect, useHistory } from 'react-router-dom'
 
 function Profile(props) {
-	const [success, setSuccess] = useState(false);
-	let dispatch = useDispatch();
 	const userInfo = useSelector(state => state.userInfo);
+	const [form, setValue] = useState({ email: userInfo.user.email, password: '', name: userInfo.user.name, });
+	let dispatch = useDispatch();
 	const isLogin = useSelector(state => state.isLogin);
-	console.log(userInfo)
+
+		
+
+	const onChange = e => {
+    setValue({ ...form, [e.target.name]: e.target.value });
+	const user = async () => {
+		const res = await infoUserData()
+		console.log(res.user);
+		if(res.user.name !== form.name || res.user.email !== form.email) {
+			console.log('оно не равно')
+		} else {
+			console.log('оно равно')
+		}
+	}
+	user()
+		
+  };
+console.log(form)
 	const data = async userInf => {
 		const res = await logout(userInf)
 		.then (data => data)
-		console.log(res)
-		if(res.success == true) {
-		  dispatch(clearUserInfo())
-		  dispatch(userLogout())
-		  setSuccess(true)
+		try{
+			if(res.success == true) {
+				dispatch(clearUserInfo())
+				dispatch(userLogout())
+
+			}
+		} catch(err) {
+			if (err.message === "jwt expired") {
+				const refreshData = await refreshToken();
+				if (!refreshData.success) {
+					return Promise.reject(refreshData);
+				}
 		}
-	  
-	   }
+		}
+	  }
+
 	   let tryLogout = useCallback(
 		e => {
 		  e.preventDefault();
 		  data({token:userInfo.refreshToken})
 		  deleteCookie('token');
-		  console.log(document.cookie);
 		},
 		[]
 	  );
+
+		function resetUserInfo(form) {
+			setUserData(form)
+		}
+
 
 	  if (isLogin == false) {
 		return (
@@ -67,13 +96,15 @@ function Profile(props) {
 	<div className={`${Style.inputContainer}`}>
 		<Input type={'text'}
 		placeholder={'Имя'}
+		onChange={onChange}
 		name={'name'}
-		value={userInfo.user.name}
+		value={form.name}
 		error={false}
 		errorText={'Ошибка'}
 		size={'default'}/>
 		<EmailInput type={'email'} 
 		placeholder={'E-mail'} 
+		onChange={onChange}
 		value={userInfo.user.email}
 		error={false}/>
 		<Input type={'password'} 
@@ -84,7 +115,7 @@ function Profile(props) {
 		<Button type="secondary" size="small">
 		<p className={`text text_type_main-default`}>Отмена</p>
 		</Button>
-		<Button type="primary" size="small">
+		<Button onClick={resetUserInfo(form)} type="primary" size="small">
 		<p className={`text text_type_main-default`}>Сохранить</p>
 		</Button>
 		</div>

@@ -7,6 +7,8 @@ export const SET_USER_SUCCESS = 'SET_USER_SUCCESS';
 export const SET_USER_FAILED = 'SET_USER_FAILED';
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const IS_OPEN = 'IS_OPEN';
+export const IS_CLOSE = 'IS_CLOSE';
 
 
 export const logout = async form => {
@@ -21,6 +23,23 @@ export const logout = async form => {
     redirect: 'follow',
     referrerPolicy: 'no-referrer',
     body: JSON.stringify(form)
+  }).then(checkResponse);
+};
+
+export const refreshToken = async form => {
+  return await fetch('https://norma.nomoreparties.space/api/auth/token', {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify({
+      token: localStorage.getItem("refreshToken")
+    })
   }).then(checkResponse);
 };
 
@@ -40,7 +59,7 @@ export const infoUserData = () => {
   }).then(checkResponse);
 };
 
-export const setUserData = () => {
+export const setUserData = (form) => {
   return fetch('https://norma.nomoreparties.space/api/auth/user', {
     method: 'PATCH',
     mode: 'cors',
@@ -52,7 +71,7 @@ export const setUserData = () => {
     },
     redirect: 'follow',
     referrerPolicy: 'no-referrer',
-    body: JSON.stringify()
+    body: JSON.stringify(form)
   }).then(checkResponse);
 };
 

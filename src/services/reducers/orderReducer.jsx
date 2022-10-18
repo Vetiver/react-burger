@@ -15,6 +15,10 @@ export const SET_USER_FAILED = 'SET_USER_FAILED';
 export const CLEAN_USER_INFO = 'CLEAN_USER_INFO';
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const IS_OPEN = 'IS_OPEN';
+export const IS_CLOSE = 'IS_CLOSE';
+export const TAKE_ID_MODAL = 'TAKE_ID_MODAL';
+export const DROP_ID_MODAL = 'DROP_ID_MODAL';
 
  const initialState = {
   allIngredients: [],
@@ -29,7 +33,9 @@ export const USER_LOGOUT = 'USER_LOGOUT';
   mainPrice: 0,
   constructorIngredients: [],
   userInfo: [],
-  isLogin: false
+  isLogin: false,
+  isOpen: false,
+  modalInfo: NaN
 };
 
 export const reducer = (state = initialState, action) => {
@@ -105,8 +111,23 @@ export const reducer = (state = initialState, action) => {
     case USER_LOGOUT :
       return {
         ...state, isLogin: false,
-      }  
-    
+      }
+    case IS_OPEN :
+      return {
+        ...state, isOpen: true,
+      }    
+    case IS_CLOSE :
+      return {
+        ...state, isOpen: false,
+      } 
+    case TAKE_ID_MODAL :
+      return {
+        ...state, modalInfo: action.payload,
+      } 
+    case DROP_ID_MODAL :
+      return {
+        ...state, modalInfo: NaN,
+      }                     
     default:
       return state;
   }

@@ -7,6 +7,7 @@ import "../Tab/Tab.jsx";
 import Ingredient from "../Ingredient/Ingredient.jsx";
 import Tabs from "../Tab/Tab.jsx";
 import { Link, useLocation  } from 'react-router-dom';
+import {TAKE_ID_MODAL} from "../../services/actions/ingredients.jsx";
 
 function BurgerIngredients() {
   const location = useLocation();
@@ -34,7 +35,7 @@ function BurgerIngredients() {
             return  <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
               background: location,
             },
-          }}><Ingredient ingredient={el} key={el._id} /></Link>
+          }}><Ingredient ingredient={el} key={el._id}/></Link>
           })}
         </div>
         <h3 className={`${Style.title} text text_type_main-medium`}>Соусы</h3>
@@ -43,7 +44,7 @@ function BurgerIngredients() {
             return <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
               background: location,
             },
-          }}><Ingredient ingredient={el} key={el._id} /></Link>;
+          }}><Ingredient ingredient={el} key={el._id}  /></Link>;
           })}
         </div>
         <h3 ref={mainRef} className={`${Style.title} text text_type_main-medium`}>Начинки</h3>
@@ -52,7 +53,7 @@ function BurgerIngredients() {
             return <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
               background: location,
             },
-          }}><Ingredient ingredient={el} key={el._id} /></Link>;
+          }}><Ingredient ingredient={el} key={el._id}  /></Link>;
           })}
         </div>
       </div>

@@ -6,14 +6,22 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import {
   CloseIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import {IS_OPEN, IS_CLOSE} from "../../services/actions/profile.jsx";
+import {DROP_ID_MODAL} from "../../services/actions/ingredients.jsx";
+import {useDispatch, useSelector} from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom';
 
 const modalRoot = document.getElementById("modal-root");
 
 function Modal(props) {
+  const isOpen = useSelector(state => state.isOpen);
+  const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     const close = (e) => {
       if (e.key === 'Escape') {
         props.onClose();
+        dispatch({ type: DROP_ID_MODAL})
       }
     };
     window.addEventListener("keydown", close);
@@ -22,7 +30,10 @@ function Modal(props) {
   const modalClose = (evt) => {
     if (evt.target.id !== "buttonClose") {
       props.onClose();
+      dispatch({ type: IS_CLOSE})
+      dispatch({ type: DROP_ID_MODAL})
       evt.stopPropagation();
+
     }
   };
   return ReactDOM.createPortal(

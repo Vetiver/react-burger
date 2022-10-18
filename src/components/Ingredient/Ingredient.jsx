@@ -7,6 +7,8 @@ import Modal from "../Modal/Modal.jsx";
 import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import { CurrencyIcon,  Counter} from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Ingredient/Ingredient.module.css";
+import {IS_OPEN, IS_CLOSE} from "../../services/actions/profile.jsx";
+import {TAKE_ID_MODAL} from "../../services/actions/ingredients.jsx";
 
 function Ingredient({ ingredient }) {
 
@@ -23,23 +25,23 @@ function Ingredient({ ingredient }) {
         (item) => item._id === ingredient._id).length
   );
 
-  const [visible, setTheme] = React.useState(false);
+  const isOpen = useSelector(state => state.isOpen);
+  const dispatch = useDispatch();
   function handleOpenModal(e) {
-    setTheme(true);
+    dispatch({ type: IS_OPEN })
+    dispatch({ type: IS_OPEN })
+    dispatch({ type: TAKE_ID_MODAL, payload:ingredient._id })
   }
 
-  function handleCloseModal(e) {
-    setTheme(false);
-  }
-  const modal = (
-      <Modal onClose={handleCloseModal}>
-        <IngredientDetails ingredient={ingredient} />
-      </Modal>
-  );
+
+ 
+
+
+  
   return (
     !isDrag && 
     <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`} ref={dragRef}>
-      {visible && modal}
+      {isOpen}
       <img className={`${Style.image}`} src={ingredient.image} alt={ingredient.name} />
       <div className={`${Style.classContainer}`}>
         <p className="text text_type_main-medium">{ingredient.price}</p>

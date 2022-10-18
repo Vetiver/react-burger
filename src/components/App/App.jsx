@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation, useHistory, useParams } from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -14,16 +14,34 @@ import { ProvideAuth } from '../../services/auth.jsx';
 import Profile from "../Profile/Profile.jsx";
 import {ProtectedRoute} from "../ProtectedRoute/ProtectedRoute.jsx";
 import {useDispatch, useSelector} from 'react-redux';
+import {IS_OPEN, IS_CLOSE} from "../../services/actions/profile.jsx";
+import {DROP_ID_MODAL} from "../../services/actions/ingredients.jsx";
+import Modal from "../Modal/Modal.jsx";
+import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
+import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 
 function App() {
+  const ingredients = useSelector(state => state.allIngredients);
+  const isOpen = useSelector(state => state.isOpen);
+  const id = useSelector(state => state.modalInfo);
+  const dispatch = useDispatch();
   const location = useLocation();
   const isLogin = useSelector(state => state.isLogin);
+  const history = useHistory();
+  const background = location.state && location.state.background;
+
+  function handleCloseModal(e) {
+    dispatch({ type: DROP_ID_MODAL })
+    dispatch({ type: IS_CLOSE })
+    history.goBack();
+  }
+
   return (
     <ProvideAuth>
-    <Router>
+
       <div className={Style.App}>
         <AppHeader />
-        <Switch>
+        <Switch location={background || location}>
           <ProtectedRoute path="/" isAuth={isLogin} exact={true}>
             <main className={Style.container}>
             <DndProvider backend = {HTML5Backend}>
@@ -57,9 +75,22 @@ function App() {
             <Profile />
         
           </ProtectedRoute>
+          <Route path="/ingredients/:id" exact={true}>
+            <IngredientDetails ingredient={id} />
+          </Route>
         </Switch>
+        {isOpen && (
+        <Modal onClose={handleCloseModal}><IngredientDetails ingredient={id} /></Modal>
+      )}
+      {background && (
+        <Route path="/feed/:id">
+          <Modal>
+            <OrderDetails />
+          </Modal>
+        </Route>
+      )}
       </div>
-    </Router>
+
     </ProvideAuth>
   );
 }
