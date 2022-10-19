@@ -76,7 +76,9 @@ function App() {
         
           </ProtectedRoute>
           <Route path="/ingredients/:id">
+          <main className={Style.modalContainer}>
             <IngredientDetails ingredient={id} />
+            </main>
           </Route>
         </Switch>
         {isOpen && (
