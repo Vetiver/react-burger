@@ -10,7 +10,7 @@
   useEffect(() => {
     console.log(userInfo)
     if (!isAuth && document.cookie !== '') {
-      console.log(userInfo)
+      console.log(']]]]]')
       refreshToken()
     }
     if(document.cookie !== '') {
