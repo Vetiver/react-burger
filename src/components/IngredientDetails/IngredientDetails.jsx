@@ -13,7 +13,9 @@ function IngredientDetails({ ingredient }) {
   const isLogin = useSelector(state => state.isLogin);
   const [items, sets] = useState({image:'', name:'', calories:'', proteins:'', fat:'', carbohydrates:''})
   const takeModal = async () => {
-    console.log(allIngredients)
+    const data = await fetchIngredients().then((data) => data);
+    console.log(data);
+    if(isLogin === true) {
       const main = allIngredients.find((el) => el._id === ingredient);
       sets({
         image: main.image_large,
@@ -23,9 +25,9 @@ function IngredientDetails({ ingredient }) {
         fat: main.fat,
         carbohydrates: main.carbohydrates,
       });
-
+    }
     if(isLogin === false) {
-      const main = allIngredients.find((el) => el._id === id);
+      const main = data.data.find((el) => el._id === id);
       sets({
         image: main.image_large,
         name: main.name,

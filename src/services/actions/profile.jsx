@@ -1,6 +1,7 @@
 import thunk from "redux";
 import { setCookie, getCookie } from "../../utils/cookie.jsx";
 import checkResponse from '../../utils/checkResponse.jsx';
+import {baseUrl} from '../../services/actions/ingredients.jsx' 
 import { CLEAN_USER_INFO } from "../reducers/orderReducer.jsx";
 export const SET_USER_INFO = 'SET_USER_INFO';
 export const SET_USER_SUCCESS = 'SET_USER_SUCCESS';
@@ -12,7 +13,7 @@ export const IS_CLOSE = 'IS_CLOSE';
 
 
 export const logout = async form => {
-  return await fetch('https://norma.nomoreparties.space/api/auth/logout', {
+  return await fetch(`${baseUrl}/api/auth/logout`, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',
@@ -25,9 +26,8 @@ export const logout = async form => {
     body: JSON.stringify(form)
   }).then(checkResponse);
 };
-
-export const refreshToken = async form => {
-  return await fetch('https://norma.nomoreparties.space/api/auth/token', {
+export const refreshToken = async () => {
+  return await fetch(`${baseUrl}/api/auth/token`, {
     method: 'POST',
     mode: 'cors',
     cache: 'no-cache',
@@ -44,7 +44,7 @@ export const refreshToken = async form => {
 };
 
 export const infoUserData = () => {
-  return fetch('https://norma.nomoreparties.space/api/auth/user', {
+  return fetch(`${baseUrl}/api/auth/user`, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
@@ -60,7 +60,7 @@ export const infoUserData = () => {
 };
 
 export const setUserData = (form) => {
-  return fetch('https://norma.nomoreparties.space/api/auth/user', {
+  return fetch(`${baseUrl}/api/auth/user`, {
     method: 'PATCH',
     mode: 'cors',
     cache: 'no-cache',
@@ -78,7 +78,7 @@ export const setUserData = (form) => {
 
 
 export const setPassword = async form => {
-    return await fetch('https://norma.nomoreparties.space/api/password-reset/reset', {
+    return await fetch(`${baseUrl}/api/password-reset/reset`, {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -95,7 +95,7 @@ export const setPassword = async form => {
   
   
 export const resetPassword = form => {
-    return fetch('https://norma.nomoreparties.space/api/password-reset', {
+    return fetch(`${baseUrl}/api/password-reset`, {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -110,7 +110,7 @@ export const resetPassword = form => {
   };
   
   const registerRequest = form => {
-    return fetch('https://norma.nomoreparties.space/api/auth/register', {
+    return fetch(`${baseUrl}/api/auth/register`, {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -125,7 +125,7 @@ export const resetPassword = form => {
   };
   
   const loginRequest = async form => {
-    return await fetch('https://norma.nomoreparties.space/api/auth/login', {
+    return await fetch(`${baseUrl}/api/auth/login`, {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -173,7 +173,41 @@ export const resetPassword = form => {
       
     };
   }
+
   
+  export function getUserInfo() {
+    return function (dispatch) {
+      dispatch({
+        type: SET_USER_INFO,
+      });
+      infoUserData()
+      .then((res) => {
+        console.log(res)
+        if (res.success && res) {
+          setCookie('token', res.accessToken)
+          localStorage.setItem("refreshToken", res.refreshToken)
+          dispatch({
+            type: SET_USER_SUCCESS,
+            payload: res,
+          });
+          dispatch({type: USER_LOGIN})
+          console.log(res)
+        } else {
+          dispatch({
+            type: SET_USER_FAILED,
+          })
+        }
+           
+        })
+        .catch ((err) => {
+          console.log(err);
+          dispatch({
+            type: SET_USER_FAILED,
+          })
+        })
+        
+      };
+    }
   
 
   export function loginUserInfo(form) {
@@ -186,6 +220,7 @@ export const resetPassword = form => {
         console.log(res)
         if (res.success && res) {
           setCookie('token', res.accessToken)
+          localStorage.setItem("token", res.refreshToken)
           dispatch({
             type: SET_USER_SUCCESS,
             payload: res,

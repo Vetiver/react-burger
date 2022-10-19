@@ -15,10 +15,6 @@ function BurgerIngredients() {
   const sauseRef = useRef()
   const mainRef = useRef()
   const ingredients = useSelector(state => state.allIngredients);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getItems())
-  },[])
   const bun = ingredients.filter((el) => el.type === "bun");
   const main = ingredients.filter((el) => el.type === "main");
   const sauce = ingredients.filter((el) => el.type === "sauce");
@@ -31,29 +27,29 @@ function BurgerIngredients() {
       <div id='scrollBar' className={`${Style.chapter}`}>
         <h3 ref={bunRef} className={`${Style.title} text text_type_main-medium`}>Булки</h3>
         <div className={`${Style.burgerGrid}`}>
-          {bun.map(function (el) {
-            return  <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
+          {bun.map((el) => {
+            return(  <Link className={`${Style.link}`} key={el._id} to={{pathname:`ingredients/${el._id}`, state: {
               background: location,
             },
-          }}><Ingredient ingredient={el} key={el._id}/></Link>
+          }}><Ingredient ingredient={el} key={el._id}/></Link>)
           })}
         </div>
         <h3 className={`${Style.title} text text_type_main-medium`}>Соусы</h3>
         <div ref={sauseRef} className={`${Style.burgerGrid}`}>
-          {sauce.map(function (el) {
-            return <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
+          {sauce.map((el) => {
+            return( <Link className={`${Style.link}`} key={el._id} to={{pathname:`ingredients/${el._id}`, state: {
               background: location,
             },
-          }}><Ingredient ingredient={el} key={el._id}  /></Link>;
+          }}><Ingredient ingredient={el} key={el._id}  /></Link>);
           })}
         </div>
         <h3 ref={mainRef} className={`${Style.title} text text_type_main-medium`}>Начинки</h3>
         <div  className={`${Style.burgerGrid}`}>
-          {main.map(function (el) {
-            return <Link className={`${Style.link}`} to={{pathname:`ingredients/${el._id}`, state: {
+          {main.map((el) => {
+            return( <Link className={`${Style.link}`} key={el._id} to={{pathname:`ingredients/${el._id}`, state: {
               background: location,
             },
-          }}><Ingredient ingredient={el} key={el._id}  /></Link>;
+          }}><Ingredient ingredient={el} key={el._id}  /></Link>);
           })}
         </div>
       </div>

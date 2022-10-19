@@ -11,7 +11,7 @@ import { Redirect, useHistory } from 'react-router-dom'
 
 function Profile(props) {
 	const userInfo = useSelector(state => state.userInfo);
-	const [form, setValue] = useState({ email: userInfo.user.email, password: '', name: userInfo.user.name, });
+	const [form, setValue] = useState({ email: '', name: userInfo.user.name, password: '',});
 	let dispatch = useDispatch();
 	const isLogin = useSelector(state => state.isLogin);
 
@@ -19,19 +19,10 @@ function Profile(props) {
 
 	const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
-	const user = async () => {
-		const res = await infoUserData()
-		console.log(res.user);
-		if(res.user.name !== form.name || res.user.email !== form.email) {
-			console.log('оно не равно')
-		} else {
-			console.log('оно равно')
-		}
-	}
-	user()
+	
 		
   };
-console.log(form)
+  
 	const data = async userInf => {
 		const res = await logout(userInf)
 		.then (data => data)
@@ -110,6 +101,9 @@ console.log(form)
 		<Input type={'password'} 
 		placeholder={'Пароль'} 
 		icon={'ShowIcon'}
+		name={'password'}
+		onChange={onChange}
+		value={form.password}
 		error={false}/>
 		<div className={`${Style.buttonsContainer}`}>
 		<Button type="secondary" size="small">

@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {
     Input, Button, ShowIcon, 
   } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useAuth } from '../../services/auth.jsx';
 import { resetPassword} from '../../services/actions/profile.jsx';
 
 function FogotPassword(props) {

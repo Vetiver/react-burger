@@ -7,35 +7,34 @@ import {
   } from "@ya.praktikum/react-developer-burger-ui-components";
   import {useDispatch, useSelector} from 'react-redux';
   import {loginUserInfo, userLogin} from '../../services/actions/profile.jsx';
+  import { setCookie, getCookie } from "../../utils/cookie.jsx";
 
 function Authorization(props) {
- let dispatch = useDispatch();
+ const dispatch = useDispatch();
   const userInfo = useSelector(state => state.userInfo);
   const [form, setValue] = useState({ email: '', password: '',});
   const isLogin = useSelector(state => state.isLogin);
   const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
-  let login = useCallback(
+  const login = useCallback(
     e => {
       e.preventDefault();
       dispatch(loginUserInfo(form))
-      
     },
     [loginUserInfo, form]
   );
   if (isLogin == true) {
     return (
       <Redirect
-        to='/profile'
+        to='/'
       />
     );
   } else {
 
  
     return (
-      <>
-        <form className={`${Style.authorizationForm}`}>
+        <form onSubmit={login} className={`${Style.authorizationForm}`}>
         <h1 className={`${Style.text}`}>Вход</h1>
           <EmailInput type={'email'}
             placeholder={'E-mail'}
@@ -52,7 +51,7 @@ function Authorization(props) {
             value={form.password}
             icon={'ShowIcon'}
             error={false}/>
-          <Button type="primary" onClick={login} size="large">
+          <Button type="primary" size="large">
           Войти
           </Button>
         <div className={`${Style.linkContainer}`}>
@@ -64,8 +63,6 @@ function Authorization(props) {
           </p>
         </div>
         </form>
-       
-      </>
     );
     }
 }
