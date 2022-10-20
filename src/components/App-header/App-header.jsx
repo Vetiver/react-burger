@@ -33,7 +33,7 @@ function AppHeader() {
       </Link>
       <Logo />
       <Link
-        to='/login'
+        to='/profile'
         className={`${Style.constructorContainer} ${Style.lastMargin}`}
       >
         <ProfileIcon type="secondary" />

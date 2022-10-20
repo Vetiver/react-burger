@@ -5,27 +5,28 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
-import Authorization from "../Authorization/Authorization.jsx";
-import Register from "../Register/Register";
-import ResetPassword from "../ResetPassword/ResetPassword";
+import Authorization from "../../pages/Authorization/Authorization.jsx";
+import Register from "../../pages/Register/Register";
+import ResetPassword from "../../pages/ResetPassword/ResetPassword";
 import Style from "../App/App.module.css";
-import FogotPassword from "../ForgotPassword/FogotPassword";
-import { ProvideAuth } from '../../services/auth.jsx';
-import Profile from "../Profile/Profile.jsx";
+import FogotPassword from "../../pages/ForgotPassword/FogotPassword";
+import Profile from "../../pages/Profile/Profile.jsx";
 import {ProtectedRoute} from "../ProtectedRoute/ProtectedRoute.jsx";
 import {useDispatch, useSelector} from 'react-redux';
 import {IS_OPEN, IS_CLOSE} from "../../services/actions/profile.jsx";
-import {DROP_ID_MODAL} from "../../services/actions/ingredients.jsx";
+import {DROP_ID_MODAL, getItems} from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
 import { useHistory, useParams } from "react-router";
 
 function App() {
-  const ingredients = useSelector(state => state.allIngredients);
   const isOpen = useSelector(state => state.isOpen);
   const id = useSelector(state => state.modalInfo);
   const dispatch = useDispatch();
+    useEffect(() => {
+    dispatch(getItems())
+  },[])
   const location = useLocation();
   const isLogin = useSelector(state => state.isLogin);
   const history = useHistory();
@@ -37,7 +38,7 @@ function App() {
   }
 
   return (
-    <ProvideAuth>
+
 
       <div className={Style.App}>
         <AppHeader />
@@ -50,11 +51,11 @@ function App() {
             </ DndProvider>
             </main>
           </ProtectedRoute>
-          <ProtectedRoute path="/login" anonymous={true} isAuth={isLogin} exact={true}>
+          <Route path="/login" anonymous={true} isAuth={isLogin} exact={true}>
           <main className={Style.container}>
             <Authorization />
           </main>
-          </ProtectedRoute>
+          </Route>
           <Route path="/register" exact={true}>
           <main className={Style.container}>
             <Register/>
@@ -71,14 +72,12 @@ function App() {
           </main>
           </Route>
           <ProtectedRoute path="/profile" isAuth={isLogin} exact={true}>
-          
             <Profile />
-        
           </ProtectedRoute>
           <Route path="/ingredients/:id">
           <main className={Style.modalContainer}>
             <IngredientDetails ingredient={id} />
-            </main>
+          </main>  
           </Route>
         </Switch>
         {isOpen && (
@@ -93,7 +92,12 @@ function App() {
       )}
       </div>
 
-    </ProvideAuth>
+
+
+
+
+
+
   );
 }
 

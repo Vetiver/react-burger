@@ -1,26 +1,32 @@
 export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
-export const ADD_BUN_ELEMENT = 'ADD_BUN_ELEMENT';
-export const ADD_CONSTRUCTOR_ELEMENT = 'ADD_CONSTRUCTOR_ELEMENT';
+export const ADD_BUN_ELEMENT = "ADD_BUN_ELEMENT";
+export const ADD_CONSTRUCTOR_ELEMENT = "ADD_CONSTRUCTOR_ELEMENT";
 export const REMOVE_CONSTRUCTOR_ELEMENT = "REMOVE_CONSTRUCTOR_ELEMENT";
 export const ADD_PRICE = "ADD_PRICE";
 export const REMOVE_PRICE = "REMOVE_PRICE";
 export const GET_ORDER_REQUEST = "GET_ORDER_REQUEST";
 export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
 export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
-export const SET_USER_INFO = 'SET_USER_INFO';
-export const SET_USER_SUCCESS = 'SET_USER_SUCCESS';
-export const SET_USER_FAILED = 'SET_USER_FAILED';
-export const CLEAN_USER_INFO = 'CLEAN_USER_INFO';
-export const USER_LOGIN = 'USER_LOGIN';
-export const USER_LOGOUT = 'USER_LOGOUT';
-export const IS_OPEN = 'IS_OPEN';
-export const IS_CLOSE = 'IS_CLOSE';
-export const TAKE_ID_MODAL = 'TAKE_ID_MODAL';
-export const DROP_ID_MODAL = 'DROP_ID_MODAL';
+export const SET_USER_INFO = "SET_USER_INFO";
+export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
+export const SET_USER_FAILED = "SET_USER_FAILED";
+export const CLEAN_USER_INFO = "CLEAN_USER_INFO";
+export const USER_LOGIN = "USER_LOGIN";
+export const FETCH_AUTH_REQUEST = "FETCH_AUTH_REQUEST";
+export const FETCH_AUTH_ERROR = "FETCH_AUTH_ERROR";
+export const USER_LOGOUT = "USER_LOGOUT";
+export const IS_OPEN = "IS_OPEN";
+export const IS_CLOSE = "IS_CLOSE";
+export const TAKE_ID_MODAL = "TAKE_ID_MODAL";
+export const DROP_ID_MODAL = "DROP_ID_MODAL";
 
- const initialState = {
+export const FETCH_REFRESH_TOKEN_REQUEST = "FETCH_REFRESH_TOKEN_REQUEST";
+export const FETCH_REFRESH_TOKEN_SUCCESS = "FETCH_REFRESH_TOKEN_SUCCESS";
+export const FETCH_REFRESH_TOKEN_ERROR = "FETCH_REFRESH_TOKEN_ERROR";
+
+const initialState = {
   allIngredients: [],
   IngredientsRequest: false,
   userInfoRequest: false,
@@ -35,7 +41,9 @@ export const DROP_ID_MODAL = 'DROP_ID_MODAL';
   userInfo: [],
   isLogin: false,
   isOpen: false,
-  modalInfo: NaN
+  modalInfo: NaN,
+  isLoading: false,
+  hasError: false,
 };
 
 export const reducer = (state = initialState, action) => {
@@ -57,27 +65,31 @@ export const reducer = (state = initialState, action) => {
         ...state,
         constructorIngredients: [
           ...state.constructorIngredients,
-          action.payload
+          action.payload,
         ],
       };
-    };
+    }
     case ADD_BUN_ELEMENT: {
       return {
         ...state,
         buns: [action.payload],
       };
-    };
-    case REMOVE_CONSTRUCTOR_ELEMENT: 
-    const  commentId = action.payload;
-      return {...state, constructorIngredients: state.constructorIngredients.filter(comment => comment.uuid !== commentId)
+    }
+    case REMOVE_CONSTRUCTOR_ELEMENT:
+      const commentId = action.payload;
+      return {
+        ...state,
+        constructorIngredients: state.constructorIngredients.filter(
+          (comment) => comment.uuid !== commentId
+        ),
       };
-      case ADD_PRICE: {
-        return { ...state, mainPrice: state.mainPrice + action.payload };
-      };
-      case REMOVE_PRICE: {
-        return { ...state, mainPrice: state.mainPrice - action.payload };
-      }
-      case GET_ORDER_REQUEST:
+    case ADD_PRICE: {
+      return { ...state, mainPrice: state.mainPrice + action.payload };
+    }
+    case REMOVE_PRICE: {
+      return { ...state, mainPrice: state.mainPrice - action.payload };
+    }
+    case GET_ORDER_REQUEST:
       return { ...state, orderRequest: true };
     case GET_ORDER_SUCCESS:
       return {
@@ -88,48 +100,70 @@ export const reducer = (state = initialState, action) => {
       };
     case GET_ORDER_FAILED:
       return { ...state, orderFailed: true };
-    case SET_USER_INFO :
+    case SET_USER_INFO:
       return {
-        ...state, userInfoRequest: true,
-      }
-    case SET_USER_SUCCESS :
+        ...state,
+        userInfoRequest: true,
+      };
+    case SET_USER_SUCCESS:
       return {
-        ...state, userInfo: action.payload,
-      }
-    case SET_USER_FAILED :
+        ...state,
+        userInfo: action.payload,
+      };
+    case SET_USER_FAILED:
       return {
-        ...state, userInfoFaile: true,
-      }
-    case CLEAN_USER_INFO :
+        ...state,
+        userInfoFaile: true,
+      };
+    case CLEAN_USER_INFO:
       return {
-        ...state, userInfo: null,
-      }
-    case USER_LOGIN :
+        ...state,
+        userInfo: null,
+      };
+    case USER_LOGIN:
       return {
-        ...state, isLogin: true,
-      }  
-    case USER_LOGOUT :
+        ...state,
+        isLogin: true,
+      };
+    case FETCH_AUTH_REQUEST:
       return {
-        ...state, isLogin: false,
-      }
-    case IS_OPEN :
+        ...state,
+        isLoading: true,
+      };
+    case FETCH_AUTH_ERROR:
       return {
-        ...state, isOpen: true,
-      }    
-    case IS_CLOSE :
+        ...state,
+        isLoading: false,
+        hasError: true,
+      };
+    case USER_LOGOUT:
       return {
-        ...state, isOpen: false,
-      } 
-    case TAKE_ID_MODAL :
+        ...state,
+        isLogin: false,
+        userInfo: initialState.userInfo,
+        isLoading: false,
+      };
+    case IS_OPEN:
       return {
-        ...state, modalInfo: action.payload,
-      } 
-    case DROP_ID_MODAL :
+        ...state,
+        isOpen: true,
+      };
+    case IS_CLOSE:
       return {
-        ...state, modalInfo: NaN,
-      }                     
+        ...state,
+        isOpen: false,
+      };
+    case TAKE_ID_MODAL:
+      return {
+        ...state,
+        modalInfo: action.payload,
+      };
+    case DROP_ID_MODAL:
+      return {
+        ...state,
+        modalInfo: NaN,
+      };
     default:
       return state;
   }
 };
-

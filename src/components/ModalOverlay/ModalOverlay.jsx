@@ -9,9 +9,6 @@ import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 
 
 
 function ModalOverlay(props) {
-  const isOpen = useSelector(state => state.isOpen);
-  const dispatch = useDispatch();
-  const history = useHistory();
   const modalOverlay = (evt) => {
     if (evt.target.id == "ModalOverlay") {
       props.onClose();
