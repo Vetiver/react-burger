@@ -1,12 +1,12 @@
 import React, { Component, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import Style from "../IngredientDetails/IngredientDetails.module.css";
+import Style from "../IngredientDetailsModal/IngredientDetailsModal.module.css";
 import { fetchIngredients } from "../../services/actions/ingredients";
 import {useSelector } from "react-redux";
 import {useParams} from "react-router";
 
 
-function IngredientDetails({ ingredient }) {
+function IngredientDetailsModal() {
   const allIngredients = useSelector((state) => state.allIngredients);
   const isLogin = useSelector((state) => state.isLogin);
   const [items, sets] = useState({
@@ -21,7 +21,7 @@ function IngredientDetails({ ingredient }) {
   const takeModal = async () => {
     const data = await fetchIngredients().then((data) => data);
     if (isLogin === true) {
-      const main = allIngredients.find((el) => el._id === ingredient);
+      const main = allIngredients.find((el) => el._id === id);
 
       sets({
         image: main.image_large,
@@ -33,7 +33,7 @@ function IngredientDetails({ ingredient }) {
       });
     } else if (isLogin === false) {
 
-      const main = data.data.find((el) => el._id === ingredient);
+      const main = data.data.find((el) => el._id === id);
       sets({
         image: main.image_large,
         name: main.name,
@@ -92,4 +92,4 @@ function IngredientDetails({ ingredient }) {
   );
 }
 
-export default IngredientDetails;
+export default IngredientDetailsModal;

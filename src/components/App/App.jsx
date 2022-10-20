@@ -1,4 +1,5 @@
 import React, { useEffect} from "react";
+import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal.jsx';
 import { BrowserRouter as Router, Switch, Route, useLocation} from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
@@ -18,7 +19,8 @@ import {DROP_ID_MODAL, getItems} from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { useHistory} from "react-router";
+import { useHistory, useParams} from "react-router";
+
 
 function App() {
   const isOpen = useSelector(state => state.isOpen);
@@ -76,7 +78,7 @@ function App() {
           </ProtectedRoute>
           <Route path="/ingredients/:id">
           <main className={Style.modalContainer}>
-            <IngredientDetails ingredient={id} />
+            <IngredientDetailsModal />
           </main>  
           </Route>
         </Switch>
@@ -100,5 +102,6 @@ function App() {
 
   );
 }
+
 
 export default App;

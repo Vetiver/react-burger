@@ -11,7 +11,6 @@ import {
   setUser,
 } from "../../services/actions/profile.jsx";
 import { deleteCookie } from "../../utils/cookie.jsx";
-import { Redirect } from "react-router-dom";
 import { refreshAccessToken } from "../../services/actions/profile";
 
 function Profile(props) {
