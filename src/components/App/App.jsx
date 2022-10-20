@@ -43,34 +43,34 @@ function App() {
       <div className={Style.App}>
         <AppHeader />
         <Switch location={background || location}>
-          <ProtectedRoute path="/" isAuth={isLogin} exact={true}>
+          <Route path="/" isAuth={isLogin} exact={true}>
             <main className={Style.container}>
             <DndProvider backend = {HTML5Backend}>
             <BurgerIngredients />
             <BurgerConstructor />
             </ DndProvider>
             </main>
-          </ProtectedRoute>
-          <Route path="/login" anonymous={true} isAuth={isLogin} exact={true}>
+          </Route>
+          <ProtectedRoute path="/login" anonymous={true} isAuth={isLogin} exact={true}>
           <main className={Style.container}>
             <Authorization />
           </main>
-          </Route>
-          <Route path="/register" exact={true}>
+          </ProtectedRoute>
+          <ProtectedRoute anonymous={true} path="/register" exact={true}>
           <main className={Style.container}>
             <Register/>
           </ main>
-          </Route>
-          <Route path="/forgot-password" exact={true}>
+          </ProtectedRoute>
+          <ProtectedRoute anonymous={true} path="/forgot-password" exact={true}>
           <main className={Style.container}>
             <FogotPassword />
           </main>
-          </Route>
-          <Route path="/reset-password" exact={true}>
+          </ProtectedRoute>
+          <ProtectedRoute anonymous={true} path="/reset-password" exact={true}>
           <main className={Style.container}>
             <ResetPassword />
           </main>
-          </Route>
+          </ProtectedRoute>
           <ProtectedRoute path="/profile" isAuth={isLogin} exact={true}>
             <Profile />
           </ProtectedRoute>

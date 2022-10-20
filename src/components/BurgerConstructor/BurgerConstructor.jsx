@@ -16,11 +16,13 @@ import {ADD_CONSTRUCTOR_ELEMENT, ADD_BUN_ELEMENT, baseUrl, ADD_PRICE} from "../.
 import ElementBurgerDefault from '../ElementBurgerDefault/ElementBurgerDefault.jsx';
 import { getOrderNumber } from "../../services/actions/ingredients";
 import { v4 as uuidv4 } from 'uuid';
+import { Redirect, useHistory } from 'react-router-dom'
 
 
 function BurgerConstructor() {
   const ingredient = useSelector(state => state.constructorIngredients);
   const main = useSelector(state => state.mainPrice);
+  const history = useHistory()
   const [items, sets] = useState(ingredient)
   useMemo(() => {
     sets(ingredient);
@@ -28,13 +30,19 @@ function BurgerConstructor() {
   const bun = useSelector(state => state.buns)
   const dispatcher = useDispatch();
   const [visible, setTheme] = React.useState(false);
-
+  const isLogin = useSelector(state => state.isLogin);
   const orderNumber = useSelector(state => state.orderNumber);
   
-  function open() {
-    dispatcher(getOrderNumber())
-    handleOpenModal()
-  }
+  function open(e) {
+    if (!isLogin) {
+      e.preventDefault()
+      history.push('/login')
+    } else {
+      dispatcher(getOrderNumber())
+      handleOpenModal()
+    }
+    }
+   
  
 
   const [, bunTarget] = useDrop({
