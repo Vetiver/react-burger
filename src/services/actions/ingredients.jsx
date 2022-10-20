@@ -1,5 +1,4 @@
 import thunk from "redux";
-import  checkResponse from '../../utils/checkResponse.jsx'
 import checkResponce from '../../utils/checkResponse.jsx'
 export const baseUrl = "https://norma.nomoreparties.space";
 export const ADD_BUN_ELEMENT = 'ADD_BUN_ELEMENT';

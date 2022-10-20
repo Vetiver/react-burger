@@ -1,6 +1,5 @@
 import React, {useEffect, useState, useMemo} from "react";
-import PropTypes from "prop-types";
-import { Reorder, useMotionValue } from "framer-motion"
+import {Reorder} from "framer-motion"
 import ElementBurger from "../ElementsBurger/ElementsBurger.jsx";
 import Stuffing from "../Stuffing/Stuffing.jsx";
 import {useDispatch, useSelector} from 'react-redux';
@@ -16,7 +15,7 @@ import {ADD_CONSTRUCTOR_ELEMENT, ADD_BUN_ELEMENT, baseUrl, ADD_PRICE} from "../.
 import ElementBurgerDefault from '../ElementBurgerDefault/ElementBurgerDefault.jsx';
 import { getOrderNumber } from "../../services/actions/ingredients";
 import { v4 as uuidv4 } from 'uuid';
-import { Redirect, useHistory } from 'react-router-dom'
+import {useHistory } from 'react-router-dom';
 
 
 function BurgerConstructor() {

@@ -1,12 +1,11 @@
  import { Route } from 'react-router-dom';
  import {useDispatch, useSelector} from 'react-redux';
- import { useEffect, useState } from 'react';
+ import { useEffect} from 'react';
  import { Redirect, useLocation} from 'react-router-dom'
  import {getUserInfo, refreshAccessToken, USER_LOGIN} from '../../services/actions/profile.jsx';
 import { getCookie } from '../../utils/cookie.jsx';
 
  export function ProtectedRoute({ anonymous = false, isAuth, children, ...rest }) {
-  const userInfo = useSelector(state => state.userInfo.user);
   const dispatch = useDispatch();
   const isTokenExist = !!localStorage.getItem('refreshToken')
 console.log(getCookie('token'))
@@ -27,7 +26,7 @@ console.log(isTokenExist)
 
   const location = useLocation();
   if (anonymous && isAuth) {
-    return <Redirect to="/" />;
+    return <Redirect to={location?.state?.from || '/'} />;
   }
   
 	if (!anonymous && !isAuth) {

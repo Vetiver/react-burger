@@ -1,12 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import { Redirect, useHistory } from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
 import Style from "../Register/Register.module.css";
 import { Link } from 'react-router-dom';
 import {
-    Input, Button, ShowIcon
+    Input, Button, 
   } from "@ya.praktikum/react-developer-burger-ui-components";
 import { setPassword } from '../../services/actions/profile.jsx';
-function ResetPassword(props) {
+
+function ResetPassword() {
   const [success, setSuccess] = useState(false);
   const [form, setValue] = useState({ password: '', name:'' });
   const data = async form => {

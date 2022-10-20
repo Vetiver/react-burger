@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import Style from "../Modal/Modal.module.css";
 import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import {
   CloseIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import {IS_OPEN, IS_CLOSE} from "../../services/actions/profile.jsx";
-import {DROP_ID_MODAL} from "../../services/actions/ingredients.jsx";
-import {useDispatch, useSelector} from 'react-redux';
-import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom';
+
 
 const modalRoot = document.getElementById("modal-root");
 

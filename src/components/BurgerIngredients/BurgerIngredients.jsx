@@ -1,13 +1,11 @@
-import React, { Component, useState, useEffect, useRef } from "react";
-import { ReactDOM } from "react";
-import { getItems } from "../../services/actions/ingredients";
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useRef } from "react";
+import {useSelector} from 'react-redux';
 import Style from "../BurgerIngredients/BurgerIngredients.module.css";
 import "../Tab/Tab.jsx";
 import Ingredient from "../Ingredient/Ingredient.jsx";
 import Tabs from "../Tab/Tab.jsx";
 import { Link, useLocation  } from 'react-router-dom';
-import {TAKE_ID_MODAL} from "../../services/actions/ingredients.jsx";
+
 
 function BurgerIngredients() {
   const location = useLocation();

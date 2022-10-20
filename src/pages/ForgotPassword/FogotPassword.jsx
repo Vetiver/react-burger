@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import Style from "../ForgotPassword/ForgotPassword.module.css";
-import { Redirect, useHistory } from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-    Input, Button, ShowIcon, 
+    Input, Button, 
   } from "@ya.praktikum/react-developer-burger-ui-components";
 import { resetPassword} from '../../services/actions/profile.jsx';
 

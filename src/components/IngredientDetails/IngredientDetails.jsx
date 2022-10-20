@@ -1,14 +1,11 @@
 import React, { Component, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import Style from "../IngredientDetails/IngredientDetails.module.css";
 import { fetchIngredients } from "../../services/actions/ingredients";
-import { useHistory, useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import PropTypes from "prop-types";
+import {useSelector } from "react-redux";
+
 
 function IngredientDetails({ ingredient }) {
-  const { id } = useParams();
   const allIngredients = useSelector((state) => state.allIngredients);
   const isLogin = useSelector((state) => state.isLogin);
   const [items, sets] = useState({
@@ -33,7 +30,7 @@ function IngredientDetails({ ingredient }) {
       });
     }
     if (isLogin === false) {
-      const main = data.data.find((el) => el._id === id);
+      const main = data.data.find((el) => el._id === ingredient);
       sets({
         image: main.image_large,
         name: main.name,

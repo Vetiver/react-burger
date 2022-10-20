@@ -3,15 +3,13 @@ import { Redirect} from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import Style from "../Authorization/Authorization.module.css";
 import {
-    Input, Button, ShowIcon, EmailInput
+    Input, Button, EmailInput
   } from "@ya.praktikum/react-developer-burger-ui-components";
   import {useDispatch, useSelector} from 'react-redux';
   import {loginUserInfo, userLogin} from '../../services/actions/profile.jsx';
-  import { setCookie, getCookie } from "../../utils/cookie.jsx";
 
 function Authorization(props) {
  const dispatch = useDispatch();
-  const userInfo = useSelector(state => state.userInfo);
   const [form, setValue] = useState({ email: '', password: '',});
   const isLogin = useSelector(state => state.isLogin);
   const onChange = e => {
@@ -24,13 +22,7 @@ function Authorization(props) {
     },
     [loginUserInfo, form]
   );
-  if (isLogin == true) {
-    return (
-      <Redirect
-        to='/'
-      />
-    );
-  } else {
+ 
 
  
     return (
@@ -64,7 +56,7 @@ function Authorization(props) {
         </div>
         </form>
     );
-    }
+
 }
 
 export default Authorization;

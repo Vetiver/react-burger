@@ -7,12 +7,9 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  logout,
-  refreshToken,
   userLogoutFromAccount,
   setUser,
 } from "../../services/actions/profile.jsx";
-import { setUserData, clearUserInfo } from "../../services/actions/profile.jsx";
 import { deleteCookie } from "../../utils/cookie.jsx";
 import { Redirect } from "react-router-dom";
 import { refreshAccessToken } from "../../services/actions/profile";
@@ -58,9 +55,6 @@ function Profile(props) {
     localStorage.removeItem("refreshToken");
   }, []);
 
-  if (isLogin == false) {
-    return <Redirect to="/login" />;
-  }
 
   return (
     <div className={`${Style.mainContainer}`}>

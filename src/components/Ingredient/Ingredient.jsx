@@ -1,13 +1,11 @@
 import React  from "react";
 import { ReactDOM } from "react";
-import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import {useDispatch, useSelector} from 'react-redux';
 import { useDrag } from "react-dnd";
-import Modal from "../Modal/Modal.jsx";
 import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import { CurrencyIcon,  Counter} from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Ingredient/Ingredient.module.css";
-import {IS_OPEN, IS_CLOSE} from "../../services/actions/profile.jsx";
+import {IS_OPEN} from "../../services/actions/profile.jsx";
 import {TAKE_ID_MODAL} from "../../services/actions/ingredients.jsx";
 
 function Ingredient({ ingredient }) {

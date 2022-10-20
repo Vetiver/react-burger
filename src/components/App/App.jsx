@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route, useLocation} from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
@@ -13,12 +13,12 @@ import FogotPassword from "../../pages/ForgotPassword/FogotPassword";
 import Profile from "../../pages/Profile/Profile.jsx";
 import {ProtectedRoute} from "../ProtectedRoute/ProtectedRoute.jsx";
 import {useDispatch, useSelector} from 'react-redux';
-import {IS_OPEN, IS_CLOSE} from "../../services/actions/profile.jsx";
+import {IS_CLOSE} from "../../services/actions/profile.jsx";
 import {DROP_ID_MODAL, getItems} from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { useHistory, useParams } from "react-router";
+import { useHistory} from "react-router";
 
 function App() {
   const isOpen = useSelector(state => state.isOpen);
