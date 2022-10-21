@@ -1,6 +1,6 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal.jsx';
-import { BrowserRouter as Router, Switch, Route, useLocation} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -12,27 +12,29 @@ import ResetPassword from "../../pages/ResetPassword/ResetPassword";
 import Style from "../App/App.module.css";
 import FogotPassword from "../../pages/ForgotPassword/FogotPassword";
 import Profile from "../../pages/Profile/Profile.jsx";
-import {ProtectedRoute} from "../ProtectedRoute/ProtectedRoute.jsx";
-import {useDispatch, useSelector} from 'react-redux';
-import {IS_CLOSE} from "../../services/actions/profile.jsx";
-import {DROP_ID_MODAL, getItems} from "../../services/actions/ingredients.jsx";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo, IS_CLOSE, refreshAccessToken } from "../../services/actions/profile.jsx";
+import { DROP_ID_MODAL, getItems } from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { useHistory, useParams} from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 
 
 function App() {
   const isOpen = useSelector(state => state.isOpen);
   const id = useSelector(state => state.modalInfo);
   const dispatch = useDispatch();
-    useEffect(() => {
+  useEffect(() => {
+    dispatch(refreshAccessToken())
+    dispatch(getUserInfo())
     dispatch(getItems())
-  },[])
+  }, [])
   const location = useLocation();
   const isLogin = useSelector(state => state.isLogin);
   const history = useHistory();
-  const background = location.state && location.state.background;
+  const background = location.state?.background;
   function handleCloseModal(e) {
     dispatch({ type: DROP_ID_MODAL })
     dispatch({ type: IS_CLOSE })
@@ -42,57 +44,57 @@ function App() {
   return (
 
 
-      <div className={Style.App}>
-        <AppHeader />
-        <Switch location={background || location}>
-          <Route path="/" isAuth={isLogin} exact={true}>
-            <main className={Style.container}>
-            <DndProvider backend = {HTML5Backend}>
-            <BurgerIngredients />
-            <BurgerConstructor />
+    <div className={Style.App}>
+      <AppHeader />
+      <Switch location={background || location}>
+        <Route path="/" isAuth={isLogin} exact={true}>
+          <main className={Style.container}>
+            <DndProvider backend={HTML5Backend}>
+              <BurgerIngredients />
+              <BurgerConstructor />
             </ DndProvider>
-            </main>
-          </Route>
-          <ProtectedRoute path="/login" anonymous={true} isAuth={isLogin} exact={true}>
+          </main>
+        </Route>
+        <ProtectedRoute path="/login" anonymous={true} isAuth={isLogin} exact={true}>
           <main className={Style.container}>
             <Authorization />
           </main>
-          </ProtectedRoute>
-          <ProtectedRoute anonymous={true} path="/register" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute anonymous={true} path="/register" exact={true}>
           <main className={Style.container}>
-            <Register/>
+            <Register />
           </ main>
-          </ProtectedRoute>
-          <ProtectedRoute anonymous={true} path="/forgot-password" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute anonymous={true} path="/forgot-password" exact={true}>
           <main className={Style.container}>
             <FogotPassword />
           </main>
-          </ProtectedRoute>
-          <ProtectedRoute anonymous={true} path="/reset-password" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute anonymous={true} path="/reset-password" exact={true}>
           <main className={Style.container}>
             <ResetPassword />
           </main>
-          </ProtectedRoute>
-          <ProtectedRoute path="/profile" isAuth={isLogin} exact={true}>
-            <Profile />
-          </ProtectedRoute>
-          <Route path="/ingredients/:id">
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile" isAuth={isLogin} exact={true}>
+          <Profile />
+        </ProtectedRoute>
+        <Route path="/ingredients/:id">
           <main className={Style.modalContainer}>
             <IngredientDetailsModal />
-          </main>  
-          </Route>
-        </Switch>
-        {isOpen && (
+          </main>
+        </Route>
+      </Switch>
+      {isOpen ? (
         <Modal onClose={handleCloseModal}><IngredientDetails ingredient={id} /></Modal>
-      )}
+      ) : null}
       {background && (
-        <Route path="/feed/:id">
-          <Modal>
-            <OrderDetails />
+        <Route path="/ingredients/:id">
+          <Modal onClose={handleCloseModal}>
+            <IngredientDetails ingredient={id} />
           </Modal>
         </Route>
       )}
-      </div>
+    </div>
 
 
 

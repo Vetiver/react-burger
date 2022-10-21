@@ -27,7 +27,7 @@ export const fetchIngredients = () => {
   return fetch(`${baseUrl}/api/ingredients`, requestOptions).then(checkResponce);
 }
 
-const pushData =  () => {
+const pushData = () => {
   const recquestOptions = {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
@@ -35,7 +35,7 @@ const pushData =  () => {
       ingredients: ["60d3b41abdacab0026a733c6"],
     }),
   }
- return fetch(`${baseUrl}/api/orders`, recquestOptions).then(checkResponce);
+  return fetch(`${baseUrl}/api/orders`, recquestOptions).then(checkResponce);
 
 };
 
@@ -45,23 +45,23 @@ export function getOrderNumber() {
       type: GET_ORDER_REQUEST,
     });
     pushData()
-    .then((res) => {
-      if (res && res.success) {
-        dispatch({
-          type: GET_ORDER_SUCCESS,
-          payload: res.order.number,
-        });
-      } else {
-        dispatch({
-          type: GET_ORDER_FAILED,
-        });
-      }
-   
-    })
-    .catch ((err) => {
-      console.log(err);
-    })
-    
+      .then((res) => {
+        if (res && res.success) {
+          dispatch({
+            type: GET_ORDER_SUCCESS,
+            payload: res.order.number,
+          });
+        } else {
+          dispatch({
+            type: GET_ORDER_FAILED,
+          });
+        }
+
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
   };
 }
 
@@ -71,21 +71,21 @@ export function getItems() {
       type: GET_INGREDIENTS_REQUEST,
     });
     fetchIngredients()
-    .then((res) => {
-      if (res && res.success) {
-        dispatch({
-          type: GET_INGREDIENTS_SUCCESS,
-          payload: res.data,
-        });
-      } else {
-        dispatch({
-          type: GET_INGREDIENTS_FAILED,
-        });
-      }
-    })
-    .catch ((err) => {
-      console.log(err);
-    })
-    
+      .then((res) => {
+        if (res && res.success) {
+          dispatch({
+            type: GET_INGREDIENTS_SUCCESS,
+            payload: res.data,
+          });
+        } else {
+          dispatch({
+            type: GET_INGREDIENTS_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
   };
 }

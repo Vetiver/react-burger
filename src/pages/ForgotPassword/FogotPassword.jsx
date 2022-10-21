@@ -1,26 +1,26 @@
 import React, { useCallback, useState } from 'react';
 import Style from "../ForgotPassword/ForgotPassword.module.css";
-import { Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-    Input, Button, 
-  } from "@ya.praktikum/react-developer-burger-ui-components";
-import { resetPassword} from '../../services/actions/profile.jsx';
+  Input, Button,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import { resetPassword } from '../../services/actions/profile.jsx';
 
 function FogotPassword(props) {
   const [success, setSuccess] = useState(false);
   const userInfo = useSelector(state => state.userInfo);
   const dispatch = useDispatch();
-  const [form, setValue] = useState({ email: ''});
- const data = async form => {
-  const res = await resetPassword(form)
-  .then (data => data)
-  if(res.success == true) {
-    setSuccess(true)
-  }
+  const [form, setValue] = useState({ email: '' });
+  const data = async form => {
+    const res = await resetPassword(form)
+      .then(data => data)
+    if (res.success == true) {
+      setSuccess(true)
+    }
 
- }
+  }
   const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
@@ -29,7 +29,7 @@ function FogotPassword(props) {
       e.preventDefault();
       data(form)
     },
-    [ form]
+    [form]
   );
 
   if (success) {
@@ -39,28 +39,28 @@ function FogotPassword(props) {
       />
     );
   }
-    return (
-        
-        <form className={`${Style.form}`}>
-          <h1 className={`text_type_main-medium ${Style.text}`}>Восстановление пароля</h1>
-          <Input type={'email'}
-            placeholder={'Укажите e-mail'}
-            name={'email'}
-            value={form.email}
-            onChange={onChange}
-            error={false}
-            errorText={'Ошибка'}
-            size={'default'}/>
-         <Button onClick={getEmail} type="primary" size="large">
-          Восстановить
-          </Button>
-        <div className={`${Style.linkContainer}`}>
-          <p className={`text_type_main-default text_color_inactive ${Style.link}`}>Вспомнили пароль? 
+  return (
+
+    <form className={`${Style.form}`}>
+      <h1 className={`text_type_main-medium ${Style.text}`}>Восстановление пароля</h1>
+      <Input type={'email'}
+        placeholder={'Укажите e-mail'}
+        name={'email'}
+        value={form.email}
+        onChange={onChange}
+        error={false}
+        errorText={'Ошибка'}
+        size={'default'} />
+      <Button onClick={getEmail} type="primary" size="large">
+        Восстановить
+      </Button>
+      <div className={`${Style.linkContainer}`}>
+        <p className={`text_type_main-default text_color_inactive ${Style.link}`}>Вспомнили пароль?
           <Link className={`${Style.text}`} to='/login'> Войти</Link>
-          </p>
-        </div>
-        </form>
-    );
+        </p>
+      </div>
+    </form>
+  );
 }
 
 export default FogotPassword;

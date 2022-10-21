@@ -1,12 +1,12 @@
-import React  from "react";
+import React from "react";
 import { ReactDOM } from "react";
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useDrag } from "react-dnd";
 import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
-import { CurrencyIcon,  Counter} from "@ya.praktikum/react-developer-burger-ui-components";
+import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "../Ingredient/Ingredient.module.css";
-import {IS_OPEN} from "../../services/actions/profile.jsx";
-import {TAKE_ID_MODAL} from "../../services/actions/ingredients.jsx";
+import { IS_OPEN } from "../../services/actions/profile.jsx";
+import { TAKE_ID_MODAL } from "../../services/actions/ingredients.jsx";
 
 function Ingredient({ ingredient }) {
 
@@ -20,7 +20,7 @@ function Ingredient({ ingredient }) {
   const bunsNumber = useSelector((state) => state.buns.filter(
     (item) => item._id === ingredient._id).length)
   const number = useSelector((state) => state.constructorIngredients.filter(
-        (item) => item._id === ingredient._id).length
+    (item) => item._id === ingredient._id).length
   );
 
   const isOpen = useSelector(state => state.isOpen);
@@ -28,16 +28,16 @@ function Ingredient({ ingredient }) {
   function handleOpenModal(e) {
     dispatch({ type: IS_OPEN })
     dispatch({ type: IS_OPEN })
-    dispatch({ type: TAKE_ID_MODAL, payload:ingredient._id })
+    dispatch({ type: TAKE_ID_MODAL, payload: ingredient._id })
   }
 
 
- 
 
 
-  
+
+
   return (
-    !isDrag && 
+    !isDrag &&
     <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`} ref={dragRef}>
       {isOpen}
       <img className={`${Style.image}`} src={ingredient.image} alt={ingredient.name} />

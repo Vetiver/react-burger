@@ -11,20 +11,16 @@ import {
   setUser,
 } from "../../services/actions/profile.jsx";
 import { deleteCookie } from "../../utils/cookie.jsx";
-import { refreshAccessToken } from "../../services/actions/profile";
 
 function Profile(props) {
-  const userInfo = useSelector((state) => state.userInfo.user);
+  const userInfo = useSelector((state) => state.userInfoData);
   const [form, setValue] = useState({ email: "", name: "", password: "" });
   let dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.isLogin);
-
   const onInputChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
 
   useEffect(() => {
-    dispatch(refreshAccessToken());
     setValue({
       ...form,
       email: userInfo.email,
@@ -45,7 +41,7 @@ function Profile(props) {
     [form]
   );
 
-	console.log(form)
+  console.log(form)
 
   let tryLogout = useCallback((e) => {
     e.preventDefault();
@@ -82,7 +78,7 @@ function Profile(props) {
           placeholder={"Имя"}
           onChange={onInputChange}
           name={"name"}
-          value={form.name}
+          value={userInfo.name}
           error={false}
           errorText={"Ошибка"}
           size={"default"}
@@ -91,7 +87,7 @@ function Profile(props) {
           type={"email"}
           placeholder={"E-mail"}
           onChange={onInputChange}
-          value={form.email}
+          value={userInfo.email}
           error={false}
           name={"email"}
         />

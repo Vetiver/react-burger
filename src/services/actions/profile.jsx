@@ -7,8 +7,9 @@ import {
   FETCH_REFRESH_TOKEN_REQUEST,
   FETCH_REFRESH_TOKEN_SUCCESS,
   FETCH_REFRESH_TOKEN_ERROR,
-  FETCH_AUTH_REQUEST, 
+  FETCH_AUTH_REQUEST,
   FETCH_AUTH_ERROR,
+  FETCH_USER
 } from "../reducers/orderReducer";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
@@ -17,6 +18,7 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const IS_OPEN = "IS_OPEN";
 export const IS_CLOSE = "IS_CLOSE";
+
 
 export const logout = async () => {
   return await fetch(`${baseUrl}/api/auth/logout`, {
@@ -60,7 +62,7 @@ export const infoUserData = () => {
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + getCookie("token"),
+      Authorization: getCookie("token"),
     },
     redirect: "follow",
     referrerPolicy: "no-referrer",
@@ -151,7 +153,7 @@ export function refreshAccessToken() {
       .then((res) => {
         if (res && res.success) {
           localStorage.setItem("refreshToken", res.refreshToken);
-          const authToken = res.accessToken.split("Bearer ")[1];
+          const authToken = res.accessToken;
           setCookie("token", authToken);
           dispatch({ type: FETCH_REFRESH_TOKEN_SUCCESS });
         } else {
@@ -232,13 +234,17 @@ export function getUserInfo() {
     infoUserData()
       .then((res) => {
         if (res.success && res) {
+          dispatch({ type: USER_LOGIN });
           setCookie("token", res.accessToken);
           localStorage.setItem("refreshToken", res.refreshToken);
           dispatch({
             type: SET_USER_SUCCESS,
             payload: res,
           });
-          dispatch({ type: USER_LOGIN });
+          dispatch({
+            type: FETCH_USER,
+            payload: res,
+          })
         } else {
           dispatch({
             type: SET_USER_FAILED,
@@ -296,6 +302,10 @@ export function loginUserInfo(form) {
             type: SET_USER_SUCCESS,
             payload: res,
           });
+          dispatch({
+            type: FETCH_USER,
+            payload: res,
+          })
           dispatch({ type: USER_LOGIN });
         } else {
           dispatch({

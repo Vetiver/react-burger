@@ -1,9 +1,9 @@
-import  Style  from '../ElementBurgerDefault/ElementBurgerDefault.module.css';
+import Style from '../ElementBurgerDefault/ElementBurgerDefault.module.css';
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-export default function ElementBurger( {children, bunTarget} ) {
+export default function ElementBurger({ children, bunTarget }) {
   return (
     <div ref={bunTarget}
-    className={`${Style.element}`}
+      className={`${Style.element}`}
     >
       <ConstructorElement
         type="top"

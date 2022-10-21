@@ -2,8 +2,8 @@ import React, { Component, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import Style from "../IngredientDetailsModal/IngredientDetailsModal.module.css";
 import { fetchIngredients } from "../../services/actions/ingredients";
-import {useSelector } from "react-redux";
-import {useParams} from "react-router";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 
 function IngredientDetailsModal() {
@@ -17,7 +17,7 @@ function IngredientDetailsModal() {
     fat: "",
     carbohydrates: "",
   });
-  const {id} = useParams()
+  const { id } = useParams()
   const takeModal = async () => {
     const data = await fetchIngredients().then((data) => data);
     if (isLogin === true) {
@@ -42,7 +42,7 @@ function IngredientDetailsModal() {
         fat: main.fat,
         carbohydrates: main.carbohydrates,
       });
-    } 
+    }
   };
   useEffect(() => {
     takeModal();

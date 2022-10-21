@@ -25,6 +25,7 @@ export const DROP_ID_MODAL = "DROP_ID_MODAL";
 export const FETCH_REFRESH_TOKEN_REQUEST = "FETCH_REFRESH_TOKEN_REQUEST";
 export const FETCH_REFRESH_TOKEN_SUCCESS = "FETCH_REFRESH_TOKEN_SUCCESS";
 export const FETCH_REFRESH_TOKEN_ERROR = "FETCH_REFRESH_TOKEN_ERROR";
+export const FETCH_USER = "FETCH_USER";
 
 const initialState = {
   allIngredients: [],
@@ -39,6 +40,7 @@ const initialState = {
   mainPrice: 0,
   constructorIngredients: [],
   userInfo: [],
+  userInfoData: { name: "", email: "" },
   isLogin: false,
   isOpen: false,
   modalInfo: NaN,
@@ -56,6 +58,12 @@ export const reducer = (state = initialState, action) => {
         allIngredients: action.payload,
         IngredientsRequest: false,
         IngredientsFailed: false,
+      };
+    case FETCH_USER:
+      return {
+        ...state,
+        userInfoData: { name: action.payload.user.name, email: action.payload.user.email },
+
       };
     case GET_INGREDIENTS_FAILED:
       return { ...state, IngredientsFailed: true };
