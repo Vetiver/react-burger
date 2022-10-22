@@ -85,11 +85,11 @@ function App() {
         </Route>
       </Switch>
       {isOpen ? (
-        <Modal onClose={handleCloseModal}><IngredientDetails ingredient={id} /></Modal>
+        <Modal><IngredientDetails ingredient={id} /></Modal>
       ) : null}
       {background && (
         <Route path="/ingredients/:id">
-          <Modal>
+          <Modal onClose={handleCloseModal}>
             <IngredientDetails ingredient={id} />
           </Modal>
         </Route>
