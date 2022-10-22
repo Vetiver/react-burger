@@ -7,8 +7,6 @@ import { getItems } from "../../services/actions/ingredients.jsx";
 
 function IngredientDetails({ ingredient }) {
   const allIngredients = useSelector((state) => state.allIngredients);
-  const isLogin = useSelector((state) => state.isLogin);
-  const dispatch = useDispatch();
   const [items, sets] = useState({
     image: "",
     name: "",
@@ -17,11 +15,13 @@ function IngredientDetails({ ingredient }) {
     fat: "",
     carbohydrates: "",
   });
+  
   const { id } = useParams()
-  const takeModal = () => {
-    const main = allIngredients.find((el) => el._id === id);
-    if(main != undefined) {
-      sets({
+  useEffect(() => {
+    if (allIngredients.length) {
+      const main = allIngredients.find((el) => el._id === id);
+      if(main) {
+              sets({
         image: main.image_large,
         name: main.name,
         calories: main.calories,
@@ -29,11 +29,10 @@ function IngredientDetails({ ingredient }) {
         fat: main.fat,
         carbohydrates: main.carbohydrates,
       });
+      }
+
     }
-  };
-  useEffect(() => {
-    takeModal();
-  }, []);
+  }, [allIngredients]);
   return (
     <>
       <p className={`${Style.title} text text_type_main-large`}>
