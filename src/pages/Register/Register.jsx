@@ -1,13 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import Style from "../Register/Register.module.css";
-import { Link } from 'react-router-dom';
+import { Link,Redirect } from 'react-router-dom';
 import {
   Input, Button, EmailInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserInfo } from '../../services/actions/profile.jsx';
 
+
 function Register() {
+  const isLogin = useSelector((state) => state.isLogin);
   const [form, setValue] = useState({ email: '', password: '', name: '', });
   const dispatch = useDispatch();
   const onChange = e => {
@@ -23,7 +25,11 @@ function Register() {
     },
     [setUserInfo, form]
   );
-
+  if(isLogin) {
+    return(
+      <Redirect  to='/profile'/>
+    )
+  }
 
 
 

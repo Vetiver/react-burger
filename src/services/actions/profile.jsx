@@ -182,6 +182,7 @@ export function setUserInfo(form) {
             type: SET_USER_SUCCESS,
             payload: res,
           });
+          dispatch({ type: USER_LOGIN });
         } else {
           dispatch({
             type: SET_USER_FAILED,
