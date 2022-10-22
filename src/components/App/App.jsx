@@ -89,7 +89,7 @@ function App() {
       ) : null}
       {background && (
         <Route path="/ingredients/:id">
-          <Modal onClose={handleCloseModal}>
+          <Modal>
             <IngredientDetails ingredient={id} />
           </Modal>
         </Route>
