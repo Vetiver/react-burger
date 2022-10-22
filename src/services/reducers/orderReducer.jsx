@@ -26,6 +26,7 @@ export const FETCH_REFRESH_TOKEN_REQUEST = "FETCH_REFRESH_TOKEN_REQUEST";
 export const FETCH_REFRESH_TOKEN_SUCCESS = "FETCH_REFRESH_TOKEN_SUCCESS";
 export const FETCH_REFRESH_TOKEN_ERROR = "FETCH_REFRESH_TOKEN_ERROR";
 export const FETCH_USER = "FETCH_USER";
+export const SET_INGREDIENT = 'SET_INGREDIENT';
 
 const initialState = {
   allIngredients: [],
@@ -46,12 +47,16 @@ const initialState = {
   modalInfo: NaN,
   isLoading: false,
   hasError: false,
+  ingredient: {}
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST:
       return { ...state, IngredientsRequest: true };
+    case SET_INGREDIENT:
+      return { ...state, ingredient: action.payload };
+
     case GET_INGREDIENTS_SUCCESS:
       return {
         ...state,

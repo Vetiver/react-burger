@@ -1,14 +1,14 @@
 import React, { Component, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import Style from "../IngredientDetails/IngredientDetails.module.css";
-import { fetchIngredients } from "../../services/actions/ingredients";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-
+import { getItems } from "../../services/actions/ingredients.jsx";
 
 function IngredientDetails({ ingredient }) {
   const allIngredients = useSelector((state) => state.allIngredients);
   const isLogin = useSelector((state) => state.isLogin);
+  const dispatch = useDispatch();
   const [items, sets] = useState({
     image: "",
     name: "",
@@ -18,22 +18,9 @@ function IngredientDetails({ ingredient }) {
     carbohydrates: "",
   });
   const { id } = useParams()
-  const takeModal = async () => {
-    const data = await fetchIngredients().then((data) => data);
-    if (isLogin === true) {
-      const main = allIngredients.find((el) => el._id === id);
-
-      sets({
-        image: main.image_large,
-        name: main.name,
-        calories: main.calories,
-        proteins: main.proteins,
-        fat: main.fat,
-        carbohydrates: main.carbohydrates,
-      });
-    } else if (isLogin === false) {
-      console.log(id)
-      const main = data.data.find((el) => el._id === id);
+  const takeModal = () => {
+    const main = allIngredients.find((el) => el._id === id);
+    if(main != undefined) {
       sets({
         image: main.image_large,
         name: main.name,

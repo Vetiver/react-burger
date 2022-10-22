@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import IngredientDetailsModal from '../IngredientDetailsModal/IngredientDetailsModal.jsx';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
@@ -23,13 +22,14 @@ import { useHistory, useParams } from "react-router-dom";
 
 
 function App() {
+  const allIngredients = useSelector(state => state.allIngredients);
   const isOpen = useSelector(state => state.isOpen);
   const id = useSelector(state => state.modalInfo);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getItems())
     dispatch(refreshAccessToken())
     dispatch(getUserInfo())
-    dispatch(getItems())
   }, [])
   const location = useLocation();
   const isLogin = useSelector(state => state.isLogin);
@@ -80,7 +80,7 @@ function App() {
         </ProtectedRoute>
         <Route path="/ingredients/:id">
           <main className={Style.modalContainer}>
-            <IngredientDetailsModal />
+            <IngredientDetails />
           </main>
         </Route>
       </Switch>

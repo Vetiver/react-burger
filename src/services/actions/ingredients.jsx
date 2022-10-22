@@ -13,7 +13,7 @@ export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
 export const GET_ORDER_FAILED = "GET_ORDERS_FAILED";
 export const TAKE_ID_MODAL = 'TAKE_ID_MODAL';
 export const DROP_ID_MODAL = 'DROP_ID_MODAL';
-
+export const SET_INGREDIENT = 'SET_INGREDIENT';
 
 
 
