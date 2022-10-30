@@ -18,8 +18,11 @@ export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const IS_OPEN = "IS_OPEN";
 export const IS_CLOSE = "IS_CLOSE";
-
-
+export const SET_VISIBLE = "SET_VISIBLE";
+export const REMOVE_VISIBLE = "REMOVE_VISIBLE";
+export const SET_ORDER = 'SET_ORDER';
+export const ALL_ORDERS = 'ALL_ORDERS'
+export const HISTORY_ORDERS = 'HISTORY_ORDERS';
 export const logout = async () => {
   return await fetch(`${baseUrl}/api/auth/logout`, {
     method: "POST",

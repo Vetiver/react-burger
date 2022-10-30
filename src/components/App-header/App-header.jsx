@@ -21,7 +21,7 @@ function AppHeader() {
         </p>
       </Link>
       <Link
-        to='/'
+        to='/feed'
         className={`${Style.constructorContainer} ${Style.secondMargin}`}
       >
         <ListIcon type="secondary" />

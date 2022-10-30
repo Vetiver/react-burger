@@ -7,6 +7,7 @@ import { getItems } from "../../services/actions/ingredients.jsx";
 
 function IngredientDetails({ ingredient }) {
   const allIngredients = useSelector((state) => state.allIngredients);
+  console.log(allIngredients)
   const [items, sets] = useState({
     image: "",
     name: "",

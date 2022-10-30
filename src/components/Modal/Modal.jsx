@@ -5,15 +5,22 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import {
   CloseIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-
-
+import { useHistory, useParams } from "react-router-dom";
+import { getUserInfo, IS_CLOSE, REMOVE_VISIBLE, refreshAccessToken } from "../../services/actions/profile.jsx";
+import { DROP_ID_MODAL, getItems } from "../../services/actions/ingredients.jsx";
+import { useDispatch, useSelector } from 'react-redux';
 const modalRoot = document.getElementById("modal-root");
 
 function Modal(props) {
+  const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     const close = (e) => {
       if (e.key === 'Escape') {
-        props.onClose();
+        dispatch({ type: DROP_ID_MODAL })
+        dispatch({ type: IS_CLOSE })
+        dispatch({ type: REMOVE_VISIBLE })
+        history.goBack();
         
       }
     };
@@ -22,7 +29,10 @@ function Modal(props) {
   }, []);
   const modalClose = (evt) => {
     if (evt.target.id !== "buttonClose") {
-      props.onClose();
+      dispatch({ type: DROP_ID_MODAL })
+      dispatch({ type: IS_CLOSE })
+      dispatch({ type: REMOVE_VISIBLE })
+      history.goBack();
       evt.stopPropagation();
 
     }

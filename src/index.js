@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { reducer } from './services/reducers/orderReducer.jsx';
 import { BrowserRouter as Router } from "react-router-dom";
+import {store} from './services/store/store.jsx';
 
 
 
 
 
-const store = configureStore({ reducer: reducer })
+
+
 
 
 const root = ReactDOM.createRoot(

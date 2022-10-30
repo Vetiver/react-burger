@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation, Link } from 'react-router-dom';
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -13,33 +13,40 @@ import FogotPassword from "../../pages/ForgotPassword/FogotPassword";
 import Profile from "../../pages/Profile/Profile.jsx";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, IS_CLOSE, refreshAccessToken } from "../../services/actions/profile.jsx";
-import { DROP_ID_MODAL, getItems } from "../../services/actions/ingredients.jsx";
+import { getUserInfo, refreshAccessToken} from "../../services/actions/profile.jsx";
+import {getItems } from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
-import OrderDetails from "../OrderDetails/OrderDetails.jsx";
-import { useHistory, useParams } from "react-router-dom";
-
+import { useHistory} from "react-router-dom";
+import FeedOrder from "../../pages/FeedOrder/FeedOrder";
+import FeedDetailsHistory from "../FeedDetailsHistory/FeedDetailsHistory";
+import {WS_CONNECTION_START} from '../../services/actions/wsActions';
+import FeedOrdersHistory from "../../pages/FeedOredersHistory/FeedOredersHistory";
 
 function App() {
-  const allIngredients = useSelector(state => state.allIngredients);
+  const order = useSelector(state => state.orderCard);
+  const allOrders = useSelector(state => state.allOrders);
   const isOpen = useSelector(state => state.isOpen);
+  const visible = useSelector(state => state.visibleStatus);
   const id = useSelector(state => state.modalInfo);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getItems())
-    dispatch(refreshAccessToken())
-    dispatch(getUserInfo())
+    dispatch({
+      type: WS_CONNECTION_START,
+      payload: {
+        add: '/all'
+      }
+    })
+      dispatch(getItems())
+      dispatch(refreshAccessToken())
+      dispatch(getUserInfo())
   }, [])
   const location = useLocation();
   const isLogin = useSelector(state => state.isLogin);
   const history = useHistory();
   const background = location.state?.background;
-  function handleCloseModal(e) {
-    dispatch({ type: DROP_ID_MODAL })
-    dispatch({ type: IS_CLOSE })
-    history.goBack();
-  }
+  
+  
 
   return (
 
@@ -83,16 +90,38 @@ function App() {
             <IngredientDetails />
           </main>
         </Route>
+        <ProtectedRoute path="/profile/orders" isAuth={isLogin} exact={true}>
+          <div className={Style.mainContainer}>
+            <FeedOrdersHistory />
+          </div>
+        </ProtectedRoute>
+        <Route path="/feed" exact={true}>
+        <div className={Style.feedContainer}>
+            <FeedOrder/>
+          </div>
+        </Route>
+        <Route path="/feed/:id" exact={true}>
+        <FeedDetailsHistory data={order} />
+        </Route>
       </Switch>
-      {isOpen ? (
-        <Modal><IngredientDetails ingredient={id} /></Modal>
-      ) : null}
       {background && (
+        <Switch>
         <Route path="/ingredients/:id">
-          <Modal onClose={handleCloseModal}>
+          <Modal>
             <IngredientDetails ingredient={id} />
           </Modal>
         </Route>
+        <Route path="/profile/orders/:id">
+          <Modal>
+          <FeedDetailsHistory data={order} />
+          </Modal>
+        </Route>
+        <Route path="/feed/:id">
+          <Modal>
+          <FeedDetailsHistory data={order} />
+          </Modal>
+        </Route>
+        </Switch>
       )}
     </div>
 

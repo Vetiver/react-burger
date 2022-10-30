@@ -10,7 +10,7 @@ import {
   userLogoutFromAccount,
   setUser,
 } from "../../services/actions/profile.jsx";
-import { deleteCookie } from "../../utils/cookie.jsx";
+import NavBar from '../../components/NavBar/NavBar.jsx';
 
 function Profile(props) {
   const userInfo = useSelector((state) => state.userInfoData);
@@ -43,35 +43,12 @@ function Profile(props) {
 
   console.log(form)
 
-  let tryLogout = useCallback((e) => {
-    e.preventDefault();
-    dispatch(userLogoutFromAccount());
-    deleteCookie("token");
-    localStorage.removeItem("refreshToken");
-  }, []);
+  
 
 
   return (
     <div className={`${Style.mainContainer}`}>
-      <div className={`${Style.container}`}>
-        <p className="text text_type_main-medium">Профиль</p>
-        <p className="text text_type_main-medium text_color_inactive">
-          История заказов
-        </p>
-        <button
-          onClick={tryLogout}
-          className={`${Style.button} text text_type_main-medium text_color_inactive`}
-        >
-          <p className={` text text_type_main-medium text_color_inactive`}>
-            Выход
-          </p>
-        </button>
-        <p
-          className={`${Style.text} text text_type_main-default text_color_inactive`}
-        >
-          В этом разделе вы можете изменить свои персональные данные
-        </p>
-      </div>
+      <NavBar />
       <div className={`${Style.inputContainer}`}>
         <Input
           type={"text"}

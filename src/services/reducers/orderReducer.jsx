@@ -21,16 +21,25 @@ export const IS_OPEN = "IS_OPEN";
 export const IS_CLOSE = "IS_CLOSE";
 export const TAKE_ID_MODAL = "TAKE_ID_MODAL";
 export const DROP_ID_MODAL = "DROP_ID_MODAL";
-
+export const SET_VISIBLE = "SET_VISIBLE";
+export const REMOVE_VISIBLE = "REMOVE_VISIBLE";
 export const FETCH_REFRESH_TOKEN_REQUEST = "FETCH_REFRESH_TOKEN_REQUEST";
 export const FETCH_REFRESH_TOKEN_SUCCESS = "FETCH_REFRESH_TOKEN_SUCCESS";
 export const FETCH_REFRESH_TOKEN_ERROR = "FETCH_REFRESH_TOKEN_ERROR";
 export const FETCH_USER = "FETCH_USER";
 export const SET_INGREDIENT = 'SET_INGREDIENT';
-
+export const SET_ORDER = 'SET_ORDER';
+export const ALL_ORDERS = 'ALL_ORDERS';
+export const HISTORY_ORDERS = 'HISTORY_ORDERS';
+export const WS_CONNECTION_START = 'WS_CONNECTION_START';
+export const WS_CONNECTION_SUCCESS = 'WS_CONNECTION_SUCCESS';
+export const WS_CONNECTION_ERROR = 'WS_CONNECTION_ERROR';
+export const WS_GET_MESSAGE = 'WS_GET_MESSAGE';
+export const WS_CONNECTION_CLOSED = 'WS_CONNECTION_CLOSED';
 const initialState = {
   allIngredients: [],
   IngredientsRequest: false,
+  modalOrder: false,
   userInfoRequest: false,
   userInfoFaile: false,
   IngredientsFailed: false,
@@ -47,16 +56,62 @@ const initialState = {
   modalInfo: NaN,
   isLoading: false,
   hasError: false,
-  ingredient: {}
+  ingredient: {},
+  visibleStatus: false,
+  orderCard: {},
+  allOrders: [],
+  historyOrders: [],
+  wsConnected: false,
+  error: undefined
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ALL_ORDERS:
+      return { ...state, allOrders: action.payload };
+    case WS_CONNECTION_SUCCESS:
+      return {
+        ...state,
+        error: undefined,
+        wsConnected: true
+    };
+    case WS_CONNECTION_ERROR:
+      return {
+        ...state,
+                error: action.payload,
+        wsConnected: false
+      };
+
+        // Опишем обработку экшена с типом WS_CONNECTION_CLOSED, когда соединение закрывается
+        // Установим флаг wsConnected в состояние false
+    case WS_CONNECTION_CLOSED:
+      return {
+        ...state,
+                error: undefined,
+        wsConnected: false
+      };
+
+        // Опишем обработку экшена с типом WS_GET_MESSAGE
+        // Обработка происходит, когда с сервера возвращаются данные
+        // В messages передадим данные, которые пришли с сервера
+    case WS_GET_MESSAGE:
+      return {
+        ...state,
+                error: undefined,
+          allOrders: action.payload
+      };
+    case HISTORY_ORDERS:
+      return { ...state, historyOrders: action.payload };
     case GET_INGREDIENTS_REQUEST:
       return { ...state, IngredientsRequest: true };
+    case SET_ORDER:
+      return { ...state, orderCard: action.payload };
     case SET_INGREDIENT:
       return { ...state, ingredient: action.payload };
-
+    case SET_VISIBLE:
+      return { ...state, visibleStatus: true };
+    case REMOVE_VISIBLE:
+      return { ...state, visibleStatus: false };
     case GET_INGREDIENTS_SUCCESS:
       return {
         ...state,

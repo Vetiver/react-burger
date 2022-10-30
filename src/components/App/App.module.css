@@ -15,3 +15,14 @@
 	justify-content: center;
   margin-top: 100px;
 }
+
+.mainContainer {
+  display: flex;
+  gap: 120px;
+  margin-top: 120px;
+  margin-left: 120px;
+}
+
+.feedContainer {
+  margin-top: 40px;
+}

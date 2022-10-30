@@ -27,7 +27,6 @@ function Ingredient({ ingredient }) {
   const dispatch = useDispatch();
   function handleOpenModal(e) {
     dispatch({ type: IS_OPEN })
-    dispatch({ type: IS_OPEN })
     dispatch({ type: TAKE_ID_MODAL, payload: ingredient._id })
   }
 
