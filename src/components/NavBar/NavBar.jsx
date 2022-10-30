@@ -10,6 +10,7 @@ import {
 function NavBar(props) {
     const dispatch = useDispatch();
     let tryLogout = useCallback((e) => {
+      
         e.preventDefault();
         dispatch(userLogoutFromAccount());
         deleteCookie("token");
