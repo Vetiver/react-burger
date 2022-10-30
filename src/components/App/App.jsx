@@ -1,5 +1,7 @@
+
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, useLocation, Link } from 'react-router-dom';
+
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -9,6 +11,7 @@ import Authorization from "../../pages/Authorization/Authorization.jsx";
 import Register from "../../pages/Register/Register";
 import ResetPassword from "../../pages/ResetPassword/ResetPassword";
 import Style from "../App/App.module.css";
+
 import FogotPassword from "../../pages/ForgotPassword/FogotPassword";
 import Profile from "../../pages/Profile/Profile.jsx";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
@@ -22,6 +25,7 @@ import FeedOrder from "../../pages/FeedOrder/FeedOrder";
 import FeedDetailsHistory from "../FeedDetailsHistory/FeedDetailsHistory";
 import {WS_CONNECTION_START} from '../../services/actions/wsActions';
 import FeedOrdersHistory from "../../pages/FeedOredersHistory/FeedOredersHistory";
+
 
 function App() {
   const order = useSelector(state => state.orderCard);
@@ -49,6 +53,7 @@ function App() {
   
 
   return (
+
 
 
     <div className={Style.App}>
@@ -124,6 +129,7 @@ function App() {
         </Switch>
       )}
     </div>
+
 
 
 

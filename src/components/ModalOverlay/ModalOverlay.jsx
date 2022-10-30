@@ -15,6 +15,7 @@ function ModalOverlay(props) {
     dispatch({ type: IS_CLOSE })
     dispatch({ type: REMOVE_VISIBLE })
     history.goBack();
+
     }
     evt.stopPropagation();
   };

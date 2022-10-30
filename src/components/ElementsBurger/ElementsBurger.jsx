@@ -6,6 +6,7 @@ export default function ElementBurger({ bun, children, bunTarget }) {
   return (
     <div ref={bunTarget}
       className={`${Style.element}`}
+
     >
       <ConstructorElement
         type="top"

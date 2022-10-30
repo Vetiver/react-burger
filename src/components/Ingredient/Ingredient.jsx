@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ReactDOM } from "react";
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,6 +40,7 @@ function Ingredient({ ingredient }) {
     !isDrag &&
     <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`} ref={dragRef}>
       {isOpen}
+
       <img className={`${Style.image}`} src={ingredient.image} alt={ingredient.name} />
       <div className={`${Style.classContainer}`}>
         <p className="text text_type_main-medium">{ingredient.price}</p>

@@ -17,6 +17,7 @@ export const SET_INGREDIENT = 'SET_INGREDIENT';
 
 
 
+
 export const fetchIngredients = () => {
   const requestOptions = {
     method: "GET",
@@ -35,7 +36,9 @@ const pushData = () => {
       ingredients: ["60d3b41abdacab0026a733c6"],
     }),
   }
+
   return fetch(`${baseUrl}/api/orders`, recquestOptions).then(checkResponce);
+
 
 };
 
@@ -45,6 +48,7 @@ export function getOrderNumber() {
       type: GET_ORDER_REQUEST,
     });
     pushData()
+
       .then((res) => {
         if (res && res.success) {
           dispatch({
@@ -61,6 +65,7 @@ export function getOrderNumber() {
       .catch((err) => {
         console.log(err);
       })
+
 
   };
 }
@@ -86,6 +91,7 @@ export function getItems() {
       .catch((err) => {
         console.log(err);
       })
+
 
   };
 }

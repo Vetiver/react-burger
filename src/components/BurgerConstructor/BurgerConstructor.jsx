@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState, useMemo } from "react";
 import { Reorder } from "framer-motion"
 import ElementBurger from "../ElementsBurger/ElementsBurger.jsx";
 import Stuffing from "../Stuffing/Stuffing.jsx";
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   Button,
   CurrencyIcon,
@@ -10,6 +12,7 @@ import {
 import Style from "../BurgerConstructor/BurgerConstructor.module.css";
 import Modal from "../Modal/Modal.jsx";
 import OrderDetails from "../OrderDetails/OrderDetails.jsx";
+
 import { useDrop } from "react-dnd";
 import { ADD_CONSTRUCTOR_ELEMENT, ADD_BUN_ELEMENT, baseUrl, ADD_PRICE } from "../../services/actions/ingredients.jsx";
 import ElementBurgerDefault from '../ElementBurgerDefault/ElementBurgerDefault.jsx';
@@ -19,17 +22,21 @@ import { useHistory } from 'react-router-dom';
 
 
 
+
 function BurgerConstructor() {
   const ingredient = useSelector(state => state.constructorIngredients);
+
   const dispatch = useDispatch();
   const main = useSelector(state => state.mainPrice);
   const history = useHistory()
+
   const [items, sets] = useState(ingredient)
   useMemo(() => {
     sets(ingredient);
   }, [ingredient]);
   const bun = useSelector(state => state.buns)
   const dispatcher = useDispatch();
+
   const [visible, setTheme] = React.useState(false);
   const isLogin = useSelector(state => state.isLogin);
   const orderNumber = useSelector(state => state.orderNumber);
@@ -79,6 +86,7 @@ function BurgerConstructor() {
 
 
 
+
   function handleOpenModal() {
     setTheme(true);
   }
@@ -86,6 +94,7 @@ function BurgerConstructor() {
   function handleCloseModal(e) {
     setTheme(false);
   }
+
 
   const modal = (
     <Modal onClose={handleCloseModal}>
@@ -99,6 +108,7 @@ function BurgerConstructor() {
         <ElementBurgerDefault bunTarget={bunTarget}>
           <div className={`${Style.ingredientsBar}`} ref={dropTarget} >
 
+
           </div>
         </ElementBurgerDefault>
         <div className={`${Style.counter}`}>
@@ -111,6 +121,7 @@ function BurgerConstructor() {
           </Button>
           {visible && modal}
         </div>
+
 
       </section>
       :
@@ -126,6 +137,7 @@ function BurgerConstructor() {
               })}
             </div>
           </Reorder.Group>
+
         </ElementBurger>
         <div className={`${Style.counter}`}>
           <div className={`${Style.counterContainer}`}>
@@ -137,7 +149,9 @@ function BurgerConstructor() {
           </Button>
           {visible && modal}
         </div>
+
       </section>
+
   );
 }
 

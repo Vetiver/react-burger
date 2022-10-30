@@ -5,6 +5,7 @@ import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
 import {
   CloseIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import { useHistory, useParams } from "react-router-dom";
 import { getUserInfo, IS_CLOSE, REMOVE_VISIBLE, refreshAccessToken } from "../../services/actions/profile.jsx";
 import { DROP_ID_MODAL, getItems } from "../../services/actions/ingredients.jsx";
@@ -22,6 +23,7 @@ function Modal(props) {
         dispatch({ type: REMOVE_VISIBLE })
         history.goBack();
         
+
       }
     };
     window.addEventListener("keydown", close);
@@ -29,11 +31,13 @@ function Modal(props) {
   }, []);
   const modalClose = (evt) => {
     if (evt.target.id !== "buttonClose") {
+
       dispatch({ type: DROP_ID_MODAL })
       dispatch({ type: IS_CLOSE })
       dispatch({ type: REMOVE_VISIBLE })
       history.goBack();
       evt.stopPropagation();
+
 
     }
   };
@@ -55,6 +59,8 @@ function Modal(props) {
     modalRoot
   );
 }
+
+
 
 
 export default Modal;

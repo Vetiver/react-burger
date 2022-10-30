@@ -119,6 +119,7 @@ export const reducer = (state = initialState, action) => {
         IngredientsRequest: false,
         IngredientsFailed: false,
       };
+
     case FETCH_USER:
       return {
         ...state,
@@ -235,3 +236,5 @@ export const reducer = (state = initialState, action) => {
       return state;
   }
 };
+
+
