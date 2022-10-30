@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import Style from "../App-header/App-header.module.css";
 import {
@@ -12,7 +12,9 @@ function AppHeader() {
   return (
     <header className={Style.appHeader}>
       <Link
-        href="#"
+
+        to='/'
+
         className={`${Style.constructorContainer}`}
       >
         <BurgerIcon type="primary" />
@@ -21,7 +23,9 @@ function AppHeader() {
         </p>
       </Link>
       <Link
-        href="#"
+
+        to='/feed'
+
         className={`${Style.constructorContainer} ${Style.secondMargin}`}
       >
         <ListIcon type="secondary" />
@@ -33,7 +37,8 @@ function AppHeader() {
       </Link>
       <Logo />
       <Link
-        href="#"
+        to='/profile'
+
         className={`${Style.constructorContainer} ${Style.lastMargin}`}
       >
         <ProfileIcon type="secondary" />

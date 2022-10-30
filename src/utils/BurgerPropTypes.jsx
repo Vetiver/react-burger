@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 
 const	burgerProps = PropTypes.shape({
 			_id: PropTypes.string.isRequired,

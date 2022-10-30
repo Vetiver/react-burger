@@ -1,23 +1,59 @@
-import React from "react";
+
+import React, { Component, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import Style from "../IngredientDetails/IngredientDetails.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getItems } from "../../services/actions/ingredients.jsx";
 
 function IngredientDetails({ ingredient }) {
+  const allIngredients = useSelector((state) => state.allIngredients);
+  console.log(allIngredients)
+  const [items, sets] = useState({
+    image: "",
+    name: "",
+    calories: "",
+    proteins: "",
+    fat: "",
+    carbohydrates: "",
+  });
+  
+  const { id } = useParams()
+  useEffect(() => {
+    if (allIngredients.length) {
+      const main = allIngredients.find((el) => el._id === id);
+      if(main) {
+              sets({
+        image: main.image_large,
+        name: main.name,
+        calories: main.calories,
+        proteins: main.proteins,
+        fat: main.fat,
+        carbohydrates: main.carbohydrates,
+      });
+      }
+
+    }
+  }, [allIngredients]);
+
   return (
     <>
       <p className={`${Style.title} text text_type_main-large`}>
         Детали ингредиента
       </p>
-      <img src={ingredient.image_large} alt="" />
-      <p className="text text_type_main-medium">{ingredient.name}</p>
+
+      <img src={items.image} alt={items.name} />
+      <p className="text text_type_main-medium">{items.name}</p>
+
       <div className={`${Style.info}`}>
         <div className={`${Style.column}`}>
           <p className="text text_type_main-default text_color_inactive">
             Калории,ккал
           </p>
           <p className="text text_type_main-default text_color_inactive">
-            {ingredient.calories}
+
+            {items.calories}
+
           </p>
         </div>
         <div className={`${Style.column}`}>
@@ -25,7 +61,9 @@ function IngredientDetails({ ingredient }) {
             Белки, г
           </p>
           <p className="text text_type_main-default text_color_inactive">
-            {ingredient.proteins}
+
+            {items.proteins}
+
           </p>
         </div>
         <div className={`${Style.column}`}>
@@ -33,7 +71,9 @@ function IngredientDetails({ ingredient }) {
             Жиры, г
           </p>
           <p className="text text_type_main-default text_color_inactive">
-            {ingredient.fat}
+
+            {items.fat}
+
           </p>
         </div>
         <div className={`${Style.column}`}>
@@ -41,7 +81,9 @@ function IngredientDetails({ ingredient }) {
             Углеводы, г
           </p>
           <p className="text text_type_main-default text_color_inactive">
-            {ingredient.carbohydrates}
+
+            {items.carbohydrates}
+
           </p>
         </div>
       </div>
@@ -49,8 +91,6 @@ function IngredientDetails({ ingredient }) {
   );
 }
 
-IngredientDetails.propTypes = {
-  ingredient: burgerProps.isRequired,
-};
+
 
 export default IngredientDetails;

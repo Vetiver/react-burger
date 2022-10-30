@@ -1,13 +1,12 @@
 import React from "react";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import { OrderContext } from "../../contexts/orderContext.jsx";
-import { useDrop } from "react-dnd";
 import PropTypes from 'prop-types';
-import  Style  from '../ElementsBurger/ElementBurger.module.css';
-export default function ElementBurger( {bun, children, bunTarget} ) {
+import Style from '../ElementsBurger/ElementBurger.module.css';
+export default function ElementBurger({ bun, children, bunTarget }) {
   return (
     <div ref={bunTarget}
-    className={`${Style.element}`}
+      className={`${Style.element}`}
+
     >
       <ConstructorElement
         type="top"
@@ -28,8 +27,8 @@ export default function ElementBurger( {bun, children, bunTarget} ) {
   );
 }
 
-ElementBurger.propTypes = { 
-  bun: PropTypes.arrayOf( PropTypes.shape({
+ElementBurger.propTypes = {
+  bun: PropTypes.arrayOf(PropTypes.shape({
     calories: PropTypes.number.isRequired,
     carbohydrates: PropTypes.number.isRequired,
     fat: PropTypes.number.isRequired,
