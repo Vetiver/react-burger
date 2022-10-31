@@ -21,9 +21,6 @@ function Orders({data}) {
   
   return (
     <section className={Style.container}>
-      <h1 className={`${Style.title} text text_type_main-large`}>
-        Лента заказов
-      </h1>
       <div
         className={` ${Style.containerCard} custom-scroll`}
         id="scroll"

@@ -1,5 +1,4 @@
 .container {
-  padding-top: 120px;
   width: 640px;
   display: flex;
   flex-direction: column;
@@ -13,7 +12,11 @@
 }
 
 .status {
+  margin: 0;
+  padding: 0;
   padding-top: 12px;
+  color: #00CCCC;
+  margin-bottom: 20px;
 }
 
 .PriceContainer {

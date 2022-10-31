@@ -80,7 +80,7 @@ function FeedDetailsHistory({ data }) {
           {items.name}
         </p>
         <p className={`${Style.status} text text_type_main-small`}>
-          Выполнен
+          {items.status}
         </p>
       </div>
       <div>

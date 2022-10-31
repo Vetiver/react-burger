@@ -31,12 +31,6 @@ function App() {
   const id = useSelector(state => state.modalInfo);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({
-      type: WS_CONNECTION_START,
-      payload: {
-        add: '/all'
-      }
-    })
       dispatch(getItems())
       dispatch(refreshAccessToken())
       dispatch(getUserInfo())
@@ -85,11 +79,11 @@ function App() {
         <ProtectedRoute path="/profile" isAuth={isLogin} exact={true}>
           <Profile />
         </ProtectedRoute>
-        <Route path="/ingredients/:id">
+        <ProtectedRoute isAuth={isLogin} path="/ingredients/:id">
           <main className={Style.modalContainer}>
             <IngredientDetails />
           </main>
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path="/profile/orders" isAuth={isLogin} exact={true}>
           <div className={Style.mainContainer}>
             <FeedOrdersHistory />

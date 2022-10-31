@@ -16,15 +16,19 @@ function FeedOrder() {
         add: '/all'
       }
     })
-    return () => {
-      dispatch({type: WS_CONNECTION_CLOSED})}
+    return dispatch({type: WS_CONNECTION_CLOSED})
   },[allOrders])
   console.log(allOrders)
   return (
     !!allOrders && (
+      <div className={Styles.mainContainer}>
+      <h1 className={`${Styles.title} text text_type_main-large`}>
+      Лента заказов
+    </h1>
       <div className={Styles.container}>
       <Orders data={allOrders}></Orders>
       <OrderFeedStats data={allOrders}></OrderFeedStats>
+    </div>
     </div>
     )
     );

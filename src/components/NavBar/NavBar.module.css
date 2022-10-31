@@ -18,6 +18,10 @@
 }
 
 .link {
-  color: inherit; 
+  color: #8585AD; 
   text-decoration: inherit;
+}
+
+.activeLink {
+  color: #fff;
 }

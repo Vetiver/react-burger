@@ -33,14 +33,15 @@ function BurgerConstructor() {
   const [visible, setTheme] = React.useState(false);
   const isLogin = useSelector(state => state.isLogin);
   const orderNumber = useSelector(state => state.orderNumber);
-
+  const alls = bun.concat(ingredient)
+  console.log(orderNumber)
 
   function open(e) {
     if (!isLogin) {
       e.preventDefault()
       history.push('/login')
     } else {
-      dispatcher(getOrderNumber())
+      dispatcher(getOrderNumber(alls))
       handleOpenModal()
     }
   }
@@ -97,7 +98,7 @@ function BurgerConstructor() {
       <section className={`${Style.burgerContainer}`}>
 
         <ElementBurgerDefault bunTarget={bunTarget}>
-          <div className={`${Style.ingredientsBar}`} ref={dropTarget} >
+          <div className={`${Style.ingredientsBar}`}  >
 
           </div>
         </ElementBurgerDefault>
@@ -129,7 +130,7 @@ function BurgerConstructor() {
         </ElementBurger>
         <div className={`${Style.counter}`}>
           <div className={`${Style.counterContainer}`}>
-            <h2 className={`text text_type_main-large`}>{main + bun[0].price}</h2>
+            <h2 className={`text text_type_main-large`}>{main + bun[0].price * 2}</h2>
             <CurrencyIcon type="primary" />
           </div>
           <Button onClick={open} type="primary" size="medium">

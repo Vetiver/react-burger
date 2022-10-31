@@ -26,7 +26,7 @@ function Profile(props) {
       email: userInfo.email,
       name: userInfo.name,
     });
-  }, []);
+  }, [userInfo]);
 
   const updateUserData = useCallback(
     (e) => {
@@ -41,21 +41,30 @@ function Profile(props) {
     [form]
   );
 
-  console.log(form)
+
 
   
 
 
   return (
+    !!userInfo && (
+    (userInfo.email == form.email) && (userInfo.name == form.name) ?
     <div className={`${Style.mainContainer}`}>
+      <div>
       <NavBar />
+      <p
+          className={`${Style.text} text text_type_main-default text_color_inactive`}
+        >
+          В этом разделе вы можете изменить свои персональные данные
+        </p>
+        </div>
       <div className={`${Style.inputContainer}`}>
         <Input
           type={"text"}
           placeholder={"Имя"}
           onChange={onInputChange}
           name={"name"}
-          value={userInfo.name}
+          value={form.name}
           error={false}
           errorText={"Ошибка"}
           size={"default"}
@@ -64,7 +73,7 @@ function Profile(props) {
           type={"email"}
           placeholder={"E-mail"}
           onChange={onInputChange}
-          value={userInfo.email}
+          value={form.email}
           error={false}
           name={"email"}
         />
@@ -77,17 +86,66 @@ function Profile(props) {
           value={form.password}
           error={false}
         />
+        
         <div className={`${Style.buttonsContainer}`}>
-          <Button type="secondary" size="small">
+          <Button disabled={true} type="secondary" size="small">
             <p className={`text text_type_main-default`}>Отмена</p>
           </Button>
-          <Button onClick={updateUserData} type="primary" size="small">
+          <Button disabled={true} onClick={updateUserData} type="primary" size="small">
             <p className={`text text_type_main-default`}>Сохранить</p>
           </Button>
         </div>
       </div>
     </div>
-  );
+  : 
+  <div className={`${Style.mainContainer}`}>
+  <div>
+  <NavBar />
+  <p
+      className={`${Style.text} text text_type_main-default text_color_inactive`}
+    >
+      В этом разделе вы можете изменить свои персональные данные
+    </p>
+    </div>
+  <div className={`${Style.inputContainer}`}>
+    <Input
+      type={"text"}
+      placeholder={"Имя"}
+      onChange={onInputChange}
+      name={"name"}
+      value={form.name}
+      error={false}
+      errorText={"Ошибка"}
+      size={"default"}
+    />
+    <EmailInput
+      type={"email"}
+      placeholder={"E-mail"}
+      onChange={onInputChange}
+      value={form.email}
+      error={false}
+      name={"email"}
+    />
+    <Input
+      type={"password"}
+      placeholder={"Пароль"}
+      icon={"ShowIcon"}
+      name={"password"}
+      onChange={onInputChange}
+      value={form.password}
+      error={false}
+    />
+    
+    <div className={`${Style.buttonsContainer}`}>
+      <Button type="secondary" size="small">
+        <p className={`text text_type_main-default`}>Отмена</p>
+      </Button>
+      <Button onClick={updateUserData} type="primary" size="small">
+        <p className={`text text_type_main-default`}>Сохранить</p>
+      </Button>
+    </div>
+  </div>
+</div>));
 }
 
 export default Profile;

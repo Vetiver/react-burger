@@ -14,12 +14,15 @@ const modalRoot = document.getElementById("modal-root");
 function Modal(props) {
   const dispatch = useDispatch();
   const history = useHistory();
+  function drop() {
+    dispatch({ type: DROP_ID_MODAL })
+        dispatch({ type: IS_CLOSE })
+        dispatch({ type: REMOVE_VISIBLE })
+  }
   useEffect(() => {
     const close = (e) => {
       if (e.key === 'Escape') {
-        dispatch({ type: DROP_ID_MODAL })
-        dispatch({ type: IS_CLOSE })
-        dispatch({ type: REMOVE_VISIBLE })
+        drop()
         history.goBack();
         
       }
@@ -29,9 +32,7 @@ function Modal(props) {
   }, []);
   const modalClose = (evt) => {
     if (evt.target.id !== "buttonClose") {
-      dispatch({ type: DROP_ID_MODAL })
-      dispatch({ type: IS_CLOSE })
-      dispatch({ type: REMOVE_VISIBLE })
+      drop()
       history.goBack();
       evt.stopPropagation();
 

@@ -11,9 +11,6 @@ function ModalOverlay(props) {
   const history = useHistory();
   const modalOverlay = (evt) => {
     if (evt.target.id == "ModalOverlay") {
-    dispatch({ type: DROP_ID_MODAL })
-    dispatch({ type: IS_CLOSE })
-    dispatch({ type: REMOVE_VISIBLE })
     history.goBack();
     }
     evt.stopPropagation();

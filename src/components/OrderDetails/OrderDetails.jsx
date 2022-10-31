@@ -6,6 +6,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function OrderDetails({ data }) {
+  console.log(data)
   return (
     <>
       <p className={`${Style.mainCounter} text text_type_digits-large`}>

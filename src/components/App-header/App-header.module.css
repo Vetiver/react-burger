@@ -16,10 +16,11 @@
 
 .constructorContainer {
   display: flex;
+  color:#8585AD;
+  gap: 10px;
   margin-top: 16px;
   margin-bottom: 16px;
   text-align: center;
-  color: inherit; 
   text-decoration: inherit; 
 }
 
@@ -36,4 +37,8 @@
 
 .lastMargin {
   margin-left: 308px;
+}
+
+.activeLink {
+  color: #fff;
 }

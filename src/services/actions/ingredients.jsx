@@ -1,5 +1,6 @@
 import thunk from "redux";
 import checkResponce from '../../utils/checkResponse.jsx'
+import { getCookie } from '../../utils/cookie.jsx'; 
 export const baseUrl = "https://norma.nomoreparties.space";
 export const ADD_BUN_ELEMENT = 'ADD_BUN_ELEMENT';
 export const GET_INGREDIENTS_REQUEST = "GET_INGREDIENTS_REQUEST";
@@ -27,24 +28,24 @@ export const fetchIngredients = () => {
   return fetch(`${baseUrl}/api/ingredients`, requestOptions).then(checkResponce);
 }
 
-const pushData = () => {
-  const recquestOptions = {
+const pushData = (ingredients) => {
+  const requestOptions = {
     method: 'POST',
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", Authorization: getCookie("token"),},
     body: JSON.stringify({
-      ingredients: ["60d3b41abdacab0026a733c6"],
+      ingredients: ingredients,
     }),
   }
-  return fetch(`${baseUrl}/api/orders`, recquestOptions).then(checkResponce);
+  return fetch(`${baseUrl}/api/orders`, requestOptions).then(checkResponce);
 
 };
 
-export function getOrderNumber() {
+export function getOrderNumber(ingredients) {
   return function (dispatch) {
     dispatch({
       type: GET_ORDER_REQUEST,
     });
-    pushData()
+    pushData(ingredients)
       .then((res) => {
         if (res && res.success) {
           dispatch({

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from "react-router-dom";
 import Style from "../App-header/App-header.module.css";
 import {
   BurgerIcon,
@@ -11,38 +11,35 @@ import {
 function AppHeader() {
   return (
     <header className={Style.appHeader}>
-      <Link
+      <NavLink
         to='/'
-        className={`${Style.constructorContainer}`}
+        className={`text_type_main-default ${Style.constructorContainer} ${Style.constructorTitle}`}
+        activeClassName={Style.activeLink}
+        exact={true}
       >
         <BurgerIcon type="primary" />
-        <p className={`text_type_main-default ${Style.constructorTitle}`}>
           Конструктор
-        </p>
-      </Link>
-      <Link
+      </NavLink>
+      <NavLink
         to='/feed'
-        className={`${Style.constructorContainer} ${Style.secondMargin}`}
+        className={`text_type_main-default ${Style.constructorContainer} ${Style.secondMargin} ${Style.constructorTitle} `}
+        activeClassName={Style.activeLink}
+        exact={true}
       >
-        <ListIcon type="secondary" />
-        <p
-          className={`${Style.constructorTitle}  text_type_main-default text_color_inactive`}
-        >
+
+        <ListIcon type="primary" />
           Лента заказов
-        </p>
-      </Link>
-      <Logo />
-      <Link
+      </NavLink>
+      <Link to='/'><Logo /></Link>
+      <NavLink
         to='/profile'
-        className={`${Style.constructorContainer} ${Style.lastMargin}`}
+        className={`text_type_main-default ${Style.constructorContainer} ${Style.lastMargin} ${Style.constructorTitle} `}
+        activeClassName={Style.activeLink}
+        exact={true}
       >
-        <ProfileIcon type="secondary" />
-        <p
-          className={`${Style.constructorTitle} text_type_main-default text_color_inactive`}
-        >
+        <ProfileIcon type="primary" />
           Личный кабинет
-        </p>
-      </Link>
+      </NavLink>
     </header>
   );
 }

@@ -27,7 +27,7 @@ function OrderFeedStats({ data }) {
           className={`${Styles.inProcess} text text_type_digits-default`}
         >
           {data.orders != null &&
-          data.orders.filter((el) => el.status === "inProcess").map((el) => {
+          data.orders.filter((el) => el.status === "pending").map((el) => {
             return <p key={el.number}>{el.number}</p>;
           })}
         </div>

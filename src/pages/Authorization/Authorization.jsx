@@ -28,7 +28,7 @@ function Authorization(props) {
   return (
     <form onSubmit={login} className={`${Style.authorizationForm}`}>
       <h1 className={`${Style.text}`}>Вход</h1>
-      <EmailInput type={'email'}
+      <Input type={'email'}
         placeholder={'E-mail'}
         onChange={onChange}
         name={'email'}
