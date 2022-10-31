@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import Style from "../Authorization/Authorization.module.css";
+import {refreshAccessToken} from "../../services/actions/profile.jsx";
 import {
   Input, Button, EmailInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -19,6 +20,7 @@ function Authorization(props) {
     e => {
       e.preventDefault();
       dispatch(loginUserInfo(form))
+      dispatch(refreshAccessToken())
     },
     [loginUserInfo, form]
   );

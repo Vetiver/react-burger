@@ -7,7 +7,6 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  userLogoutFromAccount,
   setUser,
 } from "../../services/actions/profile.jsx";
 import NavBar from '../../components/NavBar/NavBar.jsx';

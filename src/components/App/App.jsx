@@ -14,7 +14,7 @@ import Profile from "../../pages/Profile/Profile.jsx";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo, refreshAccessToken} from "../../services/actions/profile.jsx";
-import {getItems } from "../../services/actions/ingredients.jsx";
+import { getItems } from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import { useHistory} from "react-router-dom";
@@ -32,7 +32,6 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
       dispatch(getItems())
-      dispatch(refreshAccessToken())
       dispatch(getUserInfo())
   }, [])
   const location = useLocation();

@@ -23,6 +23,7 @@ export const REMOVE_VISIBLE = "REMOVE_VISIBLE";
 export const SET_ORDER = 'SET_ORDER';
 export const ALL_ORDERS = 'ALL_ORDERS'
 export const HISTORY_ORDERS = 'HISTORY_ORDERS';
+
 export const logout = async () => {
   return await fetch(`${baseUrl}/api/auth/logout`, {
     method: "POST",

@@ -1,4 +1,6 @@
 export const socketMiddleware = wsUrl => {
+  const CLOSED = 3
+  const CLOSING  = 2
     return store => {
         let socket = null;
 
@@ -8,7 +10,7 @@ export const socketMiddleware = wsUrl => {
       if (type === 'WS_CONNECTION_START') {
           if (socket == null) {
             socket = new WebSocket(`${wsUrl}${payload.add}`);
-          } else if (socket.readyState == 3 || socket.readyState == 2) {
+          } else if (socket.readyState == CLOSED || socket.readyState == CLOSING) {
             socket = new WebSocket(`${wsUrl}${payload.add}`);
           }
       }
