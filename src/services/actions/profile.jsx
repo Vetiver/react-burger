@@ -250,10 +250,9 @@ export function getUserInfo() {
         }
       })
       .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: SET_USER_FAILED,
-        });
+        if (err.message == 'jwt expired' || err.message == 'Ошибка 403') {
+          dispatch({refreshAccessToken})
+        }
       });
   };
 }
