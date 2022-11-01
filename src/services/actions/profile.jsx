@@ -250,7 +250,7 @@ export function getUserInfo() {
         }
       })
       .catch((err) => {
-        if (err.message == 'jwt expired' || err.message == 'Ошибка 403') {
+        if (err.message == 'jwt expired' || err.message == 'Ошибка 403' || err.message == 'Ошибка 401') {
           dispatch({refreshAccessToken})
         }
       });

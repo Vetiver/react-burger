@@ -9,9 +9,6 @@ import { SET_ORDER } from "../../services/actions/profile.jsx";
 function Orders({data}) {
   const location = useLocation();
   const dispatch = useDispatch();
-  const allOrders = useSelector(state => state.wsReducer.allOrders);
-  console.log(allOrders)
-
   const setOrder = useCallback(
     (e) => {
       dispatch({ type: SET_ORDER, payload: e})

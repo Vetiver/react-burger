@@ -18,7 +18,6 @@ function FeedOrder() {
     })
     return dispatch({type: WS_CONNECTION_CLOSED})
   },[allOrders])
-  console.log(allOrders)
   return (
     !!allOrders && (
       <div className={Styles.mainContainer}>

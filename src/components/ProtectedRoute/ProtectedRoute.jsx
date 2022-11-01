@@ -11,7 +11,7 @@ export function ProtectedRoute({ anonymous = false, isAuth, children, ...rest })
 
   useEffect(() => {
     if (!isAuth && isTokenExist) {
-
+      dispatch(refreshAccessToken())
     }
     if (isTokenExist) {
       dispatch(refreshAccessToken())
