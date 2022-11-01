@@ -7,7 +7,6 @@ export const REMOVE_CONSTRUCTOR_ELEMENT = "REMOVE_CONSTRUCTOR_ELEMENT";
 export const ADD_PRICE = "ADD_PRICE";
 export const REMOVE_PRICE = "REMOVE_PRICE";
 
-
 const initialState = {
   allIngredients: [],
   IngredientsRequest: false,

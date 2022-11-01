@@ -1,28 +1,37 @@
-import { Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { Redirect, useLocation } from 'react-router-dom'
-import { getUserInfo, refreshAccessToken, USER_LOGIN } from '../../services/actions/profile.jsx';
-import { getCookie } from '../../utils/cookie.jsx';
+import { Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Redirect, useLocation } from "react-router-dom";
+import {
+  getUserInfo,
+  refreshAccessToken,
+  USER_LOGIN,
+} from "../../services/actions/profile.jsx";
+import { getCookie } from "../../utils/cookie.jsx";
 
-export function ProtectedRoute({ anonymous = false, isAuth, children, ...rest }) {
+export function ProtectedRoute({
+  anonymous = false,
+  isAuth,
+  children,
+  ...rest
+}) {
   const dispatch = useDispatch();
-  const isTokenExist = !!localStorage.getItem('refreshToken')
+  const isTokenExist = !!localStorage.getItem("refreshToken");
 
   useEffect(() => {
     if (!isAuth && isTokenExist) {
-      dispatch(refreshAccessToken())
+      dispatch(refreshAccessToken());
     }
     if (isTokenExist) {
-      dispatch(refreshAccessToken())
-      dispatch(getUserInfo())
-      dispatch({ type: USER_LOGIN })
+      dispatch(refreshAccessToken());
+      dispatch(getUserInfo());
+      dispatch({ type: USER_LOGIN });
     }
   }, [isTokenExist, isAuth]);
 
   const location = useLocation();
   if (anonymous && isAuth) {
-    return <Redirect to={location?.state?.from || '/'} />;
+    return <Redirect to={location?.state?.from || "/"} />;
   }
 
   if (!anonymous && !isAuth) {
@@ -30,5 +39,5 @@ export function ProtectedRoute({ anonymous = false, isAuth, children, ...rest })
     return <Redirect to={{ pathname: "/login", state: { from: location } }} />;
   }
 
-  return <Route {...rest}>{children}</Route>;;
+  return <Route {...rest}>{children}</Route>;
 }

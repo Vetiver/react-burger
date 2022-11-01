@@ -3,15 +3,23 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import Style from "../ModalOverlay/ModalOverlay.module.css";
 import { useHistory, useParams } from "react-router-dom";
-import { getUserInfo, IS_CLOSE, REMOVE_VISIBLE, refreshAccessToken } from "../../services/actions/profile.jsx";
-import { DROP_ID_MODAL, getItems } from "../../services/actions/ingredients.jsx";
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  getUserInfo,
+  IS_CLOSE,
+  REMOVE_VISIBLE,
+  refreshAccessToken,
+} from "../../services/actions/profile.jsx";
+import {
+  DROP_ID_MODAL,
+  getItems,
+} from "../../services/actions/ingredients.jsx";
+import { useDispatch, useSelector } from "react-redux";
 function ModalOverlay(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const modalOverlay = (evt) => {
     if (evt.target.id == "ModalOverlay") {
-    history.goBack();
+      history.goBack();
     }
     evt.stopPropagation();
   };

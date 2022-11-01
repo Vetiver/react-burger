@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, useLocation, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+  Link,
+} from "react-router-dom";
 import AppHeader from "../App-header/App-header";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -12,33 +18,32 @@ import Style from "../App/App.module.css";
 import FogotPassword from "../../pages/ForgotPassword/FogotPassword";
 import Profile from "../../pages/Profile/Profile.jsx";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute.jsx";
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, refreshAccessToken} from "../../services/actions/profile.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getUserInfo,
+  refreshAccessToken,
+} from "../../services/actions/profile.jsx";
 import { getItems } from "../../services/actions/ingredients.jsx";
 import Modal from "../Modal/Modal.jsx";
 import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import FeedOrder from "../../pages/FeedOrder/FeedOrder";
 import FeedDetailsHistory from "../FeedDetailsHistory/FeedDetailsHistory";
-import {WS_CONNECTION_START} from '../../services/actions/wsActions';
+import { WS_CONNECTION_START } from "../../services/actions/wsActions";
 import FeedOrdersHistory from "../../pages/FeedOredersHistory/FeedOredersHistory";
 
 function App() {
-  const order = useSelector(state => state.orderReducer.orderCard);
+  const order = useSelector((state) => state.orderReducer.orderCard);
   const dispatch = useDispatch();
   useEffect(() => {
-      dispatch(getItems())
-      dispatch(getUserInfo())
-  }, [])
+    dispatch(getItems());
+    dispatch(getUserInfo());
+  }, []);
   const location = useLocation();
-  const isLogin = useSelector(state => state.profileReducer.isLogin);
+  const isLogin = useSelector((state) => state.profileReducer.isLogin);
   const background = location.state?.background;
-  
-  
 
   return (
-
-
     <div className={Style.App}>
       <AppHeader />
       <Switch location={background || location}>
@@ -47,10 +52,15 @@ function App() {
             <DndProvider backend={HTML5Backend}>
               <BurgerIngredients />
               <BurgerConstructor />
-            </ DndProvider>
+            </DndProvider>
           </main>
         </Route>
-        <ProtectedRoute path="/login" anonymous={true} isAuth={isLogin} exact={true}>
+        <ProtectedRoute
+          path="/login"
+          anonymous={true}
+          isAuth={isLogin}
+          exact={true}
+        >
           <main className={Style.container}>
             <Authorization />
           </main>
@@ -58,7 +68,7 @@ function App() {
         <ProtectedRoute anonymous={true} path="/register" exact={true}>
           <main className={Style.container}>
             <Register />
-          </ main>
+          </main>
         </ProtectedRoute>
         <ProtectedRoute anonymous={true} path="/forgot-password" exact={true}>
           <main className={Style.container}>
@@ -84,43 +94,33 @@ function App() {
           </div>
         </ProtectedRoute>
         <Route path="/feed" exact={true}>
-        <div className={Style.feedContainer}>
-            <FeedOrder/>
-          </div>
+          <FeedOrder />
         </Route>
         <Route path="/feed/:id" exact={true}>
-        <FeedDetailsHistory data={order} />
+          <FeedDetailsHistory data={order} />
         </Route>
       </Switch>
       {background && (
         <Switch>
-        <Route path="/ingredients/:id">
-          <Modal>
-            <IngredientDetails />
-          </Modal>
-        </Route>
-        <Route path="/profile/orders/:id">
-          <Modal>
-          <FeedDetailsHistory data={order} />
-          </Modal>
-        </Route>
-        <Route path="/feed/:id">
-          <Modal>
-          <FeedDetailsHistory data={order} />
-          </Modal>
-        </Route>
+          <Route path="/ingredients/:id">
+            <Modal>
+              <IngredientDetails />
+            </Modal>
+          </Route>
+          <Route path="/profile/orders/:id">
+            <Modal>
+              <FeedDetailsHistory data={order} />
+            </Modal>
+          </Route>
+          <Route path="/feed/:id">
+            <Modal>
+              <FeedDetailsHistory data={order} />
+            </Modal>
+          </Route>
         </Switch>
       )}
     </div>
-
-
-
-
-
-
-
   );
 }
-
 
 export default App;

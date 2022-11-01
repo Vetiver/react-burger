@@ -1,11 +1,11 @@
 export const GET_ORDER_REQUEST = "GET_ORDER_REQUEST";
 export const GET_ORDER_SUCCESS = "GET_ORDER_SUCCESS";
 export const GET_ORDER_FAILED = "GET_ORDER_FAILED";
-export const SET_INGREDIENT = 'SET_INGREDIENT';
-export const SET_ORDER = 'SET_ORDER';
-export const ALL_ORDERS = 'ALL_ORDERS';
-export const HISTORY_ORDERS = 'HISTORY_ORDERS';
-export const SET_USER_INFO = 'SET_USER_INFO';
+export const SET_INGREDIENT = "SET_INGREDIENT";
+export const SET_ORDER = "SET_ORDER";
+export const ALL_ORDERS = "ALL_ORDERS";
+export const HISTORY_ORDERS = "HISTORY_ORDERS";
+export const SET_USER_INFO = "SET_USER_INFO";
 const initialState = {
   orderNumber: null,
   orderRequest: false,

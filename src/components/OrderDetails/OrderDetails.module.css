@@ -1,17 +1,17 @@
 .mainCounter {
-    margin-top: 60px;
-  }
-  
-  .firstMargin {
-    margin-top: 32px;
-      margin-bottom: 60px;
-  }
-  
-  .secondMargin {
-      margin-top: 60px;
-  }
-  
-  .lastMargin {
-      margin-top: 8px;
-      margin-bottom: 120px;
-  }
+  margin-top: 60px;
+}
+
+.firstMargin {
+  margin-top: 32px;
+  margin-bottom: 60px;
+}
+
+.secondMargin {
+  margin-top: 60px;
+}
+
+.lastMargin {
+  margin-top: 8px;
+  margin-bottom: 120px;
+}

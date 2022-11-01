@@ -1,8 +1,8 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import Style from "./FeedDetailsIngredient.module.css";
 
-function FeedDetailsIngredient({ data, amount}) {
-  const X = amount.filter((el) => el == data._id).length
+function FeedDetailsIngredient({ data, amount }) {
+  const X = amount.filter((el) => el == data._id).length;
   return (
     <li className={Style.containerItem}>
       <div className={Style.ingredient}>
@@ -14,12 +14,8 @@ function FeedDetailsIngredient({ data, amount}) {
           />
         </div>
       </div>
-      <p className={`text text_type_main-default`}>
-        {data.name}
-      </p>
-      <p
-        className={`${Style.amountContainer} text text_type_digits-default`}
-      >
+      <p className={`text text_type_main-default`}>{data.name}</p>
+      <p className={`${Style.amountContainer} text text_type_digits-default`}>
         <span className={Style.amount}>{X}</span> x{" "}
         <p className={Style.price}>{data.price}</p>
         <CurrencyIcon className={Style.currency} type="primary" />

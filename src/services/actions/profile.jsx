@@ -6,7 +6,7 @@ import { CLEAN_USER_INFO } from "../reducers/profileReducer.jsx";
 import {
   FETCH_AUTH_REQUEST,
   FETCH_AUTH_ERROR,
-  FETCH_USER
+  FETCH_USER,
 } from "../reducers/profileReducer";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
@@ -17,9 +17,9 @@ export const IS_OPEN = "IS_OPEN";
 export const IS_CLOSE = "IS_CLOSE";
 export const SET_VISIBLE = "SET_VISIBLE";
 export const REMOVE_VISIBLE = "REMOVE_VISIBLE";
-export const SET_ORDER = 'SET_ORDER';
-export const ALL_ORDERS = 'ALL_ORDERS'
-export const HISTORY_ORDERS = 'HISTORY_ORDERS';
+export const SET_ORDER = "SET_ORDER";
+export const ALL_ORDERS = "ALL_ORDERS";
+export const HISTORY_ORDERS = "HISTORY_ORDERS";
 
 export const logout = async () => {
   return await fetch(`${baseUrl}/api/auth/logout`, {
@@ -152,17 +152,15 @@ export function refreshAccessToken() {
     refreshToken()
       .then((res) => {
         if (res && res.success) {
-          deleteCookie('token')
+          deleteCookie("token");
           localStorage.setItem("refreshToken", res.refreshToken);
           const authToken = res.accessToken;
           setCookie("token", authToken);
         } else {
-          console.log('tokenERROR')
+          console.log("tokenERROR");
         }
       })
-      .catch((err) =>
-        console.log(err)
-      );
+      .catch((err) => console.log(err));
   };
 }
 
@@ -243,7 +241,7 @@ export function getUserInfo() {
           dispatch({
             type: FETCH_USER,
             payload: res,
-          })
+          });
         } else {
           dispatch({
             type: SET_USER_FAILED,
@@ -251,7 +249,7 @@ export function getUserInfo() {
         }
       })
       .catch((err) => {
-          dispatch({refreshAccessToken})
+        dispatch({ refreshAccessToken });
       });
   };
 }
@@ -301,7 +299,7 @@ export function loginUserInfo(form) {
           dispatch({
             type: FETCH_USER,
             payload: res,
-          })
+          });
           dispatch({ type: USER_LOGIN });
         } else {
           dispatch({

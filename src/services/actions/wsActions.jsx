@@ -42,7 +42,6 @@ export const wsGetOrders = (orders) => {
   };
 };
 
-
 export const wsUserNameUpdate = (userName) => {
   return {
     type: WS_USER_NAME_UPDATE,

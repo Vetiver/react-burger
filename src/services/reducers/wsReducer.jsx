@@ -1,12 +1,12 @@
-export const WS_CONNECTION_START = 'WS_CONNECTION_START';
-export const WS_CONNECTION_SUCCESS = 'WS_CONNECTION_SUCCESS';
-export const WS_CONNECTION_ERROR = 'WS_CONNECTION_ERROR';
-export const WS_GET_MESSAGE = 'WS_GET_MESSAGE';
-export const WS_CONNECTION_CLOSED = 'WS_CONNECTION_CLOSED';
+export const WS_CONNECTION_START = "WS_CONNECTION_START";
+export const WS_CONNECTION_SUCCESS = "WS_CONNECTION_SUCCESS";
+export const WS_CONNECTION_ERROR = "WS_CONNECTION_ERROR";
+export const WS_GET_MESSAGE = "WS_GET_MESSAGE";
+export const WS_CONNECTION_CLOSED = "WS_CONNECTION_CLOSED";
 const initialState = {
   allOrders: [],
   wsConnected: false,
-  error: undefined
+  error: undefined,
 };
 
 export const wsReducer = (state = initialState, action) => {
@@ -15,32 +15,32 @@ export const wsReducer = (state = initialState, action) => {
       return {
         ...state,
         error: undefined,
-        wsConnected: true
-    };
+        wsConnected: true,
+      };
     case WS_CONNECTION_ERROR:
       return {
         ...state,
-                error: action.payload,
-        wsConnected: false
+        error: action.payload,
+        wsConnected: false,
       };
 
-        // Опишем обработку экшена с типом WS_CONNECTION_CLOSED, когда соединение закрывается
-        // Установим флаг wsConnected в состояние false
+    // Опишем обработку экшена с типом WS_CONNECTION_CLOSED, когда соединение закрывается
+    // Установим флаг wsConnected в состояние false
     case WS_CONNECTION_CLOSED:
       return {
         ...state,
-                error: undefined,
-        wsConnected: false
+        error: undefined,
+        wsConnected: false,
       };
 
-        // Опишем обработку экшена с типом WS_GET_MESSAGE
-        // Обработка происходит, когда с сервера возвращаются данные
-        // В messages передадим данные, которые пришли с сервера
+    // Опишем обработку экшена с типом WS_GET_MESSAGE
+    // Обработка происходит, когда с сервера возвращаются данные
+    // В messages передадим данные, которые пришли с сервера
     case WS_GET_MESSAGE:
       return {
         ...state,
-                error: undefined,
-          allOrders: action.payload
+        error: undefined,
+        allOrders: action.payload,
       };
     default:
       return state;

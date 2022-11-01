@@ -12,33 +12,34 @@ function AppHeader() {
   return (
     <header className={Style.appHeader}>
       <NavLink
-        to='/'
+        to="/"
         className={`text_type_main-default ${Style.constructorContainer} ${Style.constructorTitle}`}
         activeClassName={Style.activeLink}
         exact={true}
       >
         <BurgerIcon type="primary" />
-          Конструктор
+        Конструктор
       </NavLink>
       <NavLink
-        to='/feed'
+        to="/feed"
         className={`text_type_main-default ${Style.constructorContainer} ${Style.secondMargin} ${Style.constructorTitle} `}
         activeClassName={Style.activeLink}
         exact={true}
       >
-
         <ListIcon type="primary" />
-          Лента заказов
+        Лента заказов
       </NavLink>
-      <Link to='/'><Logo /></Link>
+      <Link to="/">
+        <Logo />
+      </Link>
       <NavLink
-        to='/profile'
+        to="/profile"
         className={`text_type_main-default ${Style.constructorContainer} ${Style.lastMargin} ${Style.constructorTitle} `}
         activeClassName={Style.activeLink}
         exact={true}
       >
         <ProfileIcon type="primary" />
-          Личный кабинет
+        Личный кабинет
       </NavLink>
     </header>
   );

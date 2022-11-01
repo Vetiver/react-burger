@@ -2,29 +2,34 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import Style from "../Modal/Modal.module.css";
 import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
-import {
-  CloseIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useHistory, useParams } from "react-router-dom";
-import { getUserInfo, IS_CLOSE, REMOVE_VISIBLE, refreshAccessToken } from "../../services/actions/profile.jsx";
-import { DROP_ID_MODAL, getItems } from "../../services/actions/ingredients.jsx";
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  getUserInfo,
+  IS_CLOSE,
+  REMOVE_VISIBLE,
+  refreshAccessToken,
+} from "../../services/actions/profile.jsx";
+import {
+  DROP_ID_MODAL,
+  getItems,
+} from "../../services/actions/ingredients.jsx";
+import { useDispatch, useSelector } from "react-redux";
 const modalRoot = document.getElementById("modal-root");
 
 function Modal(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   function drop() {
-    dispatch({ type: DROP_ID_MODAL })
-        dispatch({ type: IS_CLOSE })
-        dispatch({ type: REMOVE_VISIBLE })
+    dispatch({ type: DROP_ID_MODAL });
+    dispatch({ type: IS_CLOSE });
+    dispatch({ type: REMOVE_VISIBLE });
   }
   useEffect(() => {
     const close = (e) => {
-      if (e.key === 'Escape') {
-        drop()
+      if (e.key === "Escape") {
+        drop();
         history.goBack();
-        
       }
     };
     window.addEventListener("keydown", close);
@@ -32,10 +37,9 @@ function Modal(props) {
   }, []);
   const modalClose = (evt) => {
     if (evt.target.id !== "buttonClose") {
-      drop()
+      drop();
       history.goBack();
       evt.stopPropagation();
-
     }
   };
   return ReactDOM.createPortal(
@@ -56,6 +60,5 @@ function Modal(props) {
     modalRoot
   );
 }
-
 
 export default Modal;

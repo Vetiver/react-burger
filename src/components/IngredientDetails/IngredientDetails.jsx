@@ -6,8 +6,10 @@ import { useParams } from "react-router-dom";
 import { getItems } from "../../services/actions/ingredients.jsx";
 
 function IngredientDetails() {
-  const allIngredients = useSelector((state) => state.ingredientReducer.allIngredients);
-  console.log(allIngredients)
+  const allIngredients = useSelector(
+    (state) => state.ingredientReducer.allIngredients
+  );
+  console.log(allIngredients);
   const [items, sets] = useState({
     image: "",
     name: "",
@@ -16,22 +18,21 @@ function IngredientDetails() {
     fat: "",
     carbohydrates: "",
   });
-  
-  const { id } = useParams()
+
+  const { id } = useParams();
   useEffect(() => {
     if (allIngredients.length) {
       const main = allIngredients.find((el) => el._id === id);
-      if(main) {
-              sets({
-        image: main.image_large,
-        name: main.name,
-        calories: main.calories,
-        proteins: main.proteins,
-        fat: main.fat,
-        carbohydrates: main.carbohydrates,
-      });
+      if (main) {
+        sets({
+          image: main.image_large,
+          name: main.name,
+          calories: main.calories,
+          proteins: main.proteins,
+          fat: main.fat,
+          carbohydrates: main.carbohydrates,
+        });
       }
-
     }
   }, [allIngredients]);
   return (
