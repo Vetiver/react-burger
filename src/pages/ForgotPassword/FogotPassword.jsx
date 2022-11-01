@@ -10,8 +10,6 @@ import { resetPassword } from '../../services/actions/profile.jsx';
 
 function FogotPassword(props) {
   const [success, setSuccess] = useState(false);
-  const userInfo = useSelector(state => state.userInfo);
-  const dispatch = useDispatch();
   const [form, setValue] = useState({ email: '' });
   const data = async form => {
     const res = await resetPassword(form)

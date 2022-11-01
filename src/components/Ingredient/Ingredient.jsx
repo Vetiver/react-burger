@@ -17,13 +17,12 @@ function Ingredient({ ingredient }) {
       isDrag: monitor.isDragging(),
     }),
   });
-  const bunsNumber = useSelector((state) => state.buns.filter(
+  const bunsNumber = useSelector((state) => state.ingredientReducer.buns.filter(
     (item) => item._id === ingredient._id).length)
-  const number = useSelector((state) => state.constructorIngredients.filter(
+  const number = useSelector((state) => state.ingredientReducer.constructorIngredients.filter(
     (item) => item._id === ingredient._id).length
   );
 
-  const isOpen = useSelector(state => state.isOpen);
   const dispatch = useDispatch();
   function handleOpenModal(e) {
     dispatch({ type: IS_OPEN })
@@ -38,7 +37,6 @@ function Ingredient({ ingredient }) {
   return (
     !isDrag &&
     <div onClick={handleOpenModal} className={`${Style.ingredientContainer}`} ref={dragRef}>
-      {isOpen}
       <img className={`${Style.image}`} src={ingredient.image} alt={ingredient.name} />
       <div className={`${Style.classContainer}`}>
         <p className="text text_type_main-medium">{ingredient.price}</p>

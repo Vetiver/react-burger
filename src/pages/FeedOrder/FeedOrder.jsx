@@ -4,10 +4,10 @@ import OrderFeedStats from "../../components/OrderFeedStats/OrderFeedStats";
 import Orders from "../Orders/Orders";
 import {WS_CONNECTION_START} from '../../services/actions/wsActions';
 import { useDispatch, useSelector } from 'react-redux';
-import { WS_CONNECTION_CLOSED } from "../../services/reducers/orderReducer";
+import { WS_CONNECTION_CLOSED } from "../../services/reducers/wsReducer.jsx";
 
 function FeedOrder() {
-  const allOrders = useSelector(state => state.allOrders);
+  const allOrders = useSelector(state => state.wsReducer.allOrders);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({

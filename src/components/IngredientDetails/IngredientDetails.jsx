@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getItems } from "../../services/actions/ingredients.jsx";
 
-function IngredientDetails({ ingredient }) {
-  const allIngredients = useSelector((state) => state.allIngredients);
+function IngredientDetails() {
+  const allIngredients = useSelector((state) => state.ingredientReducer.allIngredients);
   console.log(allIngredients)
   const [items, sets] = useState({
     image: "",

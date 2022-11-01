@@ -3,7 +3,6 @@ import Styles from "../OrderFeedStats/OrderFeedStats.module.css";
 import {useSelector } from 'react-redux';
 
 function OrderFeedStats({ data }) {
-    const allOrders = useSelector(state => state.allOrders);
   return (
     !!data.orders && (  <div className={Styles.container}>
       <div className={Styles.orderIsReady}>

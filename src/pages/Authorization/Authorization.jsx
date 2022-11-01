@@ -12,7 +12,6 @@ import { loginUserInfo, userLogin } from '../../services/actions/profile.jsx';
 function Authorization(props) {
   const dispatch = useDispatch();
   const [form, setValue] = useState({ email: '', password: '', });
-  const isLogin = useSelector(state => state.isLogin);
   const onChange = e => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };

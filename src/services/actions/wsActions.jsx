@@ -11,7 +11,6 @@ export const wsUrl = "wss://norma.nomoreparties.space/orders";
 
 export const wsActions = {
   wsInit: WS_CONNECTION_START,
-  //   wsSendMessage: WS_SEND_MESSAGE,
   onOpen: WS_CONNECTION_SUCCESS,
   onClose: WS_CONNECTION_CLOSED,
   onError: WS_CONNECTION_ERROR,
@@ -43,25 +42,6 @@ export const wsGetOrders = (orders) => {
   };
 };
 
-// export const wsSendMessage = message => {
-//   return {
-//     type: WS_SEND_MESSAGE,
-//     payload: message
-//   };
-// };
-
-// export const wsUserNameUpdate = userName => {
-//   return {
-//     type: WS_USER_NAME_UPDATE,
-//     payload: userName
-//  };
-
-export const wsSendMessage = (message) => {
-  return {
-    type: WS_SEND_MESSAGE,
-    payload: message,
-  };
-};
 
 export const wsUserNameUpdate = (userName) => {
   return {

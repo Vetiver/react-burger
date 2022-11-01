@@ -2,15 +2,12 @@ import thunk from "redux";
 import { setCookie, getCookie } from "../../utils/cookie.jsx";
 import checkResponse from "../../utils/checkResponse.jsx";
 import { baseUrl } from "../../services/actions/ingredients.jsx";
-import { CLEAN_USER_INFO } from "../reducers/orderReducer.jsx";
+import { CLEAN_USER_INFO } from "../reducers/profileReducer.jsx";
 import {
-  FETCH_REFRESH_TOKEN_REQUEST,
-  FETCH_REFRESH_TOKEN_SUCCESS,
-  FETCH_REFRESH_TOKEN_ERROR,
   FETCH_AUTH_REQUEST,
   FETCH_AUTH_ERROR,
   FETCH_USER
-} from "../reducers/orderReducer";
+} from "../reducers/profileReducer";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
 export const SET_USER_FAILED = "SET_USER_FAILED";
@@ -152,22 +149,18 @@ const loginRequest = async (form) => {
 
 export function refreshAccessToken() {
   return function (dispatch) {
-    dispatch({ type: FETCH_REFRESH_TOKEN_REQUEST });
     refreshToken()
       .then((res) => {
         if (res && res.success) {
           localStorage.setItem("refreshToken", res.refreshToken);
           const authToken = res.accessToken;
           setCookie("token", authToken);
-          dispatch({ type: FETCH_REFRESH_TOKEN_SUCCESS });
         } else {
-          dispatch({ type: FETCH_REFRESH_TOKEN_ERROR });
+          console.log('tokenERROR')
         }
       })
-      .catch(() =>
-        dispatch({
-          type: FETCH_REFRESH_TOKEN_ERROR,
-        })
+      .catch((err) =>
+        console.log(err)
       );
   };
 }

@@ -6,8 +6,8 @@ import {infoUserData, SET_VISIBLE} from '../../services/actions/profile.jsx';
 import { SET_ORDER } from "../../services/actions/profile.jsx";
 import { v4 as uuidv4 } from 'uuid';
 function FeedOrderCard({ data }) {
-  const allIngredients = useSelector(state => state.allIngredients);
-  const allOrders = useSelector(state => state.allOrders);
+  const allIngredients = useSelector(state => state.ingredientReducer.allIngredients);
+  const allOrders = useSelector(state => state.wsReducer.allOrders);
   const [visible, setTheme] = React.useState(false);
   const ingredients = data.ingredients
   const price = useMemo(()=>{

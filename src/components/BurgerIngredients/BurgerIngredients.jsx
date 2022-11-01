@@ -12,7 +12,7 @@ function BurgerIngredients() {
   const bunRef = useRef()
   const sauseRef = useRef()
   const mainRef = useRef()
-  const ingredients = useSelector(state => state.allIngredients);
+  const ingredients = useSelector(state => state.ingredientReducer.allIngredients);
   const bun = ingredients.filter((el) => el.type === "bun");
   const main = ingredients.filter((el) => el.type === "main");
   const sauce = ingredients.filter((el) => el.type === "sauce");

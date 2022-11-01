@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from 'uuid';
 
 function FeedDetailsHistory({ data }) {
-  const allIngredients = useSelector(state => state.allIngredients);
+  const allIngredients = useSelector(state => state.ingredientReducer.allIngredients);
   const ingredients = data.ingredients
   const price = useMemo(()=>{
     if(ingredients != null && allIngredients != null) {
@@ -33,7 +33,7 @@ function FeedDetailsHistory({ data }) {
     return `${day}, ${hours}:${minutes} i-GMT+3`;
   }
   const { id } = useParams()
-  const allOrders = useSelector(state => state.allOrders);
+  const allOrders = useSelector(state => state.wsReducer.allOrders);
   const [items, sets] = useState({
     _id: "",
     ingredients: [],

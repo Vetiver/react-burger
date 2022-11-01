@@ -37,12 +37,6 @@ export const socketMiddleware = wsUrl => {
         socket.onclose = event => {
           dispatch({ type: 'WS_CONNECTION_CLOSED', payload: event });
         };
-
-        // if (type === 'WS_SEND_MESSAGE') {
-        //   const message = payload;
-        //             // функция для отправки сообщения на сервер
-        //   socket.send(JSON.stringify(message));
-        // }
       }
 
       next(action);

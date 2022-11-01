@@ -9,7 +9,7 @@ import { setUserInfo } from '../../services/actions/profile.jsx';
 
 
 function Register() {
-  const isLogin = useSelector((state) => state.isLogin);
+  const isLogin = useSelector((state) => state.profileReducer.isLogin);
   const [form, setValue] = useState({ email: '', password: '', name: '', });
   const dispatch = useDispatch();
   const onChange = e => {

@@ -12,7 +12,7 @@ import {
 import NavBar from '../../components/NavBar/NavBar.jsx';
 
 function Profile(props) {
-  const userInfo = useSelector((state) => state.userInfoData);
+  const userInfo = useSelector((state) => state.profileReducer.userInfoData);
   const [form, setValue] = useState({ email: "", name: "", password: "" });
   let dispatch = useDispatch();
   const onInputChange = (e) => {

@@ -22,17 +22,17 @@ import { useHistory } from 'react-router-dom';
 function BurgerConstructor() {
   const ingredient = useSelector(state => state.constructorIngredients);
   const dispatch = useDispatch();
-  const main = useSelector(state => state.mainPrice);
+  const main = useSelector(state => state.ingredientReducer.mainPrice);
   const history = useHistory()
   const [items, sets] = useState(ingredient)
   useMemo(() => {
     sets(ingredient);
   }, [ingredient]);
-  const bun = useSelector(state => state.buns)
+  const bun = useSelector(state => state.ingredientReducer.buns)
   const dispatcher = useDispatch();
   const [visible, setTheme] = React.useState(false);
-  const isLogin = useSelector(state => state.isLogin);
-  const orderNumber = useSelector(state => state.orderNumber);
+  const isLogin = useSelector(state => state.profileReducer.isLogin);
+  const orderNumber = useSelector(state => state.orderReducer.orderNumber);
   const alls = bun.concat(ingredient)
   console.log(orderNumber)
 

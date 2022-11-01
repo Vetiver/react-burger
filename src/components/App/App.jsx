@@ -24,19 +24,14 @@ import {WS_CONNECTION_START} from '../../services/actions/wsActions';
 import FeedOrdersHistory from "../../pages/FeedOredersHistory/FeedOredersHistory";
 
 function App() {
-  const order = useSelector(state => state.orderCard);
-  const allOrders = useSelector(state => state.allOrders);
-  const isOpen = useSelector(state => state.isOpen);
-  const visible = useSelector(state => state.visibleStatus);
-  const id = useSelector(state => state.modalInfo);
+  const order = useSelector(state => state.orderReducer.orderCard);
   const dispatch = useDispatch();
   useEffect(() => {
       dispatch(getItems())
       dispatch(getUserInfo())
   }, [])
   const location = useLocation();
-  const isLogin = useSelector(state => state.isLogin);
-  const history = useHistory();
+  const isLogin = useSelector(state => state.profileReducer.isLogin);
   const background = location.state?.background;
   
   
@@ -101,7 +96,7 @@ function App() {
         <Switch>
         <Route path="/ingredients/:id">
           <Modal>
-            <IngredientDetails ingredient={id} />
+            <IngredientDetails />
           </Modal>
         </Route>
         <Route path="/profile/orders/:id">
