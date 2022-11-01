@@ -20,7 +20,7 @@ import { useHistory } from 'react-router-dom';
 
 
 function BurgerConstructor() {
-  const ingredient = useSelector(state => state.constructorIngredients);
+  const ingredient = useSelector(state => state.ingredientReducer.constructorIngredients);
   const dispatch = useDispatch();
   const main = useSelector(state => state.ingredientReducer.mainPrice);
   const history = useHistory()
@@ -34,7 +34,6 @@ function BurgerConstructor() {
   const isLogin = useSelector(state => state.profileReducer.isLogin);
   const orderNumber = useSelector(state => state.orderReducer.orderNumber);
   const alls = bun.concat(ingredient)
-  console.log(orderNumber)
 
   function open(e) {
     if (!isLogin) {
@@ -42,6 +41,7 @@ function BurgerConstructor() {
       history.push('/login')
     } else {
       dispatcher(getOrderNumber(alls))
+      console.log('номер заказа скоро появится, нужно немного подождать')
       handleOpenModal()
     }
   }
