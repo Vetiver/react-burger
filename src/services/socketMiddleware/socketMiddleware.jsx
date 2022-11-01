@@ -14,6 +14,11 @@ export const socketMiddleware = wsUrl => {
             socket = new WebSocket(`${wsUrl}${payload.add}`);
           }
       }
+      if (type === 'WS_CONNECTION_CLOSED' && socket) {
+        if (socket.readyState === 1) {
+          socket.close();
+        }
+      }
       if (socket) {
 
                 // функция, которая вызывается при открытии сокета
