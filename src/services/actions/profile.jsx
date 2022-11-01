@@ -1,5 +1,5 @@
 import thunk from "redux";
-import { setCookie, getCookie } from "../../utils/cookie.jsx";
+import { setCookie, getCookie, deleteCookie } from "../../utils/cookie.jsx";
 import checkResponse from "../../utils/checkResponse.jsx";
 import { baseUrl } from "../../services/actions/ingredients.jsx";
 import { CLEAN_USER_INFO } from "../reducers/profileReducer.jsx";
@@ -152,6 +152,7 @@ export function refreshAccessToken() {
     refreshToken()
       .then((res) => {
         if (res && res.success) {
+          deleteCookie('token')
           localStorage.setItem("refreshToken", res.refreshToken);
           const authToken = res.accessToken;
           setCookie("token", authToken);
@@ -250,9 +251,7 @@ export function getUserInfo() {
         }
       })
       .catch((err) => {
-        if (err.message == 'jwt expired' || err.message == 'Ошибка 403' || err.message == 'Ошибка 401') {
           dispatch({refreshAccessToken})
-        }
       });
   };
 }
