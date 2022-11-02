@@ -36,6 +36,9 @@ function App() {
   const order = useSelector((state) => state.orderReducer.orderCard);
   const dispatch = useDispatch();
   useEffect(() => {
+    if(document.cookie = undefined) {
+      dispatch({ refreshAccessToken });
+    }
     dispatch(getItems());
     dispatch(getUserInfo());
   }, []);

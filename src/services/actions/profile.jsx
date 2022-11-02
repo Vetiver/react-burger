@@ -186,6 +186,7 @@ export function setUserInfo(form) {
         }
       })
       .catch((err) => {
+        dispatch({ refreshAccessToken });
         console.log(err);
         dispatch({
           type: SET_USER_FAILED,
