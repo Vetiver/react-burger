@@ -25,6 +25,7 @@ function FeedDetailsHistory({ data }) {
 
   const { id } = useParams();
   const allOrders = useSelector((state) => state.wsReducer.allOrders);
+  console.log(allIngredients)
   const [items, sets] = useState({
     _id: "",
     ingredients: [],
@@ -40,7 +41,7 @@ function FeedDetailsHistory({ data }) {
     if (allOrders.length != 0) {
       return allOrders.orders.find((el) => el._id === id);
     }
-  }, [allOrders, id, allIngredients, items]);
+  }, [allOrders, allIngredients, items]);
   useEffect(() => {
     if (!!all) {
       const ingredient = all.ingredients;

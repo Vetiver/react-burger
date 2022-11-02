@@ -29,16 +29,26 @@ import IngredientDetails from "../IngredientDetails/IngredientDetails.jsx";
 import { useHistory } from "react-router-dom";
 import FeedOrder from "../../pages/FeedOrder/FeedOrder";
 import FeedDetailsHistory from "../FeedDetailsHistory/FeedDetailsHistory";
-import { WS_CONNECTION_START } from "../../services/actions/wsActions";
+import {
+  WS_CONNECTION_START,
+  WS_CONNECTION_CLOSED,
+} from "../../services/actions/wsActions";
 import FeedOrdersHistory from "../../pages/FeedOredersHistory/FeedOredersHistory";
 
 function App() {
   const order = useSelector((state) => state.orderReducer.orderCard);
   const dispatch = useDispatch();
   useEffect(() => {
-    if(document.cookie = undefined) {
+    if ((document.cookie = undefined)) {
       dispatch({ refreshAccessToken });
     }
+    dispatch({ type: WS_CONNECTION_CLOSED });
+    dispatch({
+      type: WS_CONNECTION_START,
+      payload: {
+        add: "/all",
+      },
+    });
     dispatch(getUserInfo());
     dispatch(getItems());
   }, []);
@@ -68,17 +78,32 @@ function App() {
             <Authorization />
           </main>
         </ProtectedRoute>
-        <ProtectedRoute anonymous={true} isAuth={isLogin} path="/register" exact={true}>
+        <ProtectedRoute
+          anonymous={true}
+          isAuth={isLogin}
+          path="/register"
+          exact={true}
+        >
           <main className={Style.container}>
             <Register />
           </main>
         </ProtectedRoute>
-        <ProtectedRoute anonymous={true} isAuth={isLogin} path="/forgot-password" exact={true}>
+        <ProtectedRoute
+          anonymous={true}
+          isAuth={isLogin}
+          path="/forgot-password"
+          exact={true}
+        >
           <main className={Style.container}>
             <FogotPassword />
           </main>
         </ProtectedRoute>
-        <ProtectedRoute anonymous={true} isAuth={isLogin} path="/reset-password" exact={true}>
+        <ProtectedRoute
+          anonymous={true}
+          isAuth={isLogin}
+          path="/reset-password"
+          exact={true}
+        >
           <main className={Style.container}>
             <ResetPassword />
           </main>
@@ -96,7 +121,6 @@ function App() {
             <FeedOrdersHistory />
           </div>
         </ProtectedRoute>
-        
         <Route path="/feed" exact={true}>
           <FeedOrder />
         </Route>
@@ -111,7 +135,11 @@ function App() {
               <IngredientDetails />
             </Modal>
           </Route>
-          <ProtectedRoute isAuth={isLogin} exact={true} path="/profile/orders/:id">
+          <ProtectedRoute
+            isAuth={isLogin}
+            exact={true}
+            path="/profile/orders/:id"
+          >
             <Modal>
               <FeedDetailsHistory data={order} />
             </Modal>
