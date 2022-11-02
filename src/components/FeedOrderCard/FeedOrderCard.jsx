@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { infoUserData, SET_VISIBLE } from "../../services/actions/profile.jsx";
 import { SET_ORDER } from "../../services/actions/profile.jsx";
 import { v4 as uuidv4 } from "uuid";
-import date from '../../utils/date.jsx';
+import {date} from '../../utils/date.jsx';
 function FeedOrderCard({ data }) {
   const allIngredients = useSelector(
     (state) => state.ingredientReducer.allIngredients
@@ -21,25 +21,7 @@ function FeedOrderCard({ data }) {
       .map((el) => el.price)
       .reduce((x, y) => x + y, 0);
   }, []);
-  const date = (setDate) => {
-    const date = new Date(setDate);
-    const enter = date.toLocaleDateString("ru").slice(0, 2);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const today = new Date().toLocaleDateString("ru").slice(0, 2);
-    const day = (() => {
-      if (today - enter === 0) {
-        return "Сегодня";
-      } else if (today - enter === 1) {
-        return "Вчера";
-      } else
-        return date.toLocaleDateString("ru", { timeZone: "Europe/Moscow" });
-    })();
-    return `${day}, ${hours}:${minutes} i-GMT+3`;
-  };
-  function handleCloseModal(e) {
-    setTheme(false);
-  }
+
   const dispatch = useDispatch();
   function handleOpenModal(e) {
     dispatch({ type: SET_VISIBLE });

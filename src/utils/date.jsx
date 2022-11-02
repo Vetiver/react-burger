@@ -1,4 +1,4 @@
-const date = (setDate) => {
+export const date = (setDate) => {
   const date = new Date(setDate);
   const enter = date.toLocaleDateString("ru").slice(0, 2);
   const hours = date.getHours();

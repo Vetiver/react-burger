@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import FeedDetailsIngredient from "../../components/FeedDetailsIngredient/FeedDetailsIngredient.jsx";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import date from '../../utils/date.jsx';
+import {date} from '../../utils/date.jsx';
 
 function FeedDetailsHistory({ data }) {
   const allIngredients = useSelector(
@@ -23,22 +23,6 @@ function FeedDetailsHistory({ data }) {
     }
   }, [allIngredients, ingredients]);
 
-  const date = (setDate) => {
-    const date = new Date(setDate);
-    const enter = date.toLocaleDateString("ru").slice(0, 2);
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
-    const today = new Date().toLocaleDateString("ru").slice(0, 2);
-    const day = (() => {
-      if (today - enter === 0) {
-        return "Сегодня";
-      } else if (today - enter === 1) {
-        return "Вчера";
-      } else
-        return date.toLocaleDateString("ru", { timeZone: "Europe/Moscow" });
-    })();
-    return `${day}, ${hours}:${minutes} i-GMT+3`;
-  };
   const { id } = useParams();
   const allOrders = useSelector((state) => state.wsReducer.allOrders);
   const [items, sets] = useState({
