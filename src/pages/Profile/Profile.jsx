@@ -16,9 +16,13 @@ import NavBar from "../../components/NavBar/NavBar.jsx";
 function Profile(props) {
   const userInfo = useSelector((state) => state.profileReducer.userInfoData);
   const [form, setValue] = useState({ email: "", name: "", password: "" });
+  const [disabled, setDisabled] = useState({ disabled: true})
   let dispatch = useDispatch();
   const onInputChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
+    if(userInfo.email == form.email && userInfo.name == form.name && form.password == '') {
+      setDisabled(false);
+    }
   };
 
   const revoke = useCallback(
@@ -57,13 +61,14 @@ function Profile(props) {
         name: form.name,
         email: form.email,
       })
+      setDisabled(true);
     },
     [form]
   );
 
   return (
     !!userInfo &&
-    (userInfo.email == form.email && userInfo.name == form.name && form.password == '' ? (
+    (disabled ? (
       <div className={`${Style.mainContainer}`}>
         <div>
           <NavBar />

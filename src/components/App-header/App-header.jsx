@@ -36,7 +36,6 @@ function AppHeader() {
         to="/profile"
         className={`text_type_main-default ${Style.constructorContainer} ${Style.lastMargin} ${Style.constructorTitle} `}
         activeClassName={Style.activeLink}
-        exact={true}
       >
         <ProfileIcon type="primary" />
         Личный кабинет

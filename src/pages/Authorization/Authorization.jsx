@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Redirect } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation, Redirect  } from "react-router-dom";
 import Style from "../Authorization/Authorization.module.css";
 import { refreshAccessToken } from "../../services/actions/profile.jsx";
 import {
@@ -12,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUserInfo, userLogin } from "../../services/actions/profile.jsx";
 
 function Authorization(props) {
+  const isLogin = useSelector((state) => state.profileReducer.isLogin);
+  const location = useLocation();
   const dispatch = useDispatch();
   const [form, setValue] = useState({ email: "", password: "" });
   const onChange = (e) => {
@@ -25,7 +26,16 @@ function Authorization(props) {
     },
     [loginUserInfo, form]
   );
-
+  if (isLogin) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+          from: location,
+        }}
+      />
+    );
+  }
   return (
     <form onSubmit={login} className={`${Style.authorizationForm}`}>
       <h1 className={`${Style.text}`}>Вход</h1>

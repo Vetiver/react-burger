@@ -172,8 +172,6 @@ export function setUserInfo(form) {
     registerRequest(form)
       .then((res) => {
         if (res.success && res) {
-          setCookie("token", res.accessToken, { 'max-age': 1140 });
-          localStorage.setItem("refreshToken", res.refreshToken);
           dispatch({
             type: SET_USER_SUCCESS,
             payload: res,
@@ -187,7 +185,6 @@ export function setUserInfo(form) {
       })
       .catch((err) => {
         dispatch({ refreshAccessToken });
-        console.log(err);
         dispatch({
           type: SET_USER_FAILED,
         });

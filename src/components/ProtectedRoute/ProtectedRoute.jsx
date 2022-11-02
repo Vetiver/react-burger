@@ -20,7 +20,6 @@ export function ProtectedRoute({
 
   useEffect(() => {
     if (isTokenExist) {
-      dispatch(getUserInfo());
       dispatch({ type: USER_LOGIN });
     }
   }, [isTokenExist, isAuth]);

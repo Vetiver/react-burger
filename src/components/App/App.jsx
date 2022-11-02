@@ -39,8 +39,8 @@ function App() {
     if(document.cookie = undefined) {
       dispatch({ refreshAccessToken });
     }
-    dispatch(getItems());
     dispatch(getUserInfo());
+    dispatch(getItems());
   }, []);
   const location = useLocation();
   const isLogin = useSelector((state) => state.profileReducer.isLogin);
@@ -68,17 +68,17 @@ function App() {
             <Authorization />
           </main>
         </ProtectedRoute>
-        <ProtectedRoute anonymous={true} path="/register" exact={true}>
+        <ProtectedRoute anonymous={true} isAuth={isLogin} path="/register" exact={true}>
           <main className={Style.container}>
             <Register />
           </main>
         </ProtectedRoute>
-        <ProtectedRoute anonymous={true} path="/forgot-password" exact={true}>
+        <ProtectedRoute anonymous={true} isAuth={isLogin} path="/forgot-password" exact={true}>
           <main className={Style.container}>
             <FogotPassword />
           </main>
         </ProtectedRoute>
-        <ProtectedRoute anonymous={true} path="/reset-password" exact={true}>
+        <ProtectedRoute anonymous={true} isAuth={isLogin} path="/reset-password" exact={true}>
           <main className={Style.container}>
             <ResetPassword />
           </main>
