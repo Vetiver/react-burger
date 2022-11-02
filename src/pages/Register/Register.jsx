@@ -43,7 +43,7 @@ function Register() {
         errorText={"Ошибка"}
         size={"default"}
       />
-      <EmailInput
+      <Input
         type={"email"}
         placeholder={"E-mail"}
         name={"email"}

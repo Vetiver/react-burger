@@ -57,7 +57,7 @@ function Ingredient({ ingredient }) {
         {bunsNumber ? (
           <Counter
             className={Style.counter}
-            count={bunsNumber}
+            count={bunsNumber + 1}
             size="default"
           />
         ) : null}

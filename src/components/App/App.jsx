@@ -107,11 +107,11 @@ function App() {
               <IngredientDetails />
             </Modal>
           </Route>
-          <Route path="/profile/orders/:id">
+          <ProtectedRoute isAuth={isLogin} exact={true} path="/profile/orders/:id">
             <Modal>
               <FeedDetailsHistory data={order} />
             </Modal>
-          </Route>
+          </ProtectedRoute>
           <Route path="/feed/:id">
             <Modal>
               <FeedDetailsHistory data={order} />

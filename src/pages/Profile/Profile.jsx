@@ -5,6 +5,10 @@ import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  getUserInfo,
+  refreshAccessToken,
+} from "../../services/actions/profile.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../services/actions/profile.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
@@ -16,6 +20,20 @@ function Profile(props) {
   const onInputChange = (e) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
+
+  const revoke = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(
+        setValue({
+          name: userInfo.name,
+          email: userInfo.email,
+          password: userInfo.password,
+        })
+      );
+    },
+    [form]
+  );
 
   useEffect(() => {
     setValue({
@@ -32,15 +50,20 @@ function Profile(props) {
         setUser({
           name: form.name,
           email: form.email,
+          password: form.password,
         })
       );
+      setValue({
+        name: form.name,
+        email: form.email,
+      })
     },
     [form]
   );
 
   return (
     !!userInfo &&
-    (userInfo.email == form.email && userInfo.name == form.name ? (
+    (userInfo.email == form.email && userInfo.name == form.name && form.password == '' ? (
       <div className={`${Style.mainContainer}`}>
         <div>
           <NavBar />
@@ -134,7 +157,7 @@ function Profile(props) {
           />
 
           <div className={`${Style.buttonsContainer}`}>
-            <Button type="secondary" size="small">
+            <Button onClick={revoke} type="secondary" size="small">
               <p className={`text text_type_main-default`}>Отмена</p>
             </Button>
             <Button onClick={updateUserData} type="primary" size="small">

@@ -79,7 +79,7 @@ export const setUserData = (form) => {
     credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + getCookie("token"),
+      Authorization: getCookie("token"),
     },
     redirect: "follow",
     referrerPolicy: "no-referrer",
