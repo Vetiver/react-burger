@@ -194,34 +194,6 @@ export function setUserInfo(form) {
   };
 }
 
-export function update(form) {
-  return function (dispatch) {
-    dispatch({
-      type: SET_USER_INFO,
-    });
-    setUserData(form)
-      .then((res) => {
-        if (res.success && res) {
-          setCookie("token", res.accessToken, { 'max-age': 1140 });
-          localStorage.setItem("refreshToken", res.refreshToken);
-          dispatch({
-            type: SET_USER_SUCCESS,
-            payload: res,
-          });
-        } else {
-          dispatch({
-            type: SET_USER_FAILED,
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        dispatch({
-          type: SET_USER_FAILED,
-        });
-      });
-  };
-}
 
 export function getUserInfo() {
   return function (dispatch) {
@@ -234,8 +206,6 @@ export function getUserInfo() {
           dispatch({ type: USER_LOGIN });
           if(document.cookie == undefined) {
           dispatch({ refreshAccessToken });
-          setCookie("token", res.accessToken, { 'max-age': 1140 });
-          localStorage.setItem("refreshToken", res.refreshToken);
           }
           dispatch({
             type: SET_USER_SUCCESS,
@@ -252,6 +222,7 @@ export function getUserInfo() {
         }
       })
       .catch((err) => {
+        dispatch({ refreshAccessToken });
       });
   };
 }

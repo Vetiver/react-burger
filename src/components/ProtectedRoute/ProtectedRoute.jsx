@@ -19,11 +19,7 @@ export function ProtectedRoute({
   const isTokenExist = !!localStorage.getItem("refreshToken");
 
   useEffect(() => {
-    if (!isAuth && isTokenExist) {
-      dispatch(refreshAccessToken());
-    }
     if (isTokenExist) {
-      dispatch(refreshAccessToken());
       dispatch(getUserInfo());
       dispatch({ type: USER_LOGIN });
     }
