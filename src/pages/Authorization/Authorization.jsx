@@ -26,16 +26,6 @@ function Authorization(props) {
     },
     [loginUserInfo, form]
   );
-  if (isLogin) {
-    return (
-      <Redirect
-        to={{
-          pathname: "/",
-          from: location,
-        }}
-      />
-    );
-  }
   return (
     <form onSubmit={login} className={`${Style.authorizationForm}`}>
       <h1 className={`${Style.text}`}>Вход</h1>
