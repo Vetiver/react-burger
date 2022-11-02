@@ -155,7 +155,7 @@ export function refreshAccessToken() {
           deleteCookie("token");
           localStorage.setItem("refreshToken", res.refreshToken);
           const authToken = res.accessToken;
-          setCookie("token", authToken);
+          setCookie("token", authToken, { 'max-age': 1140 });
         } else {
           console.log("tokenERROR");
         }
@@ -172,7 +172,7 @@ export function setUserInfo(form) {
     registerRequest(form)
       .then((res) => {
         if (res.success && res) {
-          setCookie("token", res.accessToken);
+          setCookie("token", res.accessToken, { 'max-age': 1140 });
           localStorage.setItem("refreshToken", res.refreshToken);
           dispatch({
             type: SET_USER_SUCCESS,
@@ -202,7 +202,7 @@ export function update(form) {
     setUserData(form)
       .then((res) => {
         if (res.success && res) {
-          setCookie("token", res.accessToken);
+          setCookie("token", res.accessToken, { 'max-age': 1140 });
           localStorage.setItem("refreshToken", res.refreshToken);
           dispatch({
             type: SET_USER_SUCCESS,
@@ -234,7 +234,7 @@ export function getUserInfo() {
           dispatch({ type: USER_LOGIN });
           if(document.cookie == undefined) {
           dispatch({ refreshAccessToken });
-          setCookie("token", res.accessToken, { expires: 1140});
+          setCookie("token", res.accessToken, { 'max-age': 1140 });
           localStorage.setItem("refreshToken", res.refreshToken);
           }
           dispatch({
@@ -292,8 +292,8 @@ export function loginUserInfo(form) {
     loginRequest(form)
       .then((res) => {
         if (res.success && res) {
-          setCookie("token", res.accessToken);
-          localStorage.setItem("refreshToken", res.refreshToken);
+          setCookie("token", res.accessToken, { 'max-age': 1140 });
+          localStorage.setItem("refreshToken", res.refreshToken,);
           dispatch({
             type: SET_USER_SUCCESS,
             payload: res,
