@@ -232,8 +232,11 @@ export function getUserInfo() {
       .then((res) => {
         if (res.success && res) {
           dispatch({ type: USER_LOGIN });
-          setCookie("token", res.accessToken);
+          if(document.cookie == undefined) {
+          dispatch({ refreshAccessToken });
+          setCookie("token", res.accessToken, { expires: 1140});
           localStorage.setItem("refreshToken", res.refreshToken);
+          }
           dispatch({
             type: SET_USER_SUCCESS,
             payload: res,
@@ -249,7 +252,6 @@ export function getUserInfo() {
         }
       })
       .catch((err) => {
-        dispatch({ refreshAccessToken });
       });
   };
 }

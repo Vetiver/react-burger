@@ -93,6 +93,7 @@ function App() {
             <FeedOrdersHistory />
           </div>
         </ProtectedRoute>
+        
         <Route path="/feed" exact={true}>
           <FeedOrder />
         </Route>

@@ -12,13 +12,13 @@ function FeedOrdersHistory() {
   const allOrders = useSelector((state) => state.wsReducer.allOrders);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch({ type: WS_CONNECTION_CLOSED })
     dispatch({
       type: WS_CONNECTION_START,
       payload: {
         add: `?token=${getCookie("token").split(" ")[1]}`,
       },
     });
-    return dispatch({ type: WS_CONNECTION_CLOSED });
   }, [allOrders]);
   return (
     !!allOrders && (
