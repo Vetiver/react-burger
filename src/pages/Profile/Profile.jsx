@@ -111,7 +111,7 @@ function Profile(props) {
           />
 
           <div className={`${Style.buttonsContainer}`}>
-            <Button disabled={disabled} type="secondary" size="small">
+            <Button onClick={revoke} disabled={disabled} type="secondary" size="small">
               <p className={`text text_type_main-default`}>Отмена</p>
             </Button>
             <Button
