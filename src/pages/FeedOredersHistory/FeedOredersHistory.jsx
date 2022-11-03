@@ -19,7 +19,7 @@ function FeedOrdersHistory() {
         add: `?token=${getCookie("token").split(" ")[1]}`,
       },
     });
-  }, [allOrders]);
+  }, []);
   return (
     !!allOrders && (
       <div className={Styles.container}>
