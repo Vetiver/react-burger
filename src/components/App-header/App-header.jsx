@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
 import Style from "../App-header/App-header.module.css";
 import {
   BurgerIcon,
@@ -11,38 +11,35 @@ import {
 function AppHeader() {
   return (
     <header className={Style.appHeader}>
-      <Link
-        href="#"
-        className={`${Style.constructorContainer}`}
+      <NavLink
+        to="/"
+        className={`text_type_main-default ${Style.constructorContainer} ${Style.constructorTitle}`}
+        activeClassName={Style.activeLink}
+        exact={true}
       >
         <BurgerIcon type="primary" />
-        <p className={`text_type_main-default ${Style.constructorTitle}`}>
-          Конструктор
-        </p>
-      </Link>
-      <Link
-        href="#"
-        className={`${Style.constructorContainer} ${Style.secondMargin}`}
+        Конструктор
+      </NavLink>
+      <NavLink
+        to="/feed"
+        className={`text_type_main-default ${Style.constructorContainer} ${Style.secondMargin} ${Style.constructorTitle} `}
+        activeClassName={Style.activeLink}
+        exact={true}
       >
-        <ListIcon type="secondary" />
-        <p
-          className={`${Style.constructorTitle}  text_type_main-default text_color_inactive`}
-        >
-          Лента заказов
-        </p>
+        <ListIcon type="primary" />
+        Лента заказов
+      </NavLink>
+      <Link to="/">
+        <Logo />
       </Link>
-      <Logo />
-      <Link
-        href="#"
-        className={`${Style.constructorContainer} ${Style.lastMargin}`}
+      <NavLink
+        to="/profile"
+        className={`text_type_main-default ${Style.constructorContainer} ${Style.lastMargin} ${Style.constructorTitle} `}
+        activeClassName={Style.activeLink}
       >
-        <ProfileIcon type="secondary" />
-        <p
-          className={`${Style.constructorTitle} text_type_main-default text_color_inactive`}
-        >
-          Личный кабинет
-        </p>
-      </Link>
+        <ProfileIcon type="primary" />
+        Личный кабинет
+      </NavLink>
     </header>
   );
 }

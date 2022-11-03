@@ -14,23 +14,26 @@
 }
 
 .burgerGrid {
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px 24px; 
-    grid-template-areas: 
-    ". .";
-    margin-top: 24px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px 24px;
+  grid-template-areas: ". .";
+  margin-top: 24px;
+}
 
+.chapter::-webkit-scrollbar {
+  width: 8px;
+}
 
-  .chapter::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .chapter::-webkit-scrollbar-track {
-    background: #2f2f37;
-  }
-  
-  .chapter::-webkit-scrollbar-thumb {
-    background: #8585ad;
-  }
+.chapter::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+
+.chapter::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
+
+.link {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}

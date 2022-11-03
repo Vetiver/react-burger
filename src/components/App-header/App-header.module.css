@@ -1,6 +1,8 @@
 .appHeader {
-  background: #1C1C21;
-  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+  background: #1c1c21;
+  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04),
+    0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -16,14 +18,13 @@
 
 .constructorContainer {
   display: flex;
+  color: #8585ad;
+  gap: 10px;
   margin-top: 16px;
   margin-bottom: 16px;
   text-align: center;
-  color: inherit; 
-  text-decoration: inherit; 
+  text-decoration: inherit;
 }
-
-
 
 .secondMargin {
   margin-left: 49px;
@@ -31,9 +32,13 @@
 }
 
 .noTarget {
-  color: #8585AD;
+  color: #8585ad;
 }
 
 .lastMargin {
   margin-left: 308px;
+}
+
+.activeLink {
+  color: #fff;
 }

@@ -11,20 +11,18 @@
   overflow-y: scroll;
   gap: 16px;
   width: 570px;
-  
-  }
-  .ingredientsBar::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .ingredientsBar::-webkit-scrollbar-track {
-    background: #2f2f37;
-  }
-  
-  .ingredientsBar::-webkit-scrollbar-thumb {
-    background: #8585ad;
-  }
+}
+.ingredientsBar::-webkit-scrollbar {
+  width: 8px;
+}
 
+.ingredientsBar::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+
+.ingredientsBar::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
 
 .counter {
   display: flex;

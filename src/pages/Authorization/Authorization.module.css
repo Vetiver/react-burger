@@ -1,0 +1,25 @@
+.authorizationForm {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  margin-top: 180px;
+}
+
+.linkContainer {
+  margin: 0;
+  padding: 0;
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.text {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  border: none;
+}

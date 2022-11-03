@@ -1,19 +1,35 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import Style from "../Modal/Modal.module.css";
 import ModalOverlay from "../ModalOverlay/ModalOverlay.jsx";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useHistory, useParams } from "react-router-dom";
 import {
-  CloseIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-
+  getUserInfo,
+  IS_CLOSE,
+  REMOVE_VISIBLE,
+  refreshAccessToken,
+} from "../../services/actions/profile.jsx";
+import {
+  DROP_ID_MODAL,
+  getItems,
+} from "../../services/actions/ingredients.jsx";
+import { useDispatch, useSelector } from "react-redux";
 const modalRoot = document.getElementById("modal-root");
 
 function Modal(props) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  function drop() {
+    dispatch({ type: DROP_ID_MODAL });
+    dispatch({ type: IS_CLOSE });
+    dispatch({ type: REMOVE_VISIBLE });
+  }
   useEffect(() => {
     const close = (e) => {
-      if (e.key === 'Escape') {
-        props.onClose();
+      if (e.key === "Escape") {
+        drop();
+        history.goBack();
       }
     };
     window.addEventListener("keydown", close);
@@ -21,7 +37,8 @@ function Modal(props) {
   }, []);
   const modalClose = (evt) => {
     if (evt.target.id !== "buttonClose") {
-      props.onClose();
+      drop();
+      history.goBack();
       evt.stopPropagation();
     }
   };
@@ -43,8 +60,5 @@ function Modal(props) {
     modalRoot
   );
 }
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired
-};
 
 export default Modal;

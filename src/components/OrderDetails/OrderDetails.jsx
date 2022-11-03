@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import Style from "../OrderDetails/OrderDetails.module.css";
 import PropTypes from "prop-types";
-import {
-  CheckMarkIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function OrderDetails({ data }) {
   return (
