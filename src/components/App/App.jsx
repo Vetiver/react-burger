@@ -48,7 +48,7 @@ function App() {
         add: "/all",
       },
     });
-    if(isLogin) {
+    if(document.cookie != '') {
       dispatch(getUserInfo());
     }
     dispatch(getItems());
