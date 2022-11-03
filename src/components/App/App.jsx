@@ -41,13 +41,6 @@ function App() {
   const order = useSelector((state) => state.orderReducer.orderCard);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch({ type: WS_CONNECTION_CLOSED });
-    dispatch({
-      type: WS_CONNECTION_START,
-      payload: {
-        add: "/all",
-      },
-    });
     if(document.cookie != '') {
       dispatch(getUserInfo());
     }

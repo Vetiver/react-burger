@@ -17,7 +17,7 @@ function FeedOrder() {
         add: "/all",
       },
     });
-  }, [allOrders]);
+  }, []);
   return (
     !!allOrders && (
       <div className={Styles.mainContainer}>

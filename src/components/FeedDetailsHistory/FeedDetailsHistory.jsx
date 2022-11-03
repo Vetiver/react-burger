@@ -66,7 +66,7 @@ function FeedDetailsHistory({ data }) {
       <div>
         <p className={`text text_type_main-medium`}>{items.name}</p>
         <p className={`${Style.status} text text_type_main-small`}>
-          {items.status}
+          {items.status == 'done' ? 'выполнено' : items.status == 'pending' ? 'в работе' : null}
         </p>
       </div>
       <div>

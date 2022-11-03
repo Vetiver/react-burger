@@ -11,7 +11,6 @@ function FeedOrderCard({ data }) {
     (state) => state.ingredientReducer.allIngredients
   );
   const allOrders = useSelector((state) => state.wsReducer.allOrders);
-  const [visible, setTheme] = React.useState(false);
   const ingredients = data.ingredients;
   const price = useMemo(() => {
     return ingredients
@@ -26,7 +25,6 @@ function FeedOrderCard({ data }) {
   function handleOpenModal(e) {
     dispatch({ type: SET_VISIBLE });
     dispatch({ type: SET_ORDER, payload: data });
-    //dispatch({ type: TAKE_ID_MODAL, payload: ingredient._id })
   }
   return (
     !!allOrders && (

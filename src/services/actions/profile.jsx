@@ -20,6 +20,7 @@ export const REMOVE_VISIBLE = "REMOVE_VISIBLE";
 export const SET_ORDER = "SET_ORDER";
 export const ALL_ORDERS = "ALL_ORDERS";
 export const HISTORY_ORDERS = "HISTORY_ORDERS";
+export const cookieLiveTime = 1140
 
 export const logout = async () => {
   return await fetch(`${baseUrl}/api/auth/logout`, {
@@ -155,7 +156,7 @@ export function refreshAccessToken() {
           deleteCookie("token");
           localStorage.setItem("refreshToken", res.refreshToken);
           const authToken = res.accessToken;
-          setCookie("token", authToken, { 'max-age': 1140 });
+          setCookie("token", authToken, { 'max-age': cookieLiveTime });
         } else {
           console.log("tokenERROR");
         }
@@ -258,7 +259,7 @@ export function loginUserInfo(form) {
     loginRequest(form)
       .then((res) => {
         if (res.success && res) {
-          setCookie("token", res.accessToken, { 'max-age': 1140 });
+          setCookie("token", res.accessToken, { 'max-age': cookieLiveTime });
           localStorage.setItem("refreshToken", res.refreshToken,);
           dispatch({
             type: SET_USER_SUCCESS,
