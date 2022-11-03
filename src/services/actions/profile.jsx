@@ -202,9 +202,6 @@ export function getUserInfo() {
       .then((res) => {
         if (res.success && res) {
           dispatch({ type: USER_LOGIN });
-          if(document.cookie == undefined) {
-          dispatch({ refreshAccessToken });
-          }
           dispatch({
             type: SET_USER_SUCCESS,
             payload: res,

@@ -36,12 +36,11 @@ import {
 import FeedOrdersHistory from "../../pages/FeedOredersHistory/FeedOredersHistory";
 
 function App() {
+  const location = useLocation();
+  const isLogin = useSelector((state) => state.profileReducer.isLogin);
   const order = useSelector((state) => state.orderReducer.orderCard);
   const dispatch = useDispatch();
   useEffect(() => {
-    if ((document.cookie = undefined)) {
-      dispatch({ refreshAccessToken });
-    }
     dispatch({ type: WS_CONNECTION_CLOSED });
     dispatch({
       type: WS_CONNECTION_START,
@@ -49,11 +48,11 @@ function App() {
         add: "/all",
       },
     });
-    dispatch(getUserInfo());
+    if(isLogin) {
+      dispatch(getUserInfo());
+    }
     dispatch(getItems());
   }, []);
-  const location = useLocation();
-  const isLogin = useSelector((state) => state.profileReducer.isLogin);
   const background = location.state?.background;
 
   return (
