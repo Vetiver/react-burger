@@ -52,7 +52,7 @@ function App() {
     <div className={Style.App}>
       <AppHeader />
       <Switch location={background || location}>
-        <Route path="/" isAuth={isLogin} exact={true}>
+        <Route path="/react-burger/" isAuth={isLogin} exact={true}>
           <main className={Style.container}>
             <DndProvider backend={HTML5Backend}>
               <BurgerIngredients />
