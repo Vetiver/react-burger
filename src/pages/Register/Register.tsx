@@ -6,11 +6,10 @@ import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
 import { setUserInfo } from "../../services/actions/profile";
-import { useTDispatch, useTSelector, TLocation, TOrders } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation, TOrders } from "../../utils/types";
 const Register:React.FC = () => {
-  const isLogin = useTSelector((state) => state.profileReducer.isLogin);
+  const isLogin = useSelector((state) => state.profileReducer.isLogin);
   const [form, setValue] = useState({ email: "", password: "", name: "" });
   const dispatch = useTDispatch();
   const onChange = (e:React.ChangeEvent<HTMLInputElement>): void => {

@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Reorder } from "framer-motion";
 import Stuffing from "../Stuffing/Stuffing";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
-import { useSelector } from 'react-redux'
+import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 import {
   Button,
   CurrencyIcon,
@@ -25,20 +24,20 @@ const BurgerConstructor:React.FC = () => {
   const ingredient = useSelector(
     (state) => state.ingredientReducer.constructorIngredients
   );
-  const main = useTSelector((state) => state.ingredientReducer.mainPrice);
+  const main = useSelector((state) => state.ingredientReducer.mainPrice);
   const history = useHistory();
   const [items, sets] = useState(ingredient);
   useMemo(() => {
     sets(ingredient);
   }, [ingredient]);
-  const bun = useTSelector((state) => state.ingredientReducer.buns);
+  const bun = useSelector((state) => state.ingredientReducer.buns);
   const dispatcher = useTDispatch();
   const [visible, setTheme] = React.useState(false);
-  const isLogin = useTSelector((state) => state.profileReducer.isLogin);
-  const orderNumber = useTSelector((state) => state.orderReducer.orderNumber);
+  const isLogin = useSelector((state) => state.profileReducer.isLogin);
+  const orderNumber = useSelector((state) => state.orderReducer.orderNumber);
   const alls = bun.concat(ingredient);
 
-  function open(e) {
+  function open(e: any) {
     if (!isLogin) {
       e.preventDefault();
       history.push("/login");

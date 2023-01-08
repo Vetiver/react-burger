@@ -1,22 +1,21 @@
 import React, { useEffect, useState, useMemo } from "react";
 import Styles from "../FeedOrderCard/FeedOrderCard.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
 import {SET_VISIBLE } from "../../services/actions/profile";
 import { SET_ORDER } from "../../services/actions/profile";
 import { v4 as uuidv4 } from "uuid";
 import {date} from '../../utils/date.jsx';
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 
 interface IFeedDetailsIngredientProps {
-  data: any;
+  data: any
 }
 
 const FeedOrderCard:React.FC<IFeedDetailsIngredientProps> =({ data }) => {
-  const allIngredients = useTSelector(
+  const allIngredients = useSelector(
     (state) => state.ingredientReducer.allIngredients
   );
-  const allOrders = useTSelector((state) => state.wsReducer.allOrders);
+  const allOrders = useSelector((state) => state.wsReducer.allOrders);
   const ingredients = data.ingredients;
   const price = useMemo(() => {
     return ingredients

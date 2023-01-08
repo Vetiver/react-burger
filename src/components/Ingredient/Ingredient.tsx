@@ -1,6 +1,5 @@
 import React from "react";
 import { ReactDOM } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useDrag } from "react-dnd";
 import { burgerProps } from "../../utils/BurgerPropTypes.jsx";
 import {
@@ -10,12 +9,13 @@ import {
 import Style from "../Ingredient/Ingredient.module.css";
 import { IS_OPEN } from "../../services/actions/profile";
 import { TAKE_ID_MODAL } from "../../services/actions/ingredients";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, useSelector} from "../../utils/types";
 
 interface IIngredientProps {
   ingredient: {
     image: string;
     name: string;
+    price: number;
     _id: string;
   };
 }
@@ -28,19 +28,19 @@ const Ingredient: React.FC<IIngredientProps> = ({ ingredient }) => {
       isDrag: monitor.isDragging(),
     }),
   });
-  const bunsNumber = useTSelector(
+  const bunsNumber = useSelector(
     (state) =>
       state.ingredientReducer.buns.filter((item) => item._id === ingredient._id)
         .length
   );
-  const number = useTSelector(
+  const number = useSelector(
     (state) =>
       state.ingredientReducer.constructorIngredients.filter(
         (item: any) => item._id === ingredient._id
       ).length
   );
 
-  const dispatch = useDispatch();
+  const dispatch = useTDispatch();
   function handleOpenModal() {
     dispatch({ type: IS_OPEN });
     dispatch({ type: TAKE_ID_MODAL, payload: ingredient._id });

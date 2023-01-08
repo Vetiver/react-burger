@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect, useRef, useMemo } from "react";
 import Style from "../FeedDetailsHistory/FeedDetailsHistory.module.css";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import {useSelector} from "../../utils/types";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import FeedDetailsIngredient from "../FeedDetailsIngredient/FeedDetailsIngredient";
 import { useParams } from "react-router-dom";
@@ -11,10 +11,6 @@ interface IFeedDetailsHistorProps {
   data: object;
 }
 
-interface IXY {
-  x: number;
-  y: number;
-}
 
 interface IFeedDetailsHistorProps {
   _id: string;
@@ -28,7 +24,7 @@ interface IFeedDetailsHistorProps {
 }
 
 const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
-  const allIngredients = useTSelector(
+  const allIngredients = useSelector(
     (state) => state.ingredientReducer.allIngredients
   );
   const ingredients = data.ingredients;
@@ -43,8 +39,8 @@ const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
     }
   }, [allIngredients, ingredients]);
 
-  const { id } = useParams();
-  const allOrders = useTSelector((state) => state.wsReducer.allOrders);
+  const { id } = useParams<any>();
+  const allOrders = useSelector((state) => state.wsReducer.allOrders);
   console.log(allIngredients)
   const [items, sets] = useState({
     _id: "",

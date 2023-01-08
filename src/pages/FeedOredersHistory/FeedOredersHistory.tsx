@@ -2,14 +2,13 @@ import React, { useEffect } from "react";
 import Styles from "../../pages/FeedOredersHistory/FeedOredersHistory.module.css";
 import Orders from "../Orders/Orders";
 import { WS_CONNECTION_START } from "../../services/actions/wsActions";
-import { useDispatch, useSelector } from "react-redux";
 import { WS_CONNECTION_CLOSED } from "../../services/reducers/wsReducer";
 import NavBar from "../../components/NavBar/NavBar";
 import { getCookie } from "../../utils/cookie.jsx";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 
 const FeedOrdersHistory = () => {
-  const allOrders = useTSelector((state) => state.wsReducer.allOrders);
+  const allOrders = useSelector((state) => state.wsReducer.allOrders);
   const dispatch = useTDispatch();
   useEffect(() => {
     dispatch({ type: WS_CONNECTION_CLOSED })

@@ -14,13 +14,12 @@ import {
   DROP_ID_MODAL,
   getItems,
 } from "../../services/actions/ingredients";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
-const modalRoot = document.getElementById("modal-root");
+import { useTDispatch} from "../../utils/types";
+const modalRoot = document.getElementById("modal-root") as HTMLElement;
 
 interface IModalProps {
   onClose: any;
   children: any;
-
 }
 
 const Modal: React.FC<IModalProps> = (props) => {
@@ -50,7 +49,7 @@ const Modal: React.FC<IModalProps> = (props) => {
   };
   return ReactDOM.createPortal(
     <>
-      <ModalOverlay onClose={props.onClose} />
+      <ModalOverlay  />
       <div className={`${Style.container}`}>
         <button
           id="buttonClose"

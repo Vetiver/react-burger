@@ -4,7 +4,7 @@ import FeedOrderCard from "../../components/FeedOrderCard/FeedOrderCard";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_ORDER } from "../../services/actions/profile";
-import { useTDispatch, useTSelector, TLocation, TOrders } from "../../utils/types";
+import { useTDispatch, TLocation, TOrders } from "../../utils/types";
 
 interface IOrdersProps {
   data: {

@@ -1,8 +1,12 @@
-import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
-import { TDispatch, TState } from "../services/store/store";
+import { useDispatch} from "react-redux";
+import {
+  useSelector as useReduxSelector,
+  TypedUseSelectorHook,
+} from 'react-redux'
+import { TDispatch, RootState } from "../services/store/store";
 
 export const useTDispatch = () => useDispatch<TDispatch>();
-export const useTSelector: TypedUseSelectorHook<TState> = useSelector;
+export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
 export type TLocation = {
   background: {

@@ -3,14 +3,14 @@ import Style from "../BurgerIngredients/BurgerIngredients.module.css";
 import Ingredient from "../Ingredient/Ingredient";
 import {Tabs} from "../Tab/Tab";
 import { Link, useLocation } from "react-router-dom";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 
 const BurgerIngredients:React.FC = () => {
   const location = useLocation<TLocation>();
   const bunRef = useRef<any>();
   const sauseRef = useRef<any>();
   const mainRef = useRef<any>();
-  const ingredients = useTSelector(
+  const ingredients = useSelector(
     (state) => state.ingredientReducer.allIngredients
   );
   const bun = ingredients.filter((el: any) => el.type === "bun");

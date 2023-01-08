@@ -4,7 +4,7 @@ import { deleteCookie } from "../../utils/cookie.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { userLogoutFromAccount } from "../../services/actions/profile";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch } from "../../utils/types";
 
 const NavBar: React.FC = () => {
   const dispatch = useTDispatch();

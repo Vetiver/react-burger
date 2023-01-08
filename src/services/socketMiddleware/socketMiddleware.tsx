@@ -1,11 +1,11 @@
 import {  Middleware, MiddlewareAPI } from "redux";
 import { TMiddlewareWSActions } from "../actions/wsActions";
-import { TDispatch, TState } from "../store/store";
+import { TDispatch, RootState } from "../store/store";
 
 export const socketMiddleware = (wsUrl: string, wsActions: TMiddlewareWSActions): Middleware => {
   const CLOSED = 3;
   const CLOSING = 2;
-  return (store: MiddlewareAPI<TDispatch, TState>) => {
+  return (store: MiddlewareAPI<TDispatch, RootState>) => {
     let socket: null | WebSocket = null;
 
     return (next) => (action) => {

@@ -3,12 +3,11 @@ import Styles from "../../pages/FeedOrder/FeedOrder.module.css";
 import OrderFeedStats from "../../components/OrderFeedStats/OrderFeedStats";
 import Orders from "../Orders/Orders";
 import { WS_CONNECTION_START } from "../../services/actions/wsActions";
-import { useDispatch, useSelector } from "react-redux";
 import { WS_CONNECTION_CLOSED } from "../../services/reducers/wsReducer";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 
 const FeedOrder = () => {
-  const allOrders = useTSelector((state) => state.wsReducer.allOrders);
+  const allOrders = useSelector((state) => state.wsReducer.allOrders);
   const dispatch = useTDispatch();
   useEffect(() => {
     dispatch({ type: WS_CONNECTION_CLOSED })

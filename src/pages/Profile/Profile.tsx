@@ -9,10 +9,9 @@ import {
   getUserInfo,
   refreshAccessToken,
 } from "../../services/actions/profile.js";
-import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../services/actions/profile";
 import NavBar from "../../components/NavBar/NavBar";
-import { useTDispatch, useTSelector, TLocation, TOrders, TUser } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation, TOrders, TUser } from "../../utils/types";
 
 interface IForm {
   email: string;
@@ -25,7 +24,7 @@ interface IDisabled {
 }
 
 const Profile = () => {
-  const userInfo = useTSelector((state) => state.profileReducer.userInfoData);
+  const userInfo = useSelector((state) => state.profileReducer.userInfoData);
   const [form, setValue] = useState<IForm>({ email: "", name: "", password: "" });
   const [disabled, setDisabled] = useState<IDisabled>({ disabled: true });
   let dispatch = useTDispatch();

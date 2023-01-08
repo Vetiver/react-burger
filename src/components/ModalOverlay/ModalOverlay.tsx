@@ -8,7 +8,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 const ModalOverlay: React.FC = () => {
   const history = useHistory();
-  const modalOverlay = (evt:React.ChangeEvent<HTMLInputElement>) => {
+  const modalOverlay = (evt:React.SyntheticEvent) => {
     if (evt.target.id == "ModalOverlay") {
       history.goBack();
     }

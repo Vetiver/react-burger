@@ -1,10 +1,9 @@
 import React, { Component, useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import Style from "../IngredientDetails/IngredientDetails.module.css";
-import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getItems } from "../../services/actions/ingredients.js";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 
 interface IFeedDetailsIngredientProps {
     image: string;
@@ -16,7 +15,7 @@ interface IFeedDetailsIngredientProps {
 }
 
 const IngredientDetails: React.FC = () => {
-  const allIngredients = useTSelector(
+  const allIngredients = useSelector(
     (state) => state.ingredientReducer.allIngredients
   );
   const [items, sets] = useState<IFeedDetailsIngredientProps>({

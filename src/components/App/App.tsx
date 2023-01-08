@@ -17,7 +17,7 @@ import Style from "../App/App.module.css";
 import FogotPassword from "../../pages/ForgotPassword/FogotPassword";
 import Profile from "../../pages/Profile/Profile";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
-import { useTDispatch, useTSelector, TLocation, TUser } from "../../utils/types";
+import { useTDispatch, useSelector, TLocation} from "../../utils/types";
 import {
   getUserInfo
 } from "../../services/actions/profile";
@@ -28,10 +28,11 @@ import FeedOrder from "../../pages/FeedOrder/FeedOrder";
 import FeedDetailsHistory from "../FeedDetailsHistory/FeedDetailsHistory";
 import FeedOrdersHistory from "../../pages/FeedOredersHistory/FeedOredersHistory";
 
+
 const App:React.FC = () => {
   const location = useLocation<TLocation>();
-  const isLogin = useTSelector((state) => state.profileReducer.isLogin);
-  const order = useTSelector((state) => state.orderReducer.orderCard);
+  const isLogin = useSelector((state) => state.profileReducer.isLogin);
+  const order = useSelector((state) => state.orderReducer.orderCard);
   const dispatch = useTDispatch();
   useEffect(() => {
     if(document.cookie !== '') {

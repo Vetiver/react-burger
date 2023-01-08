@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, combineReducers } from "redux";
+import { applyMiddleware, compose, combineReducers } from "@reduxjs/toolkit";
 import { configureStore } from "@reduxjs/toolkit";
 import { orderReducer } from "../reducers/orderReducer";
 import { profileReducer } from "../reducers/profileReducer";
@@ -29,5 +29,5 @@ export const store = configureStore({
   devTools: true,
 });
 
-export type TState = ReturnType<typeof store.getState>;
+export type RootState  = ReturnType<typeof reduсers>;
 export type TDispatch = typeof store.dispatch;

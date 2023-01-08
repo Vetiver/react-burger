@@ -5,7 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from "react-redux";
 import Style from "../Stuffing/Stuffing.module.css";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, TLocation } from "../../utils/types";
 import { useMotionValue, Reorder } from "framer-motion";
 
 interface IStuffingProps {

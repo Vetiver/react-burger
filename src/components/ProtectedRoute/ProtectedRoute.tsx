@@ -8,7 +8,7 @@ import {
   USER_LOGIN,
 } from "../../services/actions/profile";
 import { getCookie } from "../../utils/cookie.jsx";
-import { useTDispatch, useTSelector, TLocation } from "../../utils/types";
+import { useTDispatch, TLocation } from "../../utils/types";
 
 interface IProtectedRouteProps {
   anonymous?: boolean;
