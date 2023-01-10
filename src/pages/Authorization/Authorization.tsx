@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { Link, useLocation, Redirect  } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import Style from "../Authorization/Authorization.module.css";
 import { refreshAccessToken } from "../../services/actions/profile";
 import {
@@ -7,8 +7,15 @@ import {
   Button,
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUserInfo, userLogin } from "../../services/actions/profile";
+import { useTDispatch } from "../../utils/types";
+import { loginUserInfo } from "../../services/actions/profile";
+
+
+
+interface IAuthorization {
+  email: string;
+  password: string;
+}
 
 interface IForm {
   email: string;
@@ -18,13 +25,13 @@ interface IForm {
 
 
 const Authorization: React.FC<IAuthorization> = () => {
-  const dispatch = useDispatch();
-  const [form, setValue] = useState<IForm>({ email: "", password: "" });
-  const onChange = (e:React.SyntheticEvent): void => {
+  const dispatch = useTDispatch();
+  const [form, setValue] = useState({ email: "", password: "" });
+  const onChange = (e:React.ChangeEvent<HTMLInputElement>): void => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
   const login = useCallback(
-    (e:React.SyntheticEvent): void => {
+    (e:React.SyntheticEvent) => {
       e.preventDefault();
       dispatch(loginUserInfo(form));
       dispatch(refreshAccessToken());
@@ -53,7 +60,7 @@ const Authorization: React.FC<IAuthorization> = () => {
         icon={"ShowIcon"}
         error={false}
       />
-      <Button type="primary" size="large">
+      <Button htmlType="button" type="primary" size="large">
         Войти
       </Button>
       <div className={`${Style.linkContainer}`}>

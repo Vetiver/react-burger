@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 interface IOrderDetailsProps {
-  data: string;
+  data: number | null;
 }
 
 const OrderDetails: React.FC<IOrderDetailsProps> = ({ data }) => {

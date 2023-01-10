@@ -18,7 +18,6 @@ import { useTDispatch} from "../../utils/types";
 const modalRoot = document.getElementById("modal-root") as HTMLElement;
 
 interface IModalProps {
-  onClose: any;
   children: any;
 }
 

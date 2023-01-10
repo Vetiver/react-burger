@@ -10,14 +10,14 @@ import { setPassword } from "../../services/actions/profile";
 
 
 interface IForm {
-  name: string | null;
-  password: string | null;
+  name: string ;
+  password: string ;
 }
 
 const ResetPassword: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const [form, setValue] = useState<IForm>({ password: "", name: "" });
-  const data = async (form:React.ChangeEvent<HTMLInputElement>) => {
+  const data = async (form: any) => {
     const res = await setPassword(form).then((data) => data);
     if (res.success == true) {
       setSuccess(true);
@@ -63,7 +63,7 @@ const ResetPassword: React.FC = () => {
         placeholder={"Введите код из письма"}
         error={false}
       />
-      <Button type="primary" onClick={reset} size="large">
+      <Button type="primary" htmlType="submit" onClick={reset} size="large">
         Сохранить
       </Button>
       <div className={`${Style.linkContainer}`}>

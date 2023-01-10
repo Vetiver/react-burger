@@ -17,9 +17,21 @@ type TIngridientsState = {
   orderNumber: null | number;
   orderRequest: boolean;
   orderFailed: boolean;
-  buns: ReadonlyArray<TIngredients>;
+  buns: Array<TIngredients>;
   mainPrice: number;
-  constructorIngredients: ReadonlyArray<TIngredients>;
+  constructorIngredients: [] | Array<TIngredients>;
+};
+
+const initialState: TIngridientsState = {
+  allIngredients: [],
+  IngredientsRequest: false,
+  IngredientsFailed: false,
+  orderNumber: null,
+  orderRequest: false,
+  orderFailed: false,
+  buns: [],
+  mainPrice: 0,
+  constructorIngredients: [],
 };
 
 export interface IGetIngreientRequest {
@@ -37,12 +49,12 @@ export interface IGetIngredientFailed {
 
 export interface IAddBunElement {
   readonly type: typeof ADD_BUN_ELEMENT;
-  payload: ReadonlyArray<TIngredients>;
+  payload: TIngredients;
 }
 
 export interface IAddConstructorElement {
   readonly type: typeof ADD_CONSTRUCTOR_ELEMENT;
-  payload: ReadonlyArray<TIngredients>;
+  payload: TIngredients;
 }
 
 export interface IRemoveConstructorElement {
@@ -70,19 +82,10 @@ type TIngredientsActions =
   | IAddPrice
   | IRemovePrice 
 
-const initialState: TIngridientsState = {
-  allIngredients: [],
-  IngredientsRequest: false,
-  IngredientsFailed: false,
-  orderNumber: null,
-  orderRequest: false,
-  orderFailed: false,
-  buns: [],
-  mainPrice: 0,
-  constructorIngredients: [],
-};
-
-export const ingredientReducer = (state = initialState, action: TIngredientsActions) => {
+export const ingredientReducer = (
+  state = initialState,
+  action: TIngredientsActions
+): TIngridientsState => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST:
       return { ...state, IngredientsRequest: true };

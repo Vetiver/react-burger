@@ -12,19 +12,18 @@ type TOrderState = {
   allOrders: ReadonlyArray<TOrders>;
   historyOrders: ReadonlyArray<TOrders>;
   ingredient: object;
-  orderCard: object;
+  orderCard: ReadonlyArray<TOrders>;
   orderNumber: null | number;
   orderRequest: boolean;
   orderFailed: boolean;
-  
 };
 
-const initialState = {
+const initialState: TOrderState = {
   orderNumber: null,
   orderRequest: false,
   orderFailed: false,
   ingredient: {},
-  orderCard: {},
+  orderCard: [],
   allOrders: [],
   historyOrders: [],
 };
@@ -77,7 +76,10 @@ IGetOrderRequest
   | IGetHistoryOrder
   | ISetUserInfo 
 
-export const orderReducer = (state = initialState, action: TOrderActions): TOrderState => {
+export const orderReducer = (
+  state = initialState,
+  action: TOrderActions
+): TOrderState => {
   switch (action.type) {
     case ALL_ORDERS:
       return { ...state, allOrders: action.payload };

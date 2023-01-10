@@ -1,17 +1,18 @@
-import React, { memo } from "react";
+import React from "react";
 import Styles from "../OrderFeedStats/OrderFeedStats.module.css";
 
 interface IOrderFeedStatsProps {
-  data: {
-    orders: any;
-    total: number;
-    totalToday: number;
-  };
+    orders?: any;
+    total?: number;
+    totalToday?: number;
+    data:any;
 }
 
-const OrderFeedStats: React.FC<IOrderFeedStatsProps> = ({ data }) => {
+const OrderFeedStats = ({
+  data,
+}: IOrderFeedStatsProps) => {
   return (
-    !!data.orders && (
+    !!data.orders ? (
       <div className={Styles.container}>
         <div className={Styles.orderIsReady}>
           <h2 className={`${Styles.title} "text text_type_main-medium"`}>
@@ -58,8 +59,8 @@ const OrderFeedStats: React.FC<IOrderFeedStatsProps> = ({ data }) => {
           </p>
         </div>
       </div>
-    )
+    ) : null
   );
-}
+};
 
-export default memo(OrderFeedStats);
+export default OrderFeedStats;

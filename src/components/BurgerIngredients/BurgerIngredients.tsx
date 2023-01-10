@@ -5,11 +5,12 @@ import {Tabs} from "../Tab/Tab";
 import { Link, useLocation } from "react-router-dom";
 import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 
+
 const BurgerIngredients:React.FC = () => {
   const location = useLocation<TLocation>();
-  const bunRef = useRef<any>();
-  const sauseRef = useRef<any>();
-  const mainRef = useRef<any>();
+  const bunRef = useRef<HTMLInputElement>(null);
+  const sauseRef = useRef<HTMLInputElement>(null);
+  const mainRef = useRef<HTMLInputElement>(null);
   const ingredients = useSelector(
     (state) => state.ingredientReducer.allIngredients
   );

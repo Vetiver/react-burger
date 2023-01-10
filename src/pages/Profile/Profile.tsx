@@ -35,7 +35,7 @@ const Profile = () => {
       userInfo.name == form.name &&
       form.password == ""
     ) {
-      setDisabled(false);
+      setDisabled({disabled: false});
     }
   };
 
@@ -44,8 +44,7 @@ const Profile = () => {
       e.preventDefault();
         setValue({
           name: userInfo.name,
-          email: userInfo.email,
-          password: userInfo.password,
+          email: userInfo.email
         })
     },
     [form]
@@ -73,68 +72,73 @@ const Profile = () => {
         name: form.name,
         email: form.email,
       });
-      setDisabled(true);
+      setDisabled({ disabled: true });
     },
     [form]
   );
 
-  return (
-    !!userInfo && (
-      <div className={`${Style.mainContainer}`}>
-        <div>
-          <NavBar />
-          <p
-            className={`${Style.text} text text_type_main-default text_color_inactive`}
-          >
-            В этом разделе вы можете изменить свои персональные данные
-          </p>
-        </div>
-        <div className={`${Style.inputContainer}`}>
-          <Input
-            type={"text"}
-            placeholder={"Имя"}
-            onChange={onInputChange}
-            name={"name"}
-            value={form.name}
-            error={false}
-            errorText={"Ошибка"}
-            size={"default"}
-          />
-          <EmailInput
-            type={"email"}
-            placeholder={"E-mail"}
-            onChange={onInputChange}
-            value={form.email}
-            error={false}
-            name={"email"}
-          />
-          <Input
-            type={"password"}
-            placeholder={"Пароль"}
-            icon={"ShowIcon"}
-            name={"password"}
-            onChange={onInputChange}
-            value={form.password}
-            error={false}
-          />
+  return !!userInfo ? (
+    <div className={`${Style.mainContainer}`}>
+      <div>
+        <NavBar />
+        <p
+          className={`${Style.text} text text_type_main-default text_color_inactive`}
+        >
+          В этом разделе вы можете изменить свои персональные данные
+        </p>
+      </div>
+      <div className={`${Style.inputContainer}`}>
+        <Input
+          type={"text"}
+          placeholder={"Имя"}
+          onChange={onInputChange}
+          name={"name"}
+          value={form.name}
+          error={false}
+          errorText={"Ошибка"}
+          size={"default"}
+        />
+        <EmailInput
+          // type={"email"}
+          placeholder={"E-mail"}
+          onChange={onInputChange}
+          value={form.email}
+          // error={false}
+          name={"email"}
+        />
+        <Input
+          type={"password"}
+          placeholder={"Пароль"}
+          icon={"ShowIcon"}
+          name={"password"}
+          onChange={onInputChange}
+          value={form.password}
+          error={false}
+        />
 
-          <div className={`${Style.buttonsContainer}`}>
-            <Button onClick={revoke} disabled={disabled} type="secondary" size="small">
-              <p className={`text text_type_main-default`}>Отмена</p>
-            </Button>
-            <Button
-              disabled={disabled}
-              onClick={updateUserData}
-              type="primary"
-              size="small"
-            >
-              <p className={`text text_type_main-default`}>Сохранить</p>
-            </Button>
-          </div>
+        <div className={`${Style.buttonsContainer}`}>
+          <Button
+            onClick={revoke}
+            disabled={true}
+            type="secondary"
+            htmlType="submit"
+            size="small"
+          >
+            <p className={`text text_type_main-default`}>Отмена</p>
+          </Button>
+          <Button
+            disabled={true}
+            onClick={updateUserData}
+            type="primary"
+            htmlType="submit"
+            size="small"
+          >
+            <p className={`text text_type_main-default`}>Сохранить</p>
+          </Button>
         </div>
       </div>
-    )
-  );
+    </div>
+  ) : null;
 }
 
 export default Profile;

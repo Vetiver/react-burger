@@ -8,6 +8,9 @@ import { TDispatch, RootState } from "../services/store/store";
 export const useTDispatch = () => useDispatch<TDispatch>();
 export const useSelector: TypedUseSelectorHook<RootState> = useReduxSelector;
 
+
+
+
 export type TLocation = {
   background: {
     pathname: string;
@@ -39,13 +42,19 @@ export type TIngredients = {
   };
 
 export type TOrders = {
-    readonly success: boolean;
-    readonly user: {
-      email: string;
-      name: string;
-    };
-    _id?: string;
-  };  
+  _id?: string;
+  ingredients?: Array<string>;
+  readonly status?: string;
+  readonly name?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  number?: number;
+};  
+
+export type TWs = {
+  orders: Array<TOrders>;
+  _id?: string;
+};  
   
 export type TUser = {
     readonly _id: string;
@@ -102,4 +111,8 @@ export  type TRequestOptions = {
   export type TResetPasswordForm = {
     readonly password: string;
     readonly token: string;
+  };
+
+  export type useAppParams = {
+    id: string;
   };

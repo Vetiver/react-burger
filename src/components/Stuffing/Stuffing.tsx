@@ -26,7 +26,7 @@ const Stuffing: React.FC<IStuffingProps> = ({ el }) => {
   }
 
   return (
-    <Reorder.Item style={{ y }} key={el} value={el}>
+    <Reorder.Item style={{ y }} id={el.uuid} value={el}>
       <div className={`${Style.stuffingBar}`}>
         <DragIcon type="primary" />
         <ConstructorElement

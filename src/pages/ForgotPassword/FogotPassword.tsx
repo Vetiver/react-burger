@@ -14,7 +14,7 @@ const FogotPassword: React.FC = () => {
   const [form, setValue] = useState({ email: "" });
   const data = async (form: any) => {
     const res = await resetPassword(form).then((data) => data);
-    if (res.success == true) {
+    if (res.success === true) {
       setSuccess(true);
     }
   };
@@ -47,7 +47,7 @@ const FogotPassword: React.FC = () => {
         errorText={"Ошибка"}
         size={"default"}
       />
-      <Button onClick={getEmail}  type="primary" size="large">
+      <Button onClick={getEmail} htmlType="submit" type="primary" size="large">
         Восстановить
       </Button>
       <div className={`${Style.linkContainer}`}>

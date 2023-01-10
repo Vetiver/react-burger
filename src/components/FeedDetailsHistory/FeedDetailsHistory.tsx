@@ -6,21 +6,10 @@ import FeedDetailsIngredient from "../FeedDetailsIngredient/FeedDetailsIngredien
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import {date} from '../../utils/date';
+import { TOrders } from "../../utils/types";
 
 interface IFeedDetailsHistorProps {
-  data: object;
-}
-
-
-interface IFeedDetailsHistorProps {
-  _id: string;
-  ingredients: any;
-  name: string;
-  number: string;
-  status: string;
-  updatedAt: string;
-  createdAt: string;
-  counter: any;
+  data: any;
 }
 
 const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
@@ -41,7 +30,6 @@ const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
 
   const { id } = useParams<any>();
   const allOrders = useSelector((state) => state.wsReducer.allOrders);
-  console.log(allIngredients)
   const [items, sets] = useState({
     _id: "",
     ingredients: [],
@@ -61,7 +49,7 @@ const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
   useEffect(() => {
     if (!!all) {
       const ingredient = all.ingredients;
-      const alls = [...new Set(ingredient)];
+      const alls: any = new Set(ingredient);
       sets({
         _id: all._id,
         ingredients: alls,
@@ -113,7 +101,7 @@ const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
           <p className={`${Style.totalPrice} text text_type_digits-default`}>
             {price}
           </p>
-          <CurrencyIcon className={Style.currency} type="primary" />
+          <CurrencyIcon type="primary" />
         </div>
       </div>
     </div>

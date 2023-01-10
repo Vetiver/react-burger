@@ -76,26 +76,23 @@ const BurgerConstructor:React.FC = () => {
     setTheme(true);
   }
 
-  function handleCloseModal() {
-    setTheme(false);
-  }
+
 
   const modal = (
-    <Modal onClose={handleCloseModal}>
+    <Modal>
       <OrderDetails data={orderNumber} />
     </Modal>
   );
   return bun.length === 0 ? (
     <section className={`${Style.burgerContainer}`}>
       <ElementBurger bunTarget={bunTarget}>
-        <div className={`${Style.ingredientsBar}`}/>
+        <div className={`${Style.ingredientsBar}`} />
       </ElementBurger>
       <div className={`${Style.counter}`}>
         <div className={`${Style.counterContainer}`}>
-          <h2 className={`text text_type_main-large`}></h2>
           <CurrencyIcon type="primary" />
         </div>
-        <Button disabled={true} type="primary" size="medium">
+        <Button disabled={true} htmlType="submit" type="primary" size="medium">
           Оформить заказ
         </Button>
         {visible && modal}
@@ -104,7 +101,7 @@ const BurgerConstructor:React.FC = () => {
   ) : (
     <section className={`${Style.burgerContainer}`}>
       <ElementBurger bun={bun} bunTarget={bunTarget}>
-        <Reorder.Group values={items} onReorder={sets}>
+        <Reorder.Group axis="y" values={items} onReorder={sets}>
           <div className={`${Style.ingredientsBar}`} ref={dropTarget}>
             {items.map((el) => {
               return <Stuffing el={el} key={el.uuid} />;
@@ -119,7 +116,7 @@ const BurgerConstructor:React.FC = () => {
           </h2>
           <CurrencyIcon type="primary" />
         </div>
-        <Button onClick={open} type="primary" size="medium">
+        <Button htmlType="submit" onClick={open} type="primary" size="medium">
           Оформить заказ
         </Button>
         {visible && modal}

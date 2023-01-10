@@ -7,11 +7,12 @@ export const socketMiddleware = (wsUrl: string, wsActions: TMiddlewareWSActions)
   const CLOSING = 2;
   return (store: MiddlewareAPI<TDispatch, RootState>) => {
     let socket: null | WebSocket = null;
+    const { wsInit, onOpen, onError, onClose, onMessage } = wsActions;
 
     return (next) => (action) => {
       const { dispatch } = store;
       const { type, payload } = action;
-      if (type === "WS_CONNECTION_START") {
+      if (type === wsInit) {
         if (socket == null) {
           socket = new WebSocket(`${wsUrl}${payload.add}`);
         } else if (
@@ -21,7 +22,7 @@ export const socketMiddleware = (wsUrl: string, wsActions: TMiddlewareWSActions)
           socket = new WebSocket(`${wsUrl}${payload.add}`);
         }
       }
-      if (type === "WS_CONNECTION_CLOSED" && socket) {
+      if (type === onClose && socket) {
         if (socket.readyState === 1) {
           socket.close();
         }
@@ -29,12 +30,12 @@ export const socketMiddleware = (wsUrl: string, wsActions: TMiddlewareWSActions)
       if (socket) {
         // функция, которая вызывается при открытии сокета
         socket.onopen = (event) => {
-          dispatch({ type: "WS_CONNECTION_SUCCESS", payload: event });
+          dispatch({ type: onOpen, payload: event });
         };
 
         // функция, которая вызывается при ошибке соединения
         socket.onerror = (event) => {
-          dispatch({ type: "WS_CONNECTION_ERROR", payload: event });
+          dispatch({ type: onError, payload: event });
         };
 
         // функция, которая вызывается при получении события от сервера
@@ -42,11 +43,11 @@ export const socketMiddleware = (wsUrl: string, wsActions: TMiddlewareWSActions)
           const { data } = event;
           const parse = JSON.parse(data);
           const { success, ...parsedData } = parse;
-          dispatch({ type: "WS_GET_MESSAGE", payload: parsedData });
+          dispatch({ type: onMessage, payload: parsedData });
         };
         // функция, которая вызывается при закрытии соединения
         socket.onclose = (event) => {
-          dispatch({ type: "WS_CONNECTION_CLOSED", payload: event });
+          dispatch({ type: onClose, payload: event });
         };
       }
 

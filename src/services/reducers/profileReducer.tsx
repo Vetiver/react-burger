@@ -1,4 +1,4 @@
-import { TUser } from "../../utils/types";
+import { TUser, TOrders, TIngredients  } from "../../utils/types";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_USER_SUCCESS = "SET_USER_SUCCESS";
 export const SET_USER_FAILED = "SET_USER_FAILED";
@@ -11,7 +11,6 @@ export const FETCH_USER = "FETCH_USER";
 
 type TProfileState = {
   userInfo: ReadonlyArray<TUser> | null;
-  
   userInfoData: {
     name: string;
     email: string;
@@ -22,9 +21,9 @@ type TProfileState = {
   hasError: boolean;
 };
 
-const initialState = {
+const initialState: TProfileState = {
   userInfo: [],
-  userInfoData: { name: "", email: "" },
+  userInfoData: { name: "", email: ""},
   isLogin: false,
   isOpen: false,
   isLoading: false,
@@ -80,7 +79,10 @@ ISetUserInfo
   | IUserLogout 
   | IFetchUser 
 
-export const profileReducer = (state = initialState, action: TOrderActions): TProfileState => {
+export const profileReducer = (
+  state = initialState,
+  action: TOrderActions
+): TProfileState => {
   switch (action.type) {
     case FETCH_USER:
       return {

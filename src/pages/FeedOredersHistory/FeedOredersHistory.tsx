@@ -15,7 +15,7 @@ const FeedOrdersHistory = () => {
     dispatch({
       type: WS_CONNECTION_START,
       payload: {
-        add: `?token=${getCookie("token").split(" ")[1]}`,
+        add: `?token=${getCookie("token")?.split(" ")[1]}`,
       },
     });
   }, []);
@@ -30,7 +30,7 @@ const FeedOrdersHistory = () => {
             В этом разделе вы можете просмотреть свою историю заказов
           </p>
         </div>
-        <Orders data={allOrders} />
+        <Orders orders={allOrders} />
       </div>
     )
   );

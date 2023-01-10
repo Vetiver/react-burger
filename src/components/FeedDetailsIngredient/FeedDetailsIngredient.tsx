@@ -2,13 +2,12 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import Style from "./FeedDetailsIngredient.module.css";
 
 interface IFeedDetailsIngredientProps {
-  data: {
-    image: string;
-    name: string;
-    price: number;
-    _id: string;
-  };
-  amount: any;
+  onClick?: (evt: Event) => void;
+    image?: string;
+    name?: string;
+    price?: number;
+  amount?: any;
+  data?: any;
 }
 
 const FeedDetailsIngredient:React.FC<IFeedDetailsIngredientProps> = ({ data, amount }) => {
@@ -28,7 +27,7 @@ const FeedDetailsIngredient:React.FC<IFeedDetailsIngredientProps> = ({ data, amo
       <p className={`${Style.amountContainer} text text_type_digits-default`}>
         <span className={Style.amount}>{X}</span> x{" "}
         <p className={Style.price}>{data.price}</p>
-        <CurrencyIcon className={Style.currency} type="primary" />
+        <CurrencyIcon type="primary" />
       </p>
     </li>
   );

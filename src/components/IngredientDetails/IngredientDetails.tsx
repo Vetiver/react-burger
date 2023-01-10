@@ -3,15 +3,21 @@ import ReactDOM from "react-dom";
 import Style from "../IngredientDetails/IngredientDetails.module.css";
 import { useParams } from "react-router-dom";
 import { getItems } from "../../services/actions/ingredients.js";
-import { useTDispatch, useSelector, TLocation } from "../../utils/types";
+import {
+  useTDispatch,
+  useSelector,
+  TLocation,
+  TIngredients,
+  useAppParams,
+} from "../../utils/types";
 
 interface IFeedDetailsIngredientProps {
-    image: string;
-    name: string;
-    calories: string;
-    proteins: string;
-    fat: string;
-    carbohydrates: string;
+  image: string;
+  name: string;
+  calories: number;
+  proteins: number;
+  fat: number;
+  carbohydrates: number;
 }
 
 const IngredientDetails: React.FC = () => {
@@ -21,16 +27,16 @@ const IngredientDetails: React.FC = () => {
   const [items, sets] = useState<IFeedDetailsIngredientProps>({
     image: "",
     name: "",
-    calories: "",
-    proteins: "",
-    fat: "",
-    carbohydrates: "",
+    calories: 0,
+    proteins: 0,
+    fat: 0,
+    carbohydrates: 0,
   });
 
-  const { id } = useParams<any>();
+  const { id }: useAppParams = useParams();
   useEffect(() => {
     if (allIngredients.length) {
-      const main = allIngredients.find((el: any) => el._id === id);
+      const main = allIngredients.find((el: TIngredients) => el._id === id);
       if (main) {
         sets({
           image: main.image_large,

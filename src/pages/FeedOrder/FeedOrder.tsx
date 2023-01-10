@@ -25,7 +25,7 @@ const FeedOrder = () => {
           Лента заказов
         </h1>
         <div className={Styles.container}>
-          <Orders data={allOrders}></Orders>
+          <Orders orders={allOrders}></Orders>
           <OrderFeedStats data={allOrders}></OrderFeedStats>
         </div>
       </div>

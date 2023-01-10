@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Style from "../ModalOverlay/ModalOverlay.module.css";
-import { useHistory, useParams } from "react-router-dom";
-
-
-
+import { useHistory } from "react-router-dom";
 
 const ModalOverlay: React.FC = () => {
   const history = useHistory();
   const modalOverlay = (evt:React.SyntheticEvent) => {
-    if (evt.target.id == "ModalOverlay") {
+    const target = evt.target as HTMLInputElement;
+    if (target.id === "ModalOverlay") {
       history.goBack();
     }
     evt.stopPropagation();

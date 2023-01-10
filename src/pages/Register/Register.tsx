@@ -12,7 +12,7 @@ const Register:React.FC = () => {
   const isLogin = useSelector((state) => state.profileReducer.isLogin);
   const [form, setValue] = useState({ email: "", password: "", name: "" });
   const dispatch = useTDispatch();
-  const onChange = (e:React.ChangeEvent<HTMLInputElement>): void => {
+  const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
   const registerUser = (form: any) => {
@@ -59,7 +59,7 @@ const Register:React.FC = () => {
         icon={"ShowIcon"}
         error={false}
       />
-      <Button type="primary" onClick={login} size="large">
+      <Button type="primary" htmlType="submit" onClick={login} size="large">
         Зарегистрироваться
       </Button>
       <div className={`${Style.linkContainer}`}>

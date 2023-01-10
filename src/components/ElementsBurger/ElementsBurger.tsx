@@ -1,12 +1,11 @@
 import React from "react";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import Style from "../ElementsBurger/ElementBurger.module.css";
 import { TIngredients } from "../../utils/types";
 
 interface IElementBurgerProps {
   bun: Array<TIngredients>;
-  children: any;
+  children: React.ReactNode;
   bunTarget: string;
 }
 export const ElementBurger: React.FC<IElementBurgerProps> = ({ bun, children, bunTarget }) => {

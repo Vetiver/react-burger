@@ -61,7 +61,7 @@ const App:React.FC = () => {
           exact={true}
         >
           <main className={Style.container}>
-            <Authorization />
+            <Authorization email={""} password={""} />
           </main>
         </ProtectedRoute>
         <ProtectedRoute

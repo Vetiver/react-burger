@@ -9,6 +9,7 @@ import { useTDispatch, useSelector, TLocation } from "../../utils/types";
 
 interface IFeedDetailsIngredientProps {
   data: any
+  onClick: Function;
 }
 
 const FeedOrderCard:React.FC<IFeedDetailsIngredientProps> =({ data }) => {

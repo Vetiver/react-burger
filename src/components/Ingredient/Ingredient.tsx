@@ -20,7 +20,7 @@ interface IIngredientProps {
   };
 }
 
-const Ingredient: React.FC<IIngredientProps> = ({ ingredient }) => {
+const Ingredient = ({ ingredient }: IIngredientProps) => {
   const [{ isDrag }, dragRef] = useDrag({
     type: "ingredient",
     item: ingredient,
@@ -47,7 +47,7 @@ const Ingredient: React.FC<IIngredientProps> = ({ ingredient }) => {
   }
 
   return (
-    !isDrag && (
+    !isDrag ? (
       <div
         onClick={handleOpenModal}
         className={`${Style.ingredientContainer}`}
@@ -65,18 +65,17 @@ const Ingredient: React.FC<IIngredientProps> = ({ ingredient }) => {
         <p className="text text_type_main-small">{ingredient.name}</p>
         {bunsNumber ? (
           <Counter
-            className={Style.counter}
             count={bunsNumber + 1}
             size="default"
           />
         ) : null}
         {number ? (
-          <Counter className={Style.counter} count={number} size="default" />
+          <Counter  count={number} size="default" />
         ) : null}
       </div>
-    )
+    ): null
   );
-}
+};
 
 Ingredient.propTypes = {
   ingredient: burgerProps.isRequired,
