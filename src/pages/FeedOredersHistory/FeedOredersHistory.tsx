@@ -20,7 +20,7 @@ const FeedOrdersHistory = () => {
     });
   }, []);
   return (
-    !!allOrders && (
+    !!allOrders ? (
       <div className={Styles.container}>
         <div>
           <NavBar />
@@ -32,7 +32,7 @@ const FeedOrdersHistory = () => {
         </div>
         <Orders orders={allOrders} />
       </div>
-    )
+    ) : null
   );
 }
 

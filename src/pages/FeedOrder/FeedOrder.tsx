@@ -19,7 +19,7 @@ const FeedOrder = () => {
     });
   }, []);
   return (
-    !!allOrders && (
+    !!allOrders ? (
       <div className={Styles.mainContainer}>
         <h1 className={`${Styles.title} text text_type_main-large`}>
           Лента заказов
@@ -29,7 +29,7 @@ const FeedOrder = () => {
           <OrderFeedStats data={allOrders}></OrderFeedStats>
         </div>
       </div>
-    )
+    ) : null
   );
 }
 

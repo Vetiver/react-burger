@@ -27,7 +27,7 @@ interface IForm {
 const Authorization: React.FC<IAuthorization> = () => {
   const dispatch = useTDispatch();
   const [form, setValue] = useState({ email: "", password: "" });
-  const onChange = (e:React.ChangeEvent<HTMLInputElement>): void => {
+  const onChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setValue({ ...form, [e.target.name]: e.target.value });
   };
   const login = useCallback(
@@ -60,7 +60,7 @@ const Authorization: React.FC<IAuthorization> = () => {
         icon={"ShowIcon"}
         error={false}
       />
-      <Button htmlType="button" type="primary" size="large">
+      <Button onClick={login} htmlType="button" type="primary" size="large">
         Войти
       </Button>
       <div className={`${Style.linkContainer}`}>

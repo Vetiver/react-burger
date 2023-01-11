@@ -6,13 +6,22 @@ export const WS_GET_MESSAGE = "WS_GET_MESSAGE";
 export const WS_CONNECTION_CLOSED = "WS_CONNECTION_CLOSED";
 
 type TWsState = {
-  allOrders: Array<TWs>;
+  allOrders: {
+    length?: number;
+    orders: any;
+    total: number;
+    totalToday: number;
+  };
   wsConnected: boolean;
   error: any;
 };
 
 const initialState: TWsState = {
-  allOrders: [],
+  allOrders: {
+    orders: [],
+    total: 0,
+    totalToday: 0,
+  },
   wsConnected: false,
   error: undefined,
 };
@@ -80,7 +89,11 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
       return {
         ...state,
         error: undefined,
-        allOrders: action.payload,
+        allOrders: {
+          orders: action.payload.data.orders,
+          total: action.payload.data.total,
+          totalToday: action.payload.data.totalToday,
+        },
       };
     default:
       return state;

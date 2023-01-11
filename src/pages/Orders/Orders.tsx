@@ -8,12 +8,12 @@ import { useTDispatch, TLocation, TWs } from "../../utils/types";
 
 interface IOrdersProps {
 
-    orders: Array<TWs>;
+    orders: any;
 
 }
 
 const Orders: React.FC<IOrdersProps> = ({ orders }) => {
-  const location = useLocation<TLocation>();
+  console.log(orders)
   const dispatch = useTDispatch();
   const setOrder = useCallback((e: React.SyntheticEvent): void => {
     dispatch({ type: SET_ORDER, payload: e });
@@ -23,14 +23,16 @@ const Orders: React.FC<IOrdersProps> = ({ orders }) => {
     <section className={Style.container}>
       <div className={` ${Style.containerCard} custom-scroll`} id="scroll">
         {orders != null &&
-          orders.map((el) => {
+          orders.orders.map((el: any) => {
             return (
               <Link
                 className={`${Style.link}`}
                 key={el._id}
                 to={{
+                  // eslint-disable-next-line no-restricted-globals
                   pathname: `${location.pathname}/${el._id}`,
                   state: {
+                    // eslint-disable-next-line no-restricted-globals
                     background: location,
                   },
                 }}

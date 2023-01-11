@@ -33,7 +33,7 @@ const FeedOrderCard:React.FC<IFeedDetailsIngredientProps> =({ data }) => {
     dispatch({ type: SET_ORDER, payload: data });
   }
   return (
-    !!allOrders && (
+    !!allOrders ? (
       <div onClick={handleOpenModal} className={Styles.container}>
         <p className={`${Styles.number} text text_type_digits-default`}>
           &#35;{data.number}
@@ -95,7 +95,7 @@ const FeedOrderCard:React.FC<IFeedDetailsIngredientProps> =({ data }) => {
           <CurrencyIcon type="primary" />
         </div>
       </div>
-    )
+    ): null
   );
 }
 

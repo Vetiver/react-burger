@@ -63,7 +63,7 @@ const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
     }
   }, [all]);
   return (
-    <div className={Style.container}>
+<div className={Style.container}>
       <p className={`${Style.number} text text_type_digits-default`}>
         &#35;{items.number}
       </p>
@@ -105,7 +105,10 @@ const FeedDetailsHistory:React.FC<IFeedDetailsHistorProps> = ({ data }) => {
         </div>
       </div>
     </div>
-  );
+
+  )
+    
+
 }
 
 export default FeedDetailsHistory;
